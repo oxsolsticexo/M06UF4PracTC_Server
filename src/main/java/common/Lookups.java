@@ -22,7 +22,7 @@ public class Lookups {
     
     private static final String wildFlyInitialContextFactory = "org.wildfly.naming.client.WildFlyInitialContextFactory";
     
-    private static final String appName = "EJB_Exemple1_Server-" + APP_VERSION;
+    private static final String appName = "M06UF4PracTC_Server-" + APP_VERSION;
     
     public static ICarroCompra carroCompraEJBRemoteLookup() throws NamingException
     {
