@@ -5,6 +5,10 @@
     <class>common.Jugador</class>
     <class>common.Partida</class>
     <class>common.Pregunta</class>
+    <class>common.Compra</class>
+    <class>common.Client</class>
+    <class>common.Article</class>
+    <class>common.LiniaCompra</class>
     <properties>
       <!-- Propietats Hibernate -->
       <property name="hibernate.hbm2ddl.auto" value="update"/>
