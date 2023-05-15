@@ -72,28 +72,28 @@ public class CarroCompraEJB implements ICarroCompra {
    
    private static final Logger log = Logger.getLogger(CarroCompraEJB.class.getName());
     
-   @PostConstruct
-   public void init() {
-       
-      log.log(Level.INFO, "Inicialitzant CarroCompraEJB: client={0} ; compra={1} ; idSessioCompra={2}; singletonEJB uptime={3}", new Object[]{sessionContext.getCallerPrincipal().getName(), this.compra, this.idSessioCompra, this.singleton.getUptimeUTC().toString()});
-     
-      try {
-          
-          log.log(Level.INFO, "Inicalitzant TendaEJB");
-          
-          missatges = new LinkedList<>();
-          
-          tenda = Lookups.tendaEJBRemoteLookup();
-          
-          Principal p = ejbContext.getCallerPrincipal();
-          
-          log.log(Level.INFO, "Usuari remot: {0}", p.getName());
-          log.log(Level.INFO, "Hash: {0}", p.hashCode());
-           
-       } catch (NamingException ex) {
-              log.log(Level.INFO, "ERROR connectant amb:  {0} : {1}", new Object[]{tenda.getClass(), ex.toString()});
-       }
-   }
+//   @PostConstruct
+//   public void init() {
+//       
+//      log.log(Level.INFO, "Inicialitzant CarroCompraEJB: client={0} ; compra={1} ; idSessioCompra={2}; singletonEJB uptime={3}", new Object[]{sessionContext.getCallerPrincipal().getName(), this.compra, this.idSessioCompra, this.singleton.getUptimeUTC().toString()});
+//     
+//      try {
+//          
+//          log.log(Level.INFO, "Inicalitzant TendaEJB");
+//          
+//          missatges = new LinkedList<>();
+//          
+//          tenda = Lookups.tendaEJBRemoteLookup();
+//          
+//          Principal p = ejbContext.getCallerPrincipal();
+//          
+//          log.log(Level.INFO, "Usuari remot: {0}", p.getName());
+//          log.log(Level.INFO, "Hash: {0}", p.hashCode());
+//           
+//       } catch (NamingException ex) {
+//              log.log(Level.INFO, "ERROR connectant amb:  {0} : {1}", new Object[]{tenda.getClass(), ex.toString()});
+//       }
+//   }
    
    @Remove
    @Override
