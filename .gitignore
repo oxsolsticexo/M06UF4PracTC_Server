@@ -1,3 +1,7 @@
 *.lst
 *.war
 *.jar
+src/main/resources/META-INF/persistence_BACKUP_1908.xml
+src/main/resources/META-INF/persistence_BASE_1908.xml
+src/main/resources/META-INF/persistence_LOCAL_1908.xml
+src/main/resources/META-INF/persistence_REMOTE_1908.xml
