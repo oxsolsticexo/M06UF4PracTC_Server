@@ -11,7 +11,6 @@ import common.ITenda;
 import java.security.Principal;
 import java.util.Date;
 import java.util.LinkedList;
-import java.util.List;
 import java.util.Queue;
 import java.util.UUID;
 import java.util.logging.Level;
