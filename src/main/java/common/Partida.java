@@ -12,6 +12,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 
 /**
  *
@@ -25,16 +26,17 @@ public class Partida implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long idPartida;
-    
-    @NotNull (message = "Debes introducir un nombre.")
+
+    @NotNull(message = "Debes introducir un nombre.")
     private String nombre;
-    
-    @NotNull (message = "Debes seleccionar una dificultad.")
+
+    @NotNull(message = "Debes seleccionar una dificultad.")
     private Dificultad dificultad;
 
     @OneToMany
+    @Size(max = 4)
     private List<Jugador> jugadoresList;
-    
+
     @OneToMany
     private List<Pregunta> preguntasList;
 
@@ -44,8 +46,8 @@ public class Partida implements Serializable {
         this.jugadoresList = jugadoresList;
         this.preguntasList = preguntasList;
     }
-    
-    public Partida(){
+
+    public Partida() {
     }
 
     public Long getIdPartida() {
