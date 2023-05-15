@@ -38,6 +38,7 @@ public class Partida implements Serializable {
     private List<Jugador> jugadoresList;
 
     @OneToMany
+    @Size(max = 10)
     private List<Pregunta> preguntasList;
 
     public Partida(String nombre, Dificultad dificultad, List<Jugador> jugadoresList, List<Pregunta> preguntasList) {
