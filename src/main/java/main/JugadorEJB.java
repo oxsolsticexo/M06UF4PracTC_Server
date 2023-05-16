@@ -5,9 +5,8 @@
 package main;
 
 import common.IJugador;
-import java.util.Queue;
+import common.Partida;
 import java.util.logging.Logger;
-import javax.annotation.PostConstruct;
 import javax.annotation.Resource;
 import javax.ejb.ConcurrencyManagement;
 import javax.ejb.ConcurrencyManagementType;
@@ -40,8 +39,14 @@ public class JugadorEJB implements IJugador {
 
     private static final Logger log = Logger.getLogger(JugadorEJB.class.getName());
 
-    @PostConstruct
-    public void init() {
-
+    @Override
+    public void cerrarSesion() {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
+
+    @Override
+    public void unirsePartida(Partida partidaAUnirse) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
 }
