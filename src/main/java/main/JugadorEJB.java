@@ -4,10 +4,14 @@
  */
 package main;
 
+import common.SesionJugException;
 import common.IJugador;
+import common.Jugador;
 import java.util.Queue;
+import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.annotation.PostConstruct;
+import javax.annotation.PreDestroy;
 import javax.annotation.Resource;
 import javax.ejb.ConcurrencyManagement;
 import javax.ejb.ConcurrencyManagementType;
@@ -40,8 +44,46 @@ public class JugadorEJB implements IJugador {
 
     private static final Logger log = Logger.getLogger(JugadorEJB.class.getName());
 
+    Jugador jugador;
+
+    String idSesionJugador = null;
+
     @PostConstruct
     public void init() {
 
+    }
+
+    @Override
+    public String getSesion(String login) throws SesionJugException {
+        if (login == null || login.isBlank() || login.isEmpty()) {
+            String msg = "El usuario no es válido o está vacio";
+            log.log(Level.WARNING, msg);
+            throw new SesionJugException(msg);
+        }
+
+        Jugador jug = entityManager.find(Jugador.class, login);
+
+        if (jug == null) {
+            String msg = "Cliente no identificado : " + login + ".Imposible encontrar la sesión.";
+            log.log(Level.WARNING, msg);
+            throw new SesionJugException(msg);
+        }
+
+        return null;
+    }
+
+    @Override
+    public void cierraSesion() {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
+    @PreDestroy
+    public void destroy() {
+        log.info("EJB finalitzant...");
+    }
+
+    @Override
+    public Float getPuntuacionMax() {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 }
