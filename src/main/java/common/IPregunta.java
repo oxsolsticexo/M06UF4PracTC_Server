@@ -11,6 +11,6 @@ import javax.ejb.Remote;
  * @author Kiwi
  */
 @Remote
-public interface IPregunta {
+public class IPregunta {
 
 }

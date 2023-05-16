@@ -4,6 +4,7 @@
  */
 package common;
 
+import java.util.List;
 import javax.ejb.Remote;
 
 /**
@@ -12,5 +13,7 @@ import javax.ejb.Remote;
  */
 @Remote
 public interface IPartida {
+
+    public List<Pregunta> asignaPreguntas(Partida p, Dificultad dificultad);
 
 }
