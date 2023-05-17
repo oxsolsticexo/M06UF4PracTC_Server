@@ -6,7 +6,7 @@ package DAO;
 
 import Interfaces.DAOInterface;
 import model.Usuaris;
-import com.mycompany.testclient.singleton.SQLConnection;
+import singleton.SQLConnection;
 import java.sql.*;
 import javafx.collections.*;
 

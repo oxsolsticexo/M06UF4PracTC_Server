@@ -9,7 +9,6 @@ main\CarroCompraEJB.class
 main\Validadors.class
 common\Article.class
 Interfaces\DAOInterface.class
-com\mycompany\testclient\singleton\SQLConnection.class
 common\ICarroCompra.class
 common\Dificultad.class
 common\Compra.class
@@ -17,6 +16,7 @@ common\LiniaCompra.class
 common\Partida.class
 common\ITenda.class
 common\Jugador.class
+singleton\SQLConnection.class
 common\Pregunta.class
 main\AppSingletonEJB.class
 common\Client.class
