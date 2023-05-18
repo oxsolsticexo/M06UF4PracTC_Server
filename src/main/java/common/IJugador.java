@@ -13,4 +13,16 @@ import javax.ejb.Remote;
 @Remote
 public interface IJugador {
 
+    /**
+     * Cierra la sesión del usuario.
+     */
+    public void cerrarSesion();
+
+    /**
+     * Une al jugador a la partida que ha generado.
+     *
+     * @param partidaAUnirse
+     */
+    public void unirsePartida(Partida partidaAUnirse);
+
 }
