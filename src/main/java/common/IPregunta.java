@@ -4,6 +4,7 @@
  */
 package common;
 
+import java.util.List;
 import javax.ejb.Remote;
 
 /**
@@ -11,6 +12,8 @@ import javax.ejb.Remote;
  * @author Kiwi
  */
 @Remote
-public class IPregunta {
+public interface IPregunta {
+
+    public void cargarPreguntasBBDD(List<Pregunta> preguntasList);
 
 }

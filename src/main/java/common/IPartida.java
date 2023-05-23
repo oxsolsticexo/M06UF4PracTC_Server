@@ -14,6 +14,6 @@ import javax.ejb.Remote;
 @Remote
 public interface IPartida {
 
-    public List<Pregunta> asignaPreguntas(Partida p, Dificultad dificultad);
+    public List<Pregunta> asignaPreguntas(Partida p);
 
 }
