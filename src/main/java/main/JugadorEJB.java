@@ -4,19 +4,16 @@
  */
 package main;
 
-import common.SesionJugException;
 import common.IJugador;
-<<<<<<< HEAD
 import common.Jugador;
 import java.util.Queue;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.annotation.PostConstruct;
 import javax.annotation.PreDestroy;
-=======
 import common.Partida;
+import common.SesionJugException;
 import java.util.logging.Logger;
->>>>>>> develop
 import javax.annotation.Resource;
 import javax.ejb.ConcurrencyManagement;
 import javax.ejb.ConcurrencyManagementType;
@@ -28,6 +25,7 @@ import javax.ejb.TransactionManagementType;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.PersistenceContextType;
+
 
 /**
  *
@@ -49,7 +47,6 @@ public class JugadorEJB implements IJugador {
 
     private static final Logger log = Logger.getLogger(JugadorEJB.class.getName());
 
-<<<<<<< HEAD
     Jugador jugador;
 
     String idSesionJugador = null;
@@ -92,7 +89,6 @@ public class JugadorEJB implements IJugador {
     public Float getPuntuacionMax() {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
-=======
     @Override
     public void cerrarSesion() {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
@@ -112,6 +108,4 @@ public class JugadorEJB implements IJugador {
     public boolean verificarExistenciaCorreo(String correo) {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
-
->>>>>>> develop
 }

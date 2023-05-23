@@ -25,13 +25,11 @@ public interface IJugador {
      */
     public void cierraSesion();
 
-<<<<<<< HEAD
     /***
      * Retorna la puntuacion máxima del cliente
      * @return 
      */
     public Float getPuntuacionMax();
-=======
     /**
      * Cierra la sesión del usuario.
      */
@@ -61,5 +59,4 @@ public interface IJugador {
      */
     public boolean verificarExistenciaCorreo(String correo);
 
->>>>>>> develop
 }
