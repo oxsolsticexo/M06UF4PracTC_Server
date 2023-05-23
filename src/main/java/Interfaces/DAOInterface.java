@@ -16,9 +16,9 @@ import javafx.collections.ObservableList;
 public interface DAOInterface {
 
     //CRUD for 1 user
-    void createUser();
+    boolean createUser(String email, String usuario);
 
-    void findUser();
+    void findUser(String email);
     //CRUD for multiple users
     ObservableList<Usuaris> findUsers();
 }
