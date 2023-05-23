@@ -12,7 +12,19 @@ import javax.ejb.Remote;
  */
 @Remote
 public interface IJugador {
+    /***
+     * Valida el cliente
+     * @param login
+     * @return id de sesión
+     * @throws common.CompraException si el cliente no existe
+     */
+    public String getSesion(String login) throws SesionJugException;
 
+    /***
+     * Retorna la puntuacion máxima del cliente
+     * @return 
+     */
+    public Float getPuntuacionMax();
     /**
      * Cierra la sesión del usuario.
      */
@@ -41,5 +53,10 @@ public interface IJugador {
      * @return 
      */
     public boolean verificarExistenciaCorreo(String correo);
+    /**
+     * Retorna el nombre del jugador
+     * @return 
+     */
+    public String getName();
 
 }
