@@ -6,8 +6,8 @@ package DAO;
 
 import Interfaces.DAOInterface;
 import model.Usuaris;
-import singleton.SQLConnection;
-import java.sql.*;
+//import singleton.SQLConnection;
+//import java.sql.*;
 import javafx.collections.*;
 
 /**
@@ -17,7 +17,7 @@ import javafx.collections.*;
 public class DAO implements DAOInterface {
     
 
-    Connection connection = SQLConnection.getInstance();
+    //Connection connection = SQLConnection.getInstance();
     
     public DAO(){
         
@@ -34,23 +34,8 @@ public class DAO implements DAOInterface {
     }
 
     @Override
-    public void updateUser() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
-
-    @Override
-    public void deleteUser() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
-
-    @Override
-    public void createUsers() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
-
-    @Override
     public ObservableList<Usuaris> findUsers() {
-        try {
+        /*try {
             ObservableList result = FXCollections.observableArrayList();
             String query = "SELECT * FROM usuarios ORDER BY puntuacion DESC;";
             Statement stmt = connection.createStatement();
@@ -67,17 +52,7 @@ public class DAO implements DAOInterface {
             return result;
         } catch (Exception e) {
         }
-        return null;
-    }
-
-    @Override
-    public void updateUsers() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
-
-    @Override
-    public void deleteUsers() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        */return null;
     }
     
 }

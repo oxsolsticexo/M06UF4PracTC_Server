@@ -18,16 +18,7 @@ public interface LogicaInterface {
 
     void findUser();
 
-    void updateUser();
-
-    void deleteUser();
-
     //CRUD for multiple users
-    void createUsers();
 
     ObservableList<Usuaris> findUsers();
-
-    void updateUsers();
-
-    void deleteUsers();
 }
