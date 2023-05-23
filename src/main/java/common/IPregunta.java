@@ -11,6 +11,8 @@ import javax.ejb.Remote;
  * @author Kiwi
  */
 @Remote
-public class IPregunta {
+public interface IPregunta {
+    
+    public void cargarPreguntas();
 
 }

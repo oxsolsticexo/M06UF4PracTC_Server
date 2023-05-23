@@ -18,5 +18,7 @@ import javax.ejb.TransactionManagementType;
 @ConcurrencyManagement(ConcurrencyManagementType.CONTAINER)
 @TransactionManagement(value = TransactionManagementType.BEAN)
 public class PreguntaEJB {
+    
+    
 
 }
