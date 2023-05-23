@@ -4,6 +4,7 @@
  */
 package common;
 
+import java.util.List;
 import javax.ejb.Remote;
 
 /**
@@ -12,7 +13,7 @@ import javax.ejb.Remote;
  */
 @Remote
 public interface IPregunta {
-    
-    public void cargarPreguntas();
+
+    public void cargarPreguntasBBDD(List<Pregunta> preguntasList);
 
 }

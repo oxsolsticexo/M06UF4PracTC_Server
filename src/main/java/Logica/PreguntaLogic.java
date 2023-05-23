@@ -8,6 +8,8 @@ import common.Pregunta;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import nu.xom.*;
 
 /**
@@ -16,31 +18,36 @@ import nu.xom.*;
  */
 public class PreguntaLogic {
 
-    public void loadDocument(File file) throws ParsingException, IOException {
+    public void loadDocument() {
 
-        Builder builder = new Builder();
+        try {
+            File file = new File("src/main/resources/files/preguntas.xml");
 
-        xmlToArrayList(builder.build(file));
+            Builder builder = new Builder();
+
+            xmlToArrayList(builder.build(file));
+
+        } catch (ParsingException | IOException ex) {
+            Logger.getLogger(PreguntaLogic.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     /**
      * *
      * Recibe un documento XML y lo itera convirtiendo las diferentes etiquetas
-     * a objetos, genera un objeto Report
+     * a objetos.
      *
      * @param document
-     * @return retorna un ArrayList de "Report"
+     * @return retorna un ArrayList de "Pregunta"
      */
     public ArrayList<Pregunta> xmlToArrayList(Document document) {
 
         //Generamos un ArrayList de "Report"
         ArrayList<Pregunta> preguntas = new ArrayList<>();
-
         //Obtenemos el elemento raíz del documento y lo guardamos en "root"
         Element root = document.getRootElement();
         //Obtenemos los elementos hijos de "root" y los guardamos en la colección Elements "children"
         Elements preguntaElements = root.getChildElements("pregunta");
-
         //Iteramos la colección "children"
         for (int i = 0; i < preguntaElements.size(); i++) {
 
