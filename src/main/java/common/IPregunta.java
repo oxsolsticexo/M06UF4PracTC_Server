@@ -14,6 +14,6 @@ import javax.ejb.Remote;
 @Remote
 public interface IPregunta {
 
-    public void cargarPreguntasBBDD(List<Pregunta> preguntasList);
+    public List<Pregunta> getPreguntasBBDD(Partida p);
 
 }
