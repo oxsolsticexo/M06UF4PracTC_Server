@@ -2,15 +2,20 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package common;
-
-import javax.ejb.Remote;
+package Utils;
 
 /**
  *
- * @author Kiwi
+ * @author carlo
  */
-@Remote
-public class IPregunta {
-
+public class WindowsManager {
+    
+    void hallOfFame(){
+        
+    }
+    
+    void createNewGame(){
+        
+    }
+    
 }

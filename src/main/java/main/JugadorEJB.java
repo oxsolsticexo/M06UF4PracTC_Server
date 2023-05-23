@@ -6,12 +6,17 @@ package main;
 
 import common.SesionJugException;
 import common.IJugador;
+<<<<<<< HEAD
 import common.Jugador;
 import java.util.Queue;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.annotation.PostConstruct;
 import javax.annotation.PreDestroy;
+=======
+import common.Partida;
+import java.util.logging.Logger;
+>>>>>>> develop
 import javax.annotation.Resource;
 import javax.ejb.ConcurrencyManagement;
 import javax.ejb.ConcurrencyManagementType;
@@ -44,6 +49,7 @@ public class JugadorEJB implements IJugador {
 
     private static final Logger log = Logger.getLogger(JugadorEJB.class.getName());
 
+<<<<<<< HEAD
     Jugador jugador;
 
     String idSesionJugador = null;
@@ -86,4 +92,26 @@ public class JugadorEJB implements IJugador {
     public Float getPuntuacionMax() {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
+=======
+    @Override
+    public void cerrarSesion() {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
+    @Override
+    public void unirsePartida(Partida partidaAUnirse) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
+    @Override
+    public boolean registrarJugador(String nombre, String correo) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
+    @Override
+    public boolean verificarExistenciaCorreo(String correo) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
+>>>>>>> develop
 }

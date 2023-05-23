@@ -25,9 +25,41 @@ public interface IJugador {
      */
     public void cierraSesion();
 
+<<<<<<< HEAD
     /***
      * Retorna la puntuacion máxima del cliente
      * @return 
      */
     public Float getPuntuacionMax();
+=======
+    /**
+     * Cierra la sesión del usuario.
+     */
+    public void cerrarSesion();
+
+    /**
+     * Une al jugador a la partida que ha generado.
+     *
+     * @param partidaAUnirse
+     */
+    public void unirsePartida(Partida partidaAUnirse);
+    
+    /**
+     * Con este método añadimos un jugador a la base de datos
+     * para confirmar si esto ocurre devolvemos un booleano
+     * @param nombre
+     * @param correo
+     * @param contrasena
+     * @return 
+     */
+    public boolean registrarJugador(String nombre, String correo);
+    
+    /**
+     * Verificamos si el correo existe para posteriormente iniciar sesión
+     * @param correo
+     * @return 
+     */
+    public boolean verificarExistenciaCorreo(String correo);
+
+>>>>>>> develop
 }

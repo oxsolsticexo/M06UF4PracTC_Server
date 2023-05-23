@@ -4,10 +4,9 @@
  */
 package main;
 
-import common.IPregunta;
 import javax.ejb.ConcurrencyManagement;
 import javax.ejb.ConcurrencyManagementType;
-import javax.ejb.Stateful;
+import javax.ejb.Stateless;
 import javax.ejb.TransactionManagement;
 import javax.ejb.TransactionManagementType;
 
@@ -15,9 +14,9 @@ import javax.ejb.TransactionManagementType;
  *
  * @author Kiwi
  */
-@Stateful
+@Stateless
 @ConcurrencyManagement(ConcurrencyManagementType.CONTAINER)
-@TransactionManagement(value = TransactionManagementType.CONTAINER)
-public class PreguntaEJB implements IPregunta {
+@TransactionManagement(value = TransactionManagementType.BEAN)
+public class PreguntaEJB {
 
 }
