@@ -1,0 +1,528 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<preguntas>
+    <pregunta idPregunta="1">
+        <_pregunta>¿Cuál es el color del cielo en un día despejado?</_pregunta>
+        <respuestaA>Amarillo</respuestaA>
+        <respuestaB>Azul</respuestaB>
+        <respuestaC>Verde</respuestaC>
+        <respuestaCorrecta>B</respuestaCorrecta>
+        <dificultad>BAJA</dificultad>
+    </pregunta>
+    <pregunta idPregunta="2">
+        <_pregunta>¿Cuántas patas tiene un perro?</_pregunta>
+        <respuestaA>2</respuestaA>
+        <respuestaB>4</respuestaB>
+        <respuestaC>6</respuestaC>
+        <respuestaCorrecta>B</respuestaCorrecta>
+        <dificultad>BAJA</dificultad>
+    </pregunta>
+    <pregunta idPregunta="3">
+        <_pregunta>¿Cuál es el resultado de sumar 2 más 3?</_pregunta>
+        <respuestaA>4</respuestaA>
+        <respuestaB>5</respuestaB>
+        <respuestaC>6</respuestaC>
+        <respuestaCorrecta>B</respuestaCorrecta>
+        <dificultad>BAJA</dificultad>
+    </pregunta>
+    <pregunta idPregunta="4">
+        <_pregunta>¿Cuál es el animal que hace "guau"?</_pregunta>
+        <respuestaA>Gato</respuestaA>
+        <respuestaB>Perro</respuestaB>
+        <respuestaC>Vaca</respuestaC>
+        <respuestaCorrecta>B</respuestaCorrecta>
+        <dificultad>BAJA</dificultad>
+    </pregunta>
+    <pregunta idPregunta="5">
+        <_pregunta>¿Cuántos días tiene la semana?</_pregunta>
+        <respuestaA>5</respuestaA>
+        <respuestaB>6</respuestaB>
+        <respuestaC>7</respuestaC>
+        <respuestaCorrecta>C</respuestaCorrecta>
+        <dificultad>BAJA</dificultad>
+    </pregunta>
+	<pregunta idPregunta="6">
+        <_pregunta>¿Cuántos dedos tiene una mano?</_pregunta>
+        <respuestaA>3</respuestaA>
+        <respuestaB>5</respuestaB>
+        <respuestaC>8</respuestaC>
+        <respuestaCorrecta>B</respuestaCorrecta>
+        <dificultad>BAJA</dificultad>
+    </pregunta>
+
+    <pregunta idPregunta="7">
+        <_pregunta>¿Cuál es el animal más grande del mundo?</_pregunta>
+        <respuestaA>Elefante</respuestaA>
+        <respuestaB>Ballena azul</respuestaB>
+        <respuestaC>León</respuestaC>
+        <respuestaCorrecta>B</respuestaCorrecta>
+        <dificultad>BAJA</dificultad>
+    </pregunta>
+
+    <pregunta idPregunta="8">
+        <_pregunta>¿Cuál es la capital de Francia?</_pregunta>
+        <respuestaA>Roma</respuestaA>
+        <respuestaB>París</respuestaB>
+        <respuestaC>Madrid</respuestaC>
+        <respuestaCorrecta>B</respuestaCorrecta>
+        <dificultad>BAJA</dificultad>
+    </pregunta>
+
+    <pregunta idPregunta="9">
+        <_pregunta>¿Cuál es el instrumento musical más grande de la orquesta?</_pregunta>
+        <respuestaA>Piano</respuestaA>
+        <respuestaB>Trompeta</respuestaB>
+        <respuestaC>Contrabajo</respuestaC>
+        <respuestaCorrecta>C</respuestaCorrecta>
+        <dificultad>BAJA</dificultad>
+    </pregunta>
+
+    <pregunta idPregunta="10">
+        <_pregunta>¿Cuántos lados tiene un triángulo?</_pregunta>
+        <respuestaA>3</respuestaA>
+        <respuestaB>4</respuestaB>
+        <respuestaC>5</respuestaC>
+        <respuestaCorrecta>A</respuestaCorrecta>
+        <dificultad>BAJA</dificultad>
+    </pregunta>
+	<pregunta idPregunta="11">
+        <_pregunta>¿Cuántas letras tiene el abecedario?</_pregunta>
+        <respuestaA>20</respuestaA>
+        <respuestaB>26</respuestaB>
+        <respuestaC>30</respuestaC>
+        <respuestaCorrecta>B</respuestaCorrecta>
+        <dificultad>BAJA</dificultad>
+    </pregunta>
+
+    <pregunta idPregunta="12">
+        <_pregunta>¿Cuál es el planeta más cercano al sol?</_pregunta>
+        <respuestaA>Marte</respuestaA>
+        <respuestaB>Venus</respuestaB>
+        <respuestaC>Mercurio</respuestaC>
+        <respuestaCorrecta>C</respuestaCorrecta>
+        <dificultad>BAJA</dificultad>
+    </pregunta>
+
+    <pregunta idPregunta="13">
+        <_pregunta>¿Cuál es el animal que vive en el agua y en la tierra?</_pregunta>
+        <respuestaA>Tortuga</respuestaA>
+        <respuestaB>Perro</respuestaB>
+        <respuestaC>Pez</respuestaC>
+        <respuestaCorrecta>A</respuestaCorrecta>
+        <dificultad>BAJA</dificultad>
+    </pregunta>
+
+    <pregunta idPregunta="14">
+        <_pregunta>¿Cuál es el deporte más popular del mundo?</_pregunta>
+        <respuestaA>Fútbol</respuestaA>
+        <respuestaB>Atletismo</respuestaB>
+        <respuestaC>Baloncesto</respuestaC>
+        <respuestaCorrecta>A</respuestaCorrecta>
+        <dificultad>BAJA</dificultad>
+    </pregunta>
+
+    <pregunta idPregunta="15">
+        <_pregunta>¿Cuál es el resultado de multiplicar 2 por 3?</_pregunta>
+        <respuestaA>4</respuestaA>
+        <respuestaB>6</respuestaB>
+        <respuestaC>9</respuestaC>
+        <respuestaCorrecta>B</respuestaCorrecta>
+        <dificultad>BAJA</dificultad>
+    </pregunta>
+
+<pregunta idPregunta="16">
+        <_pregunta>¿Cuántos meses tiene un año?</_pregunta>
+        <respuestaA>10</respuestaA>
+        <respuestaB>12</respuestaB>
+        <respuestaC>15</respuestaC>
+        <respuestaCorrecta>B</respuestaCorrecta>
+        <dificultad>BAJA</dificultad>
+    </pregunta>
+
+    <pregunta idPregunta="17">
+        <_pregunta>¿Cuál es el número que sigue después del 9?</_pregunta>
+        <respuestaA>10</respuestaA>
+        <respuestaB>11</respuestaB>
+        <respuestaC>12</respuestaC>
+        <respuestaCorrecta>A</respuestaCorrecta>
+        <dificultad>BAJA</dificultad>
+    </pregunta>
+
+    <pregunta idPregunta="18">
+        <_pregunta>¿Cuál es el resultado de restar 5 a 10?</_pregunta>
+        <respuestaA>3</respuestaA>
+        <respuestaB>5</respuestaB>
+        <respuestaC>8</respuestaC>
+        <respuestaCorrecta>C</respuestaCorrecta>
+        <dificultad>BAJA</dificultad>
+    </pregunta>
+
+    <pregunta idPregunta="19">
+        <_pregunta>¿Cuál es el animal que tiene rayas negras y blancas?</_pregunta>
+        <respuestaA>Gato</respuestaA>
+        <respuestaB>Perro</respuestaB>
+        <respuestaC>Cebra</respuestaC>
+        <respuestaCorrecta>C</respuestaCorrecta>
+        <dificultad>BAJA</dificultad>
+    </pregunta>
+
+    <pregunta idPregunta="20">
+        <_pregunta>¿Cuántos días tiene el mes de febrero en un año bisiesto?</_pregunta>
+        <respuestaA>28</respuestaA>
+        <respuestaB>29</respuestaB>
+        <respuestaC>30</respuestaC>
+        <respuestaCorrecta>B</respuestaCorrecta>
+        <dificultad>BAJA</dificultad>
+    </pregunta>
+<pregunta idPregunta="21">
+        <_pregunta>¿Cuál es la capital de Estados Unidos?</_pregunta>
+        <respuestaA>Washington D.C.</respuestaA>
+        <respuestaB>New York</respuestaB>
+        <respuestaC>Los Ángeles</respuestaC>
+        <respuestaCorrecta>A</respuestaCorrecta>
+        <dificultad>MEDIA</dificultad>
+    </pregunta>
+
+    <pregunta idPregunta="22">
+        <_pregunta>¿Cuántos lados tiene un pentágono?</_pregunta>
+        <respuestaA>4</respuestaA>
+        <respuestaB>5</respuestaB>
+        <respuestaC>6</respuestaC>
+        <respuestaCorrecta>B</respuestaCorrecta>
+        <dificultad>MEDIA</dificultad>
+    </pregunta>
+
+    <pregunta idPregunta="23">
+        <_pregunta>¿Cuál es el órgano principal del sistema respiratorio?</_pregunta>
+        <respuestaA>Cerebro</respuestaA>
+        <respuestaB>Pulmones</respuestaB>
+        <respuestaC>Estómago</respuestaC>
+        <respuestaCorrecta>B</respuestaCorrecta>
+        <dificultad>MEDIA</dificultad>
+    </pregunta>
+
+    <pregunta idPregunta="24">
+        <_pregunta>¿Cuántos jugadores hay en un equipo de baloncesto?</_pregunta>
+        <respuestaA>4</respuestaA>
+        <respuestaB>5</respuestaB>
+        <respuestaC>6</respuestaC>
+        <respuestaCorrecta>B</respuestaCorrecta>
+        <dificultad>MEDIA</dificultad>
+    </pregunta>
+
+    <pregunta idPregunta="25">
+        <_pregunta>¿Cuál es el continente más grande del mundo?</_pregunta>
+        <respuestaA>Europa</respuestaA>
+        <respuestaB>África</respuestaB>
+        <respuestaC>Asia</respuestaC>
+        <respuestaCorrecta>C</respuestaCorrecta>
+        <dificultad>MEDIA</dificultad>
+    </pregunta>
+<pregunta idPregunta="26">
+        <_pregunta>¿Cuántos huesos tiene el cuerpo humano?</_pregunta>
+        <respuestaA>100</respuestaA>
+        <respuestaB>206</respuestaB>
+        <respuestaC>300</respuestaC>
+        <respuestaCorrecta>B</respuestaCorrecta>
+        <dificultad>MEDIA</dificultad>
+    </pregunta>
+
+    <pregunta idPregunta="27">
+        <_pregunta>¿Cuál es el océano más grande del mundo?</_pregunta>
+        <respuestaA>Atlántico</respuestaA>
+        <respuestaB>Pacífico</respuestaB>
+        <respuestaC>Índico</respuestaC>
+        <respuestaCorrecta>B</respuestaCorrecta>
+        <dificultad>MEDIA</dificultad>
+    </pregunta>
+
+    <pregunta idPregunta="28">
+        <_pregunta>¿Cuál es el símbolo químico del oxígeno?</_pregunta>
+        <respuestaA>O</respuestaA>
+        <respuestaB>H</respuestaB>
+        <respuestaC>Ca</respuestaC>
+        <respuestaCorrecta>A</respuestaCorrecta>
+        <dificultad>MEDIA</dificultad>
+    </pregunta>
+
+    <pregunta idPregunta="29">
+        <_pregunta>¿Cuál es el idioma más hablado del mundo?</_pregunta>
+        <respuestaA>Inglés</respuestaA>
+        <respuestaB>Español</respuestaB>
+        <respuestaC>Mandarín</respuestaC>
+        <respuestaCorrecta>C</respuestaCorrecta>
+        <dificultad>MEDIA</dificultad>
+    </pregunta>
+
+    <pregunta idPregunta="30">
+        <_pregunta>¿Cuál es el resultado de dividir 12 entre 4?</_pregunta>
+        <respuestaA>2</respuestaA>
+        <respuestaB>3</respuestaB>
+        <respuestaC>4</respuestaC>
+        <respuestaCorrecta>B</respuestaCorrecta>
+        <dificultad>MEDIA</dificultad>
+    </pregunta>
+<pregunta idPregunta="31">
+        <_pregunta>¿Cuál es el autor de la obra "Don Quijote de la Mancha"?</_pregunta>
+        <respuestaA>Miguel de Cervantes</respuestaA>
+        <respuestaB>García Márquez</respuestaB>
+        <respuestaC>William Shakespeare</respuestaC>
+        <respuestaCorrecta>A</respuestaCorrecta>
+        <dificultad>MEDIA</dificultad>
+    </pregunta>
+
+    <pregunta idPregunta="32">
+        <_pregunta>¿Cuál es el resultado de sumar 7 más 5?</_pregunta>
+        <respuestaA>10</respuestaA>
+        <respuestaB>12</respuestaB>
+        <respuestaC>14</respuestaC>
+        <respuestaCorrecta>C</respuestaCorrecta>
+        <dificultad>MEDIA</dificultad>
+    </pregunta>
+
+    <pregunta idPregunta="33">
+        <_pregunta>¿Cuál es el país más poblado del mundo?</_pregunta>
+        <respuestaA>India</respuestaA>
+        <respuestaB>China</respuestaB>
+        <respuestaC>Estados Unidos</respuestaC>
+        <respuestaCorrecta>B</respuestaCorrecta>
+        <dificultad>MEDIA</dificultad>
+    </pregunta>
+
+    <pregunta idPregunta="34">
+        <_pregunta>¿Cuál es el resultado de multiplicar 8 por 3?</_pregunta>
+        <respuestaA>16</respuestaA>
+        <respuestaB>24</respuestaB>
+        <respuestaC>32</respuestaC>
+        <respuestaCorrecta>B</respuestaCorrecta>
+        <dificultad>MEDIA</dificultad>
+    </pregunta>
+
+    <pregunta idPregunta="35">
+        <_pregunta>¿Cuál es el instrumento musical de viento más pequeño?</_pregunta>
+        <respuestaA>Trombón</respuestaA>
+        <respuestaB>Flauta</respuestaB>
+        <respuestaC>Piano</respuestaC>
+        <respuestaCorrecta>B</respuestaCorrecta>
+        <dificultad>MEDIA</dificultad>
+    </pregunta>
+<pregunta idPregunta="36">
+        <_pregunta>¿Cuál es el planeta más cercano al Sol?</_pregunta>
+        <respuestaA>Venus</respuestaA>
+        <respuestaB>Marte</respuestaB>
+        <respuestaC>Mercurio</respuestaC>
+        <respuestaCorrecta>C</respuestaCorrecta>
+        <dificultad>MEDIA</dificultad>
+    </pregunta>
+
+    <pregunta idPregunta="37">
+        <_pregunta>¿Cuántos días tiene una semana?</_pregunta>
+        <respuestaA>5</respuestaA>
+        <respuestaB>6</respuestaB>
+        <respuestaC>7</respuestaC>
+        <respuestaCorrecta>C</respuestaCorrecta>
+        <dificultad>MEDIA</dificultad>
+    </pregunta>
+
+    <pregunta idPregunta="38">
+        <_pregunta>¿Cuál es el océano más pequeño del mundo?</_pregunta>
+        <respuestaA>Pacífico</respuestaA>
+        <respuestaB>Índico</respuestaB>
+        <respuestaC>Ártico</respuestaC>
+        <respuestaCorrecta>C</respuestaCorrecta>
+        <dificultad>MEDIA</dificultad>
+    </pregunta>
+
+    <pregunta idPregunta="39">
+        <_pregunta>¿Cuál es el número que sigue después del 20?</_pregunta>
+        <respuestaA>21</respuestaA>
+        <respuestaB>22</respuestaB>
+        <respuestaC>23</respuestaC>
+        <respuestaCorrecta>A</respuestaCorrecta>
+        <dificultad>MEDIA</dificultad>
+    </pregunta>
+
+    <pregunta idPregunta="40">
+        <_pregunta>¿Cuál es el país más grande del mundo por superficie?</_pregunta>
+        <respuestaA>Rusia</respuestaA>
+        <respuestaB>Canadá</respuestaB>
+        <respuestaC>China</respuestaC>
+        <respuestaCorrecta>A</respuestaCorrecta>
+        <dificultad>MEDIA</dificultad>
+    </pregunta>
+<pregunta idPregunta="41">
+        <_pregunta>¿Cuál es el resultado de la siguiente operación: (8 + 4) * 2?</_pregunta>
+        <respuestaA>24</respuestaA>
+        <respuestaB>26</respuestaB>
+        <respuestaC>28</respuestaC>
+        <respuestaCorrecta>C</respuestaCorrecta>
+        <dificultad>ALTA</dificultad>
+    </pregunta>
+
+    <pregunta idPregunta="42">
+        <_pregunta>¿Cuántos grados tiene un triángulo equilátero?</_pregunta>
+        <respuestaA>60</respuestaA>
+        <respuestaB>90</respuestaB>
+        <respuestaC>120</respuestaC>
+        <respuestaCorrecta>A</respuestaCorrecta>
+        <dificultad>ALTA</dificultad>
+    </pregunta>
+
+    <pregunta idPregunta="43">
+        <_pregunta>¿Cuál es el río más largo del mundo?</_pregunta>
+        <respuestaA>Nilo</respuestaA>
+        <respuestaB>Amazonas</respuestaB>
+        <respuestaC>Misuri</respuestaC>
+        <respuestaCorrecta>B</respuestaCorrecta>
+        <dificultad>ALTA</dificultad>
+    </pregunta>
+
+    <pregunta idPregunta="44">
+        <_pregunta>¿Cuál es el resultado de elevar 3 al cubo?</_pregunta>
+        <respuestaA>6</respuestaA>
+        <respuestaB>9</respuestaB>
+        <respuestaC>27</respuestaC>
+        <respuestaCorrecta>C</respuestaCorrecta>
+        <dificultad>ALTA</dificultad>
+    </pregunta>
+
+    <pregunta idPregunta="45">
+        <_pregunta>¿Cuál es el idioma oficial de Brasil?</_pregunta>
+        <respuestaA>Español</respuestaA>
+        <respuestaB>Inglés</respuestaB>
+        <respuestaC>Portugués</respuestaC>
+        <respuestaCorrecta>C</respuestaCorrecta>
+        <dificultad>ALTA</dificultad>
+    </pregunta>
+<pregunta idPregunta="46">
+        <_pregunta>¿Cuál es el resultado de la siguiente operación: (4 + 3) * (8 - 2) / 2?</_pregunta>
+        <respuestaA>20</respuestaA>
+        <respuestaB>17</respuestaB>
+        <respuestaC>14</respuestaC>
+        <respuestaCorrecta>B</respuestaCorrecta>
+        <dificultad>ALTA</dificultad>
+    </pregunta>
+
+    <pregunta idPregunta="47">
+        <_pregunta>¿Cuántos planetas hay en nuestro sistema solar?</_pregunta>
+        <respuestaA>8</respuestaA>
+        <respuestaB>9</respuestaB>
+        <respuestaC>10</respuestaC>
+        <respuestaCorrecta>A</respuestaCorrecta>
+        <dificultad>ALTA</dificultad>
+    </pregunta>
+
+    <pregunta idPregunta="48">
+        <_pregunta>¿Cuál es el autor del cuadro "La última cena"?</_pregunta>
+        <respuestaA>Leonardo da Vinci</respuestaA>
+        <respuestaB>Pablo Picasso</respuestaB>
+        <respuestaC>Vincent van Gogh</respuestaC>
+        <respuestaCorrecta>A</respuestaCorrecta>
+        <dificultad>ALTA</dificultad>
+    </pregunta>
+
+    <pregunta idPregunta="49">
+        <_pregunta>¿Cuál es el país con la mayor extensión de selva amazónica?</_pregunta>
+        <respuestaA>Brasil</respuestaA>
+        <respuestaB>Perú</respuestaB>
+        <respuestaC>Colombia</respuestaC>
+        <respuestaCorrecta>A</respuestaCorrecta>
+        <dificultad>ALTA</dificultad>
+    </pregunta>
+
+    <pregunta idPregunta="50">
+        <_pregunta>¿Cuál es el resultado de la siguiente operación: 2^4 - 3 * 5 + 10 / 2?</_pregunta>
+        <respuestaA>3</respuestaA>
+        <respuestaB>12</respuestaB>
+        <respuestaC>18</respuestaC>
+        <respuestaCorrecta>B</respuestaCorrecta>
+        <dificultad>ALTA</dificultad>
+    </pregunta>
+<pregunta idPregunta="51">
+        <_pregunta>¿Cuál es la capital de Australia?</_pregunta>
+        <respuestaA>Sídney</respuestaA>
+        <respuestaB>Canberra</respuestaB>
+        <respuestaC>Melbourne</respuestaC>
+        <respuestaCorrecta>B</respuestaCorrecta>
+        <dificultad>ALTA</dificultad>
+    </pregunta>
+
+    <pregunta idPregunta="52">
+        <_pregunta>¿En qué año tuvo lugar la Revolución Francesa?</_pregunta>
+        <respuestaA>1789</respuestaA>
+        <respuestaB>1812</respuestaB>
+        <respuestaC>1830</respuestaC>
+        <respuestaCorrecta>A</respuestaCorrecta>
+        <dificultad>ALTA</dificultad>
+    </pregunta>
+
+    <pregunta idPregunta="53">
+        <_pregunta>¿Cuál es el quinto planeta del sistema solar?</_pregunta>
+        <respuestaA>Marte</respuestaA>
+        <respuestaB>Júpiter</respuestaB>
+        <respuestaC>Urano</respuestaC>
+        <respuestaCorrecta>B</respuestaCorrecta>
+        <dificultad>ALTA</dificultad>
+    </pregunta>
+
+    <pregunta idPregunta="54">
+        <_pregunta>¿Cuál es el autor de la novela "1984"?</_pregunta>
+        <respuestaA>Aldous Huxley</respuestaA>
+        <respuestaB>Ray Bradbury</respuestaB>
+        <respuestaC>George Orwell</respuestaC>
+        <respuestaCorrecta>C</respuestaCorrecta>
+        <dificultad>ALTA</dificultad>
+    </pregunta>
+
+    <pregunta idPregunta="55">
+        <_pregunta>¿Cuál es el hueso más largo del cuerpo humano?</_pregunta>
+        <respuestaA>Cráneo</respuestaA>
+        <respuestaB>Fémur</respuestaB>
+        <respuestaC>Clavícula</respuestaC>
+        <respuestaCorrecta>B</respuestaCorrecta>
+        <dificultad>ALTA</dificultad>
+    </pregunta>
+<pregunta idPregunta="56">
+        <_pregunta>¿Cuál es el país más poblado del mundo?</_pregunta>
+        <respuestaA>China</respuestaA>
+        <respuestaB>India</respuestaB>
+        <respuestaC>Estados Unidos</respuestaC>
+        <respuestaCorrecta>A</respuestaCorrecta>
+        <dificultad>ALTA</dificultad>
+    </pregunta>
+
+    <pregunta idPregunta="57">
+        <_pregunta>¿Cuál es el autor de la pintura "La noche estrellada"?</_pregunta>
+        <respuestaA>Pablo Picasso</respuestaA>
+        <respuestaB>Vincent van Gogh</respuestaB>
+        <respuestaC>Leonardo da Vinci</respuestaC>
+        <respuestaCorrecta>B</respuestaCorrecta>
+        <dificultad>ALTA</dificultad>
+    </pregunta>
+
+    <pregunta idPregunta="58">
+        <_pregunta>¿Cuántos huesos tiene el cuerpo humano?</_pregunta>
+        <respuestaA>206</respuestaA>
+        <respuestaB>214</respuestaB>
+        <respuestaC>220</respuestaC>
+        <respuestaCorrecta>A</respuestaCorrecta>
+        <dificultad>ALTA</dificultad>
+    </pregunta>
+
+    <pregunta idPregunta="59">
+        <_pregunta>¿Cuál es la montaña más alta del mundo?</_pregunta>
+        <respuestaA>Monte Kilimanjaro</respuestaA>
+        <respuestaB>Monte Everest</respuestaB>
+        <respuestaC>Monte Aconcagua</respuestaC>
+        <respuestaCorrecta>B</respuestaCorrecta>
+        <dificultad>ALTA</dificultad>
+    </pregunta>
+
+    <pregunta idPregunta="60">
+        <_pregunta>¿Cuál es el resultado de la siguiente operación: 2 * (5 - 3)^2 + 4?</_pregunta>
+        <respuestaA>10</respuestaA>
+        <respuestaB>14</respuestaB>
+        <respuestaC>18</respuestaC>
+        <respuestaCorrecta>C</respuestaCorrecta>
+        <dificultad>ALTA</dificultad>
+    </pregunta>
+</preguntas>

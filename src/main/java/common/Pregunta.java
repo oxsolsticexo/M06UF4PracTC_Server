@@ -5,11 +5,7 @@
 package common;
 
 import java.io.Serializable;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.ManyToOne;
+import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 
 /**
@@ -22,7 +18,7 @@ public class Pregunta implements Serializable {
     private static final long serialVersionUID = 1L;
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long idPregunta;
 
     @NotNull(message = "El valor _pregunta no puede estar vacío.")
@@ -36,11 +32,11 @@ public class Pregunta implements Serializable {
     @NotNull(message = "El valor respuesta correcta no puede estar vacío.")
     private String respuestaCorrecta;
     @NotNull(message = "El valor dificultad no puede estar vacío.")
-    private Dificultad dificultad;
+    private String dificultad;
     @ManyToOne
     private Partida partida;
 
-    public Pregunta(String _pregunta, String respuestaA, String respuestaB, String respuestaC, String respuestaCorrecta, Dificultad dificultad, Partida partida) {
+    public Pregunta(String _pregunta, String respuestaA, String respuestaB, String respuestaC, String respuestaCorrecta, String dificultad, Partida partida) {
         this._pregunta = _pregunta;
         this.respuestaA = respuestaA;
         this.respuestaB = respuestaB;
@@ -52,7 +48,11 @@ public class Pregunta implements Serializable {
 
     public Pregunta() {
     }
-    
+
+    public void setIdPregunta(Long idPregunta) {
+        this.idPregunta = idPregunta;
+    }
+
     public Long getIdPregunta() {
         return idPregunta;
     }
@@ -97,11 +97,11 @@ public class Pregunta implements Serializable {
         this.respuestaCorrecta = respuestaCorrecta;
     }
 
-    public Dificultad getDificultad() {
+    public String getDificultad() {
         return dificultad;
     }
 
-    public void setDificultad(Dificultad dificultad) {
+    public void setDificultad(String dificultad) {
         this.dificultad = dificultad;
     }
 
