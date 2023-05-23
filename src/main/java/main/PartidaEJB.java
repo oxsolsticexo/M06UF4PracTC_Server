@@ -4,7 +4,6 @@
  */
 package main;
 
-import common.Dificultad;
 import common.IPartida;
 import common.Partida;
 import common.Pregunta;
@@ -42,7 +41,7 @@ public class PartidaEJB implements IPartida {
     private EntityManager entityManager;
 
     @Override
-    public List<Pregunta> asignaPreguntas(Partida p, Dificultad dificultad) {
+    public List<Pregunta> asignaPreguntas(Partida p) {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 

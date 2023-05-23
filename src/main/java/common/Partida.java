@@ -31,7 +31,7 @@ public class Partida implements Serializable {
     private String nombre;
 
     @NotNull(message = "Debes seleccionar una dificultad.")
-    private Dificultad dificultad;
+    private String dificultad;
 
     @OneToMany
     @Size(max = 4)
@@ -41,7 +41,7 @@ public class Partida implements Serializable {
     @Size(max = 10)
     private List<Pregunta> preguntasList;
 
-    public Partida(String nombre, Dificultad dificultad, List<Jugador> jugadoresList, List<Pregunta> preguntasList) {
+    public Partida(String nombre, String dificultad, List<Jugador> jugadoresList, List<Pregunta> preguntasList) {
         this.nombre = nombre;
         this.dificultad = dificultad;
         this.jugadoresList = jugadoresList;
@@ -63,11 +63,11 @@ public class Partida implements Serializable {
         this.nombre = nombre;
     }
 
-    public Dificultad getDificultad() {
+    public String getDificultad() {
         return dificultad;
     }
 
-    public void setDificultad(Dificultad dificultad) {
+    public void setDificultad(String dificultad) {
         this.dificultad = dificultad;
     }
 
