@@ -4,6 +4,7 @@
  */
 package main;
 
+import DAO.DAO;
 import common.IJugador;
 import common.Jugador;
 import java.util.Queue;
@@ -25,7 +26,6 @@ import javax.ejb.TransactionManagementType;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.PersistenceContextType;
-
 
 /**
  *
@@ -75,11 +75,6 @@ public class JugadorEJB implements IJugador {
         return null;
     }
 
-    @Override
-    public void cierraSesion() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
-
     @PreDestroy
     public void destroy() {
         log.info("EJB finalitzant...");
@@ -89,6 +84,7 @@ public class JugadorEJB implements IJugador {
     public Float getPuntuacionMax() {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
+
     @Override
     public void cerrarSesion() {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
@@ -101,11 +97,19 @@ public class JugadorEJB implements IJugador {
 
     @Override
     public boolean registrarJugador(String nombre, String correo) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        DAO dao = null;
+        boolean bool = dao.createUser(nombre, correo);
+        return bool;
     }
 
     @Override
     public boolean verificarExistenciaCorreo(String correo) {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
+
+    @Override
+    public String getName() {
+        return jugador.getNickJugador();
+    }
+
 }

@@ -19,11 +19,6 @@ public interface IJugador {
      * @throws common.CompraException si el cliente no existe
      */
     public String getSesion(String login) throws SesionJugException;
-    
-    /***
-     * Cierra la sesión del jugador
-     */
-    public void cierraSesion();
 
     /***
      * Retorna la puntuacion máxima del cliente
@@ -58,5 +53,10 @@ public interface IJugador {
      * @return 
      */
     public boolean verificarExistenciaCorreo(String correo);
+    /**
+     * Retorna el nombre del jugador
+     * @return 
+     */
+    public String getName();
 
 }
