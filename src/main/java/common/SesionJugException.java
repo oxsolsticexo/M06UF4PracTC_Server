@@ -4,16 +4,14 @@
  */
 package common;
 
-import java.util.List;
-import javax.ejb.Remote;
-
 /**
  *
- * @author Kiwi
+ * @author dolorioUser
  */
-@Remote
-public interface IPartida {
+public class SesionJugException extends Exception {
 
-    public List<Pregunta> asignaPreguntas(Partida p);
+    public SesionJugException(String s) {
+        super(s);
+    }
 
 }

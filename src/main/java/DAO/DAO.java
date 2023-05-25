@@ -5,46 +5,47 @@
 package DAO;
 
 import Interfaces.DAOInterface;
+import common.Jugador;
 import model.Usuaris;
 //import singleton.SQLConnection;
 //import java.sql.*;
 import javafx.collections.*;
+import javax.jms.Session;
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
+import javax.transaction.Transaction;
 
 /**
  *
  * @author carlo
  */
 public class DAO implements DAOInterface {
-    
 
     //Connection connection = SQLConnection.getInstance();
-    
-    public DAO(){
-        
+    public DAO() {
+
     }
-    
+
+    @PersistenceContext(unitName = "TrivialPersistenceUnit")
+    private EntityManager entityManager;
+
     @Override
-    public void createUser() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    public boolean createUser(String email, String usuario) {
+        Jugador jugador = new Jugador();
+        jugador.setEmail(email);
+        jugador.setNickJugador(usuario);
+        try {
+            entityManager.persist(usuario);
+        } catch (Exception e) {
+            // Manejar el error, lanzar una excepción personalizada o realizar acciones adicionales si es necesario
+            e.printStackTrace();
+            return false;
+        }
+        return true;
     }
 
     @Override
-    public void findUser() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
-
-    @Override
-    public void updateUser() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
-
-    @Override
-    public void deleteUser() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
-
-    @Override
-    public void createUsers() {
+    public void findUser(String email) {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 
@@ -67,17 +68,8 @@ public class DAO implements DAOInterface {
             return result;
         } catch (Exception e) {
         }
-        */return null;
+         */
+        return null;
     }
 
-    @Override
-    public void updateUsers() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
-
-    @Override
-    public void deleteUsers() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
-    
 }
