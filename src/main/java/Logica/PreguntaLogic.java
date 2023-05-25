@@ -18,18 +18,24 @@ import nu.xom.*;
  */
 public class PreguntaLogic {
 
-    public void loadDocument() {
+    /**
+     * Buildea un archivo y retorna un Document
+     *
+     * @return
+     */
+    public Document getDocument() {
 
         try {
             File file = new File("src/main/resources/files/preguntas.xml");
 
             Builder builder = new Builder();
 
-            xmlToArrayList(builder.build(file));
+            return builder.build(file);
 
         } catch (ParsingException | IOException ex) {
             Logger.getLogger(PreguntaLogic.class.getName()).log(Level.SEVERE, null, ex);
         }
+        return null;
     }
 
     /**
@@ -37,18 +43,22 @@ public class PreguntaLogic {
      * Recibe un documento XML y lo itera convirtiendo las diferentes etiquetas
      * a objetos.
      *
-     * @param document
      * @return retorna un ArrayList de "Pregunta"
      */
-    public ArrayList<Pregunta> xmlToArrayList(Document document) {
+    public ArrayList<Pregunta> xmlToArrayList() {
+
+        Document document = getDocument();
 
         //Generamos un ArrayList de "Report"
         ArrayList<Pregunta> preguntas = new ArrayList<>();
+
         //Obtenemos el elemento raíz del documento y lo guardamos en "root"
         Element root = document.getRootElement();
-        //Obtenemos los elementos hijos de "root" y los guardamos en la colección Elements "children"
+
+        //Obtenemos los elementos hijos de "root"
         Elements preguntaElements = root.getChildElements("pregunta");
-        //Iteramos la colección "children"
+
+        //Iteramos los elementos "children"
         for (int i = 0; i < preguntaElements.size(); i++) {
 
             Element preguntaElement = preguntaElements.get(i);
@@ -71,6 +81,8 @@ public class PreguntaLogic {
             preguntaObj.setRespuestaC(respuestaC);
             preguntaObj.setRespuestaCorrecta(respuestaCorrecta);
             preguntaObj.setDificultad(dificultad);
+
+            preguntas.add(preguntaObj);
         }
         return preguntas;
     }
