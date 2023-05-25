@@ -64,6 +64,25 @@ public class Lookups {
 
         return (IPregunta) context.lookup(strlookup);
     }
+    
+        /**
+     * recupera session manager
+     * @return
+     * @throws NamingException 
+     */
+    public static InterSesionManager sessionManagerEJBRemoteLookup() throws NamingException
+    {
+        
+        String strlookup = "ejb:/" + appName + "/" + SessionManagerEJB.class.getSimpleName() + "!" + InterSesionManager.class.getName();
+            
+        Properties jndiProperties = new Properties();
+
+        jndiProperties.put(Context.INITIAL_CONTEXT_FACTORY,  wildFlyInitialContextFactory);
+        
+        Context context = new InitialContext(jndiProperties);
+
+        return (InterSesionManager) context.lookup(strlookup);
+    }
 
     /*public static ICarroCompra carroCompraEJBRemoteLookup() throws NamingException {
         // "/EJB_Exemple1_Server-1/CarroCompraEJB!common.ICarroCompra?stateful"

@@ -35,7 +35,7 @@ public class DAO implements DAOInterface {
         jugador.setEmail(email);
         jugador.setNickJugador(usuario);
         try {
-            entityManager.persist(usuario);
+            entityManager.persist(jugador);
         } catch (Exception e) {
             // Manejar el error, lanzar una excepción personalizada o realizar acciones adicionales si es necesario
             e.printStackTrace();

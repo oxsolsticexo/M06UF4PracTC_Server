@@ -1,5 +1,4 @@
 Interfaces\LogicaInterface.class
-common\Dificultad.class
 main\JugadorEJB.class
 common\Partida.class
 common\Jugador.class
@@ -15,5 +14,6 @@ Logica\Logica.class
 common\IPartida.class
 common\Lookups.class
 DAO\DAO.class
+Logica\PreguntaLogic.class
 main\Validadors.class
 Interfaces\DAOInterface.class

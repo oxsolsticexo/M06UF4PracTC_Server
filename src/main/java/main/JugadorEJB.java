@@ -21,6 +21,7 @@ import javax.ejb.ConcurrencyManagementType;
 import javax.ejb.EJBContext;
 import javax.ejb.SessionContext;
 import javax.ejb.Stateful;
+import javax.ejb.Stateless;
 import javax.ejb.TransactionManagement;
 import javax.ejb.TransactionManagementType;
 import javax.persistence.EntityManager;
@@ -33,15 +34,14 @@ import javax.persistence.PersistenceContextType;
  */
 @Stateful
 @ConcurrencyManagement(ConcurrencyManagementType.CONTAINER)
-@TransactionManagement(value = TransactionManagementType.CONTAINER)
+@TransactionManagement(value = TransactionManagementType.BEAN)
 public class JugadorEJB implements IJugador {
 
-    @Resource
-    private SessionContext sessionContext;
-
-    @Resource
-    private EJBContext ejbContext;
-
+//    @Resource
+//    private SessionContext sessionContext;
+//
+//    @Resource
+//    private EJBContext ejbContext;
     @PersistenceContext(unitName = "TrivialPersistenceUnit", type = PersistenceContextType.EXTENDED)
     private EntityManager entityManager;
 
@@ -99,6 +99,7 @@ public class JugadorEJB implements IJugador {
     public boolean registrarJugador(String nombre, String correo) {
         DAO dao = null;
         boolean bool = dao.createUser(nombre, correo);
+
         return bool;
     }
 
