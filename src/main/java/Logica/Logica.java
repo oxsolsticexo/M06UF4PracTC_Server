@@ -4,7 +4,7 @@
  */
 package Logica;
 
-import DAO.DAO;
+import DAO.DAOEJB;
 import Interfaces.LogicaInterface;
 import model.Usuaris;
 import javafx.collections.ObservableList;
@@ -17,8 +17,6 @@ import javafx.collections.ObservableList;
  */
 public class Logica implements LogicaInterface {
 
-    //Global variables
-    DAO daoGame = new DAO();
     
     public Logica(){
         
@@ -37,11 +35,11 @@ public class Logica implements LogicaInterface {
     @Override
     public ObservableList<Usuaris> findUsers() {
 
-        try {
-            return daoGame.findUsers();
-        } catch (Exception e) {
-            
-        }
+//        try {
+//            return daoGame.findUsers();
+//        } catch (Exception e) {
+//            
+//        }
         return null;
     }
 }

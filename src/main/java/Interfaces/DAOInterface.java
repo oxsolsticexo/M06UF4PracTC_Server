@@ -4,21 +4,37 @@
  */
 package Interfaces;
 
-import model.Usuaris;
-import javafx.collections.ObservableList;
-
-
+import common.Jugador;
+import javax.ejb.Remote;
 
 /**
  *
  * @author carlo
  */
+
+@Remote
 public interface DAOInterface {
 
-    //CRUD for 1 user
-    boolean createUser(String email, String usuario);
+    /**
+     * Creamos un jugador que nos pasan por parámetro
+     *
+     * @param jug
+     */
+    public void createUser(Jugador jug);
 
-    void findUser(String email);
-    //CRUD for multiple users
-    ObservableList<Usuaris> findUsers();
+    /**
+     * Comprueba si un usuario está en la base de datos
+     *
+     * @param email
+     * @return
+     */
+    public Jugador findUser(String email);
+
+    /**
+     * Método que recibe un objeto lo valida haciendo uso de la clase validadors
+     * y lo persiste 
+     *
+     * @param ob
+     */
+    public void validPersist(Object ob);
 }
