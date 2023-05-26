@@ -5,26 +5,33 @@
 package common;
 
 import javax.ejb.Remote;
+import javax.naming.NamingException;
 
 /**
  *
- * @author Kiwi
+ * @author dolorioUser
  */
 @Remote
-public interface IJugador {
-    /***
+public interface ISessionManagerEJB {
+
+    /**
+     * *
      * Valida el cliente
+     *
      * @param login
      * @return id de sesión
      * @throws common.CompraException si el cliente no existe
      */
     public String getSesion(String login) throws SesionJugException;
 
-    /***
+    /**
+     * *
      * Retorna la puntuacion máxima del cliente
-     * @return 
+     *
+     * @return
      */
     public Float getPuntuacionMax();
+
     /**
      * Cierra la sesión del usuario.
      */
@@ -36,27 +43,23 @@ public interface IJugador {
      * @param partidaAUnirse
      */
     public void unirsePartida(Partida partidaAUnirse);
-    
+
     /**
-     * Con este método añadimos un jugador a la base de datos
-     * para confirmar si esto ocurre devolvemos un booleano
+     * Con este método añadimos un jugador a la base de datos para confirmar si
+     * esto ocurre devolvemos un booleano
+     *
      * @param nombre
      * @param correo
      * @param contrasena
-     * @return 
      */
-    public boolean registrarJugador(String nombre, String correo);
-    
+    public void registrarJugador(String nombre, String correo) throws NamingException;
+
     /**
      * Verificamos si el correo existe para posteriormente iniciar sesión
+     *
      * @param correo
-     * @return 
+     * @return
      */
     public boolean verificarExistenciaCorreo(String correo);
-    /**
-     * Retorna el nombre del jugador
-     * @return 
-     */
-    public String getName();
 
 }
