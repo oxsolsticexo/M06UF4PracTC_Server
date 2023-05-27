@@ -44,5 +44,5 @@ public class PartidaEJB implements IPartida {
     public List<Pregunta> asignaPreguntas(Partida p) {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
-
+  
 }

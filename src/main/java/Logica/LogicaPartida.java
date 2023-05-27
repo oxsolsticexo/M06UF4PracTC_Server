@@ -20,10 +20,10 @@ public class LogicaPartida {
 
     private final DAOPartida daoPartida = new DAOPartida();
    
-    public void crearPartida(String nombre,String dificultad) {
+    public void crearPartida(String nombre,String jugador,String dificultad) {
         try {
-            if(!nombre.isEmpty() && dificultad.isEmpty()){
-               daoPartida.crearPartida(nombre, dificultad);
+            if(!nombre.isEmpty() && !dificultad.isEmpty()){
+               daoPartida.crearPartida(nombre, jugador,dificultad);
             }
             
         } catch (Exception e) {

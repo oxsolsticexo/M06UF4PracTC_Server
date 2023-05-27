@@ -9,6 +9,6 @@ package Interfaces;
  * @author Carlos
  */
 public interface LogicaPartidaInterface {
-    void crearPartida();
+    void crearPartida(String nombre,String jugador,String dificultad);
     
 }

@@ -7,9 +7,13 @@ package Logica;
 import common.Pregunta;
 import java.io.File;
 import java.io.IOException;
+import java.io.InputStream;
+import java.nio.file.Files;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.servlet.ServletContext;
+import javax.servlet.http.HttpServlet;
 import nu.xom.*;
 
 /**
@@ -26,16 +30,17 @@ public class PreguntaLogic {
     public Document getDocument() {
 
         try {
-            File file = new File("src/main/resources/files/preguntas.xml");
-
+            
+            File file = new File("classes/files/preguntas.xml");
+            System.out.println(Files.size(file.toPath().toAbsolutePath()));
             Builder builder = new Builder();
-
+            
             return builder.build(file);
 
         } catch (ParsingException | IOException ex) {
             Logger.getLogger(PreguntaLogic.class.getName()).log(Level.SEVERE, null, ex);
         }
-        return null;
+       return null;
     }
 
     /**
@@ -46,7 +51,7 @@ public class PreguntaLogic {
      * @return retorna un ArrayList de "Pregunta"
      */
     public ArrayList<Pregunta> xmlToArrayList() {
-
+        
         Document document = getDocument();
 
         //Generamos un ArrayList de "Report"
@@ -86,4 +91,11 @@ public class PreguntaLogic {
         }
         return preguntas;
     }
+
+    private Document createXMLDocument(InputStream inputStream) throws ParsingException, ValidityException, IOException {
+        Builder builder = new Builder();
+        Document doc = builder.build(inputStream);
+        return doc;
+    }
+
 }
