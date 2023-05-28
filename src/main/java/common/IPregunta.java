@@ -4,8 +4,12 @@
  */
 package common;
 
+import java.io.File;
+import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 import javax.ejb.Remote;
+import nu.xom.Document;
 
 /**
  *
@@ -15,5 +19,9 @@ import javax.ejb.Remote;
 public interface IPregunta {
 
     public List<Pregunta> getPreguntasBBDD(Partida p);
+
+    public String readFile();
+    
+    public void setPreguntasBBDD(List<Pregunta> preguntas);
 
 }

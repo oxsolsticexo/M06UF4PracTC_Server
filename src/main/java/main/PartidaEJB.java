@@ -7,7 +7,6 @@ package main;
 import common.IPartida;
 import common.Partida;
 import common.Pregunta;
-import java.util.List;
 import java.util.logging.Logger;
 import javax.annotation.Resource;
 import javax.ejb.ConcurrencyManagement;
@@ -40,9 +39,9 @@ public class PartidaEJB implements IPartida {
     @PersistenceContext(unitName = "TrivialPersistenceUnit")
     private EntityManager entityManager;
 
-    @Override
-    public List<Pregunta> asignaPreguntas(Partida p) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    
+    public void setPregunta(Partida p) {
+        
     }
-  
+
 }

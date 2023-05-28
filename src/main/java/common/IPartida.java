@@ -14,6 +14,10 @@ import javax.ejb.Remote;
 @Remote
 public interface IPartida {
 
-    public List<Pregunta> asignaPreguntas(Partida p);
+    public void setPregunta(Partida partida);
+
+    
+
+    
 
 }

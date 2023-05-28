@@ -45,7 +45,7 @@ public interface IJugador {
      * @param contrasena
      * @return 
      */
-    public boolean registrarJugador(String nombre, String correo);
+    public void registrarJugador(Jugador jugador);
     
     /**
      * Verificamos si el correo existe para posteriormente iniciar sesión

@@ -50,9 +50,9 @@ public class PreguntaLogic {
      *
      * @return retorna un ArrayList de "Pregunta"
      */
-    public ArrayList<Pregunta> xmlToArrayList() {
+    public ArrayList<Pregunta> xmlToArrayList(Document document) {
         
-        Document document = getDocument();
+        //Document document = getDocument();
 
         //Generamos un ArrayList de "Report"
         ArrayList<Pregunta> preguntas = new ArrayList<>();

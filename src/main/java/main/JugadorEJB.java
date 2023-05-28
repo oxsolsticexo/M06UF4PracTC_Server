@@ -7,9 +7,7 @@ package main;
 import DAO.DAO;
 import common.IJugador;
 import common.Jugador;
-import java.util.Queue;
 import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.annotation.PostConstruct;
 import javax.annotation.PreDestroy;
 import common.Partida;
@@ -96,10 +94,11 @@ public class JugadorEJB implements IJugador {
     }
 
     @Override
-    public boolean registrarJugador(String nombre, String correo) {
+    public void registrarJugador(Jugador jugador) {
         DAO dao = null;
-        boolean bool = dao.createUser(nombre, correo);
-        return bool;
+        entityManager.persist(jugador);
+        //boolean bool = dao.createUser(jugador);
+        //return bool;
     }
 
     @Override

@@ -1,5 +1,6 @@
 Interfaces\LogicaInterface.class
 main\JugadorEJB.class
+singleton\DataConvert.class
 DAO\DAOPartida.class
 main\PartidaEJB.class
 common\IJugador.class
@@ -12,8 +13,9 @@ Interfaces\LogicaPartidaInterface.class
 common\Partida.class
 common\Jugador.class
 common\Pregunta.class
-Servlet\Servlet.class
+main\AppSingletonEJB.class
 model\Usuaris.class
+common\XMLProcessorImpl.class
 main\PreguntaEJB.class
 common\IPregunta.class
 Logica\Logica.class
