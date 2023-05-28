@@ -4,11 +4,15 @@
  */
 package Logica.EJB;
 
-
+import DAO.DAOEJB;
+import DAO.DAOPregunta;
+import Entities.Jugador;
 import Logica.Interfaces.IPartida;
 import Entities.Partida;
 import Entities.Pregunta;
 import Logica.TimerLogic;
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.LinkedList;
 import java.util.logging.Logger;
@@ -32,9 +36,18 @@ import javax.persistence.PersistenceContext;
 @TransactionManagement(value = TransactionManagementType.CONTAINER)
 public class PartidaEJB implements IPartida {
 
-    private static final Logger log = Logger.getLogger(PartidaEJB.class.getName());
+    private DAOEJB DAOejb;
+    private DAOPregunta DAOPregunta;
+    private LinkedList<Pregunta> preguntasLList;
+    private TimerLogic timerLogic;
 
-    LinkedList<Pregunta> preguntasLList;
+    public PartidaEJB() {
+        DAOPregunta = new DAOPregunta();
+        DAOejb = new DAOEJB();
+        timerLogic = new TimerLogic();
+    }
+
+    private static final Logger log = Logger.getLogger(PartidaEJB.class.getName());
 
     @Resource
     private SessionContext sessionContext;
@@ -44,8 +57,6 @@ public class PartidaEJB implements IPartida {
 
     @PersistenceContext(unitName = "TrivialPersistenceUnit")
     private EntityManager entityManager;
-
-    TimerLogic timerLogic;
 
     @Override
     public Pregunta asignaPregunta(Partida partida) throws Exception {
@@ -82,4 +93,19 @@ public class PartidaEJB implements IPartida {
         this.preguntasLList = new LinkedList<>(partida.getPreguntasList());
     }
 
+    @Override
+    public void crearPartida(String nombrePartida, String dificultad) {
+
+        Jugador jug = new Jugador();
+
+        ArrayList<Jugador> listado = new ArrayList<>(Arrays.asList(jug));
+
+        Partida partida = new Partida();
+        partida.setNombre(nombrePartida);
+        partida.setDificultad(dificultad);
+        partida.setJugadoresList(listado);
+        partida.setPreguntasList(DAOPregunta.getPreguntasBBDD(partida));
+
+        DAOejb.validPersist(partida);
+    }
 }

@@ -24,11 +24,15 @@ import singleton.DataConvert;
  * @author Carlos
  */
 public class DAOPartida {
+    
+    private DAOEJB daoejb;
+    private DAOPregunta daoPregunta;
 
     PreguntaLogic preguntas = new PreguntaLogic();
 
     public DAOPartida() {
-
+        daoejb = new DAOEJB();
+        daoPregunta = new DAOPregunta();
     }
 
     public void crearPartida(String nombre, String jugador, String dificultad) throws IOException, NamingException {
@@ -55,7 +59,7 @@ public class DAOPartida {
             partida.setJugadoresList(listado);
             pregunta.readFile();
             //Document d = pregunta.obtenerPreguntas();
-            List<Pregunta> p = pregunta.getPreguntasBBDD(partida);
+            List<Pregunta> p = daoPregunta.getPreguntasBBDD(partida);
             System.out.println("");
             
             partidas.setPreguntas(partida);
@@ -65,5 +69,9 @@ public class DAOPartida {
             System.out.println(e.getMessage());
         }
 
+    }
+    
+    public void persistePartida(Partida p){
+        daoejb.validPersist(p);
     }
 }
