@@ -4,22 +4,18 @@
  */
 package DAO;
 
-import common.XMLProcessorImpl;
+import Entities.Jugador;
+import Entities.Lookups;
+import Entities.Partida;
+import Entities.Pregunta;
+import Logica.Interfaces.IPartida;
+import Logica.Interfaces.IPregunta;
 import Logica.PreguntaLogic;
-import common.IJugador;
-import common.IPartida;
-import common.IPregunta;
-import common.Jugador;
-import common.Lookups;
-import common.Partida;
-import common.Pregunta;
-import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import javax.naming.NamingException;
-import main.AppSingletonEJB;
 import nu.xom.Document;
 import singleton.DataConvert;
 
@@ -41,12 +37,12 @@ public class DAOPartida {
         try {
             IPartida partidas = Lookups.partidaEJBRemoteLookup();
             IPregunta pregunta = Lookups.preguntaEJBRemoteLookup();
-
-            Jugador j = new Jugador("julian@gmail.com", "julian", 0, 0);
+            Jugador jug  = new Jugador();
+            //Jugador j = new Jugador("julian@gmail.com", "julian", 0, 0);
             System.out.println("Ha entrado en dao");
             //List<Pregunta> v = g.procesarXML();
             //Crear jugador
-            Jugador jug = new Jugador("Juan", dificultad, 0, 0);
+            //Jugador jug = new Jugador("Juan", dificultad, 0, 0);
             ArrayList<Jugador> listado = new ArrayList<>(Arrays.asList(jug));
             Document b = DataConvert.StringToDocument(pregunta.readFile());
             List<Pregunta> pre = preguntas.xmlToArrayList(b);

@@ -4,7 +4,7 @@
  */
 package Logica;
 
-import common.Pregunta;
+import Entities.Pregunta;
 import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
