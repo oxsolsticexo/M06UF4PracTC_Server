@@ -74,14 +74,10 @@ public class DAOEJB implements DAOInterface {
             log.log(Level.SEVERE, msg);
             return jugFind;
         }
-//        List<Jugador> listaJug = em.createQuery("SELECT Jugador FROM Jugador WHERE Jugador.email = :emailDAO")
-//                .setParameter("emailDAO", email)
-//                .getResultList();
         List<Jugador> listaJug = em.createQuery("SELECT j FROM Jugador j WHERE j.email = :emailDAO", Jugador.class)
                 .setParameter("emailDAO", email)
                 .getResultList();
 
-//            System.out.println(listaJug.toString());
         if (listaJug != null && !listaJug.isEmpty()) {// comprobamos que la lista no esta vacia y clonamos el jugador
             jugFind = listaJug.get(0).clone();
         } else {
