@@ -15,7 +15,7 @@ public interface IPartida {
     
     public void setPreguntas(Partida p);
 
-    public Pregunta asignaPregunta(Partida p);
+    public Pregunta asignaPregunta(Partida p) throws Exception;
     
     public int startTimer();
 

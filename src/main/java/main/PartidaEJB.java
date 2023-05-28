@@ -47,10 +47,9 @@ public class PartidaEJB implements IPartida {
     TimerLogic timerLogic;
 
     @Override
-    public Pregunta asignaPregunta(Partida partida) {
+    public Pregunta asignaPregunta(Partida partida) throws Exception {
 
         if (!preguntasLList.isEmpty()) {
-
             //Mezclamos las preguntas, para que de la "sensación" de que son aleatorias y no siempre se repiten dada una partida
             Collections.shuffle(preguntasLList);
             //Retorna y elimina el primer elemento de la LinkedList.
@@ -58,7 +57,7 @@ public class PartidaEJB implements IPartida {
 
             return pregunta;
         } else {
-            return null;
+            throw new Exception("Ha surgido un error al cargar la pregunta.");
         }
         // Obtener la primera pregunta de la lista
     }
@@ -68,7 +67,6 @@ public class PartidaEJB implements IPartida {
         if (timerLogic.startTimer() <= 0) {
 
         }
-
         return timerLogic.startTimer();
     }
 
