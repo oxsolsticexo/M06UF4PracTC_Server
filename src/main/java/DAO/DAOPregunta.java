@@ -28,8 +28,8 @@ public class DAOPregunta {
 
         //TODO Limitar de alguna manera a que sean 10 preguntas.
         partida.setPreguntasList(preguntasList);
-
+        
         return preguntasList;
     }
-
+    
 }
