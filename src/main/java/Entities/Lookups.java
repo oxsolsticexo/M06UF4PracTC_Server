@@ -9,6 +9,7 @@ import Logica.Interfaces.ISessionManager;
 import Logica.Interfaces.IPregunta;
 import Logica.Interfaces.IPartida;
 import DAO.DAOEJB;
+import DAO.DAOPregunta;
 import Logica.Interfaces.DAOInterface;
 import java.util.Properties;
 import javax.naming.Context;
@@ -17,6 +18,7 @@ import javax.naming.NamingException;
 import Logica.EJB.PartidaEJB;
 import Logica.EJB.PreguntaEJB;
 import Logica.EJB.SessionManagerEJB;
+import Logica.Interfaces.IDAOPregunta;
 
 /**
  * Classe encarregada de fer les connexions amb els EJB remots
@@ -46,8 +48,9 @@ public class Lookups {
 
     /**
      * recupera la clase DAO
+     *
      * @return
-     * @throws NamingException 
+     * @throws NamingException
      */
     public static DAOInterface DAOEJBLocalLookup() throws NamingException {
         String strlookup = "java:jboss/exported/" + APP_NAME + "/" + DAOEJB.class.getSimpleName() + "!" + DAOInterface.class.getName();
@@ -59,6 +62,18 @@ public class Lookups {
         Context context = new InitialContext(jndiProperties);
 
         return (DAOInterface) context.lookup(strlookup);
+    }
+
+    public static IDAOPregunta DAOPreguntaLocalLookup() throws NamingException {
+        String strlookup = "java:jboss/exported/" + APP_NAME + "/" + DAOPregunta.class.getSimpleName() + "!" + IDAOPregunta.class.getName();
+
+        Properties jndiProperties = new Properties();
+
+        jndiProperties.put(Context.INITIAL_CONTEXT_FACTORY, WILDFLY_INITIAL_CONTEXT_FACTORY);
+
+        Context context = new InitialContext(jndiProperties);
+
+        return (IDAOPregunta) context.lookup(strlookup);
     }
 
     public static IPregunta preguntaEJBRemoteLookup() throws NamingException {

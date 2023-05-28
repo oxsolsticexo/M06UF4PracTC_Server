@@ -4,7 +4,6 @@
  */
 package Logica.EJB;
 
-
 import Logica.Interfaces.IPregunta;
 import Entities.Partida;
 import Entities.Pregunta;
@@ -51,6 +50,20 @@ public class PreguntaEJB implements IPregunta {
     private static final Logger log = Logger.getLogger(PreguntaEJB.class.getName());
 
     @Override
+    public List<Pregunta> getPreguntasBBDD(Partida partida) {
+
+        List<Pregunta> preguntasList = entityManager
+                .createQuery("SELECT p FROM Pregunta p WHERE p.dificultad = :dificultad", Pregunta.class)
+                .setParameter("dificultad", partida.getDificultad())
+                .getResultList();
+
+        //TODO Limitar de alguna manera a que sean 10 preguntas.
+        partida.setPreguntasList(preguntasList);
+
+        return preguntasList;
+    }
+
+    @Override
     public void setPreguntasBBDD(List<Pregunta> preguntasList) {
 
         try {
@@ -63,7 +76,6 @@ public class PreguntaEJB implements IPregunta {
             userTransaction.commit();
         } catch (NotSupportedException | SystemException | RollbackException | HeuristicMixedException | HeuristicRollbackException | SecurityException | IllegalStateException ex) {
             log.log(Level.SEVERE, "Error a la hora de persistir las preguntas.");
-            
         }
     }
 

@@ -4,6 +4,7 @@
  */
 package Logica.Interfaces;
 
+import Entities.Partida;
 import Entities.Pregunta;
 import java.util.List;
 import javax.ejb.Remote;
@@ -15,7 +16,7 @@ import javax.ejb.Remote;
 @Remote
 public interface IPregunta {
 
-    //public List<Pregunta> getPreguntasBBDD(Partida p);
+    public List<Pregunta> getPreguntasBBDD(Partida p);
 
     public String readFile();
     

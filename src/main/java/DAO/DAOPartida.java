@@ -8,6 +8,8 @@ import Entities.Jugador;
 import Entities.Lookups;
 import Entities.Partida;
 import Entities.Pregunta;
+import Logica.Interfaces.DAOInterface;
+import Logica.Interfaces.IDAOPregunta;
 import Logica.Interfaces.IPartida;
 import Logica.Interfaces.IPregunta;
 import Logica.PreguntaLogic;
@@ -24,26 +26,29 @@ import singleton.DataConvert;
  * @author Carlos
  */
 public class DAOPartida {
-    
-    private DAOEJB daoejb;
-    private DAOPregunta daoPregunta;
 
     PreguntaLogic preguntas = new PreguntaLogic();
+    IPartida partidas;
+    IPregunta pregunta;
+    IDAOPregunta preguntaDAO;
+    DAOInterface daoejb;
 
-    public DAOPartida() {
-        daoejb = new DAOEJB();
-        daoPregunta = new DAOPregunta();
+    public DAOPartida() throws NamingException {
+
+        pregunta = Lookups.preguntaEJBRemoteLookup();
+        partidas = Lookups.partidaEJBRemoteLookup();
+
     }
 
     public void crearPartida(String nombre, String jugador, String dificultad) throws IOException, NamingException {
-
-        
+        daoejb = Lookups.DAOEJBLocalLookup();
+        preguntaDAO = Lookups.DAOPreguntaLocalLookup();
         try {
-            IPartida partidas = Lookups.partidaEJBRemoteLookup();
-            IPregunta pregunta = Lookups.preguntaEJBRemoteLookup();
-            Jugador jug  = new Jugador();
-            //Jugador j = new Jugador("julian@gmail.com", "julian", 0, 0);
+
+            Jugador jug = new Jugador();
+
             System.out.println("Ha entrado en dao");
+
             //List<Pregunta> v = g.procesarXML();
             //Crear jugador
             //Jugador jug = new Jugador("Juan", dificultad, 0, 0);
@@ -57,21 +62,23 @@ public class DAOPartida {
             partida.setNombre(nombre);
             partida.setDificultad(dificultad);
             partida.setJugadoresList(listado);
+            partida.setPreguntasList(pre);
             pregunta.readFile();
             //Document d = pregunta.obtenerPreguntas();
-            List<Pregunta> p = daoPregunta.getPreguntasBBDD(partida);
+            preguntaDAO.getPreguntasBBDD(partida);
             System.out.println("");
-            
+
             partidas.setPreguntas(partida);
             //partida.setPreguntasList(preguntas.xmlToArrayList());
 
         } catch (Exception e) {
             System.out.println(e.getMessage());
+            e.printStackTrace();
         }
 
     }
-    
-    public void persistePartida(Partida p){
+
+    public void persistePartida(Partida p) {
         daoejb.validPersist(p);
     }
 }

@@ -2,15 +2,19 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package Logica.Exceptions;
+package Logica.Interfaces;
+
+import Entities.Partida;
+import Entities.Pregunta;
+import java.util.List;
+import javax.ejb.Remote;
 
 /**
  *
  * @author Kiwi
  */
-public class PartidaExceptions extends Exception {
+@Remote
+public interface IDAOPregunta {
 
-    public PartidaExceptions(String mensaje) {
-        super(mensaje);
-    }
+    public List<Pregunta> getPreguntasBBDD(Partida partida);
 }
