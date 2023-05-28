@@ -5,13 +5,15 @@
  */
 package common;
 
+import DAO.DAOEJB;
+import Interfaces.DAOInterface;
 import java.util.Properties;
 import javax.naming.Context;
 import javax.naming.InitialContext;
 import javax.naming.NamingException;
-import main.JugadorEJB;
 import main.PartidaEJB;
 import main.PreguntaEJB;
+import main.SessionManagerEJB;
 
 /**
  * Classe encarregada de fer les connexions amb els EJB remots
@@ -39,9 +41,13 @@ public class Lookups {
         return (IPartida) context.lookup(strlookup);
     }
 
-    public static IJugador jugadorEJBRemoteLookup() throws NamingException {
-
-        String strlookup = "ejb:/" + APP_NAME + "/" + JugadorEJB.class.getSimpleName() + "!" + IJugador.class.getName() + "?stateful";
+    /**
+     * recupera la clase DAO
+     * @return
+     * @throws NamingException 
+     */
+    public static DAOInterface DAOEJBLocalLookup() throws NamingException {
+        String strlookup = "java:jboss/exported/" + APP_NAME + "/" + DAOEJB.class.getSimpleName() + "!" + DAOInterface.class.getName();
 
         Properties jndiProperties = new Properties();
 
@@ -49,7 +55,7 @@ public class Lookups {
 
         Context context = new InitialContext(jndiProperties);
 
-        return (IJugador) context.lookup(strlookup);
+        return (DAOInterface) context.lookup(strlookup);
     }
 
     public static IPregunta preguntaEJBRemoteLookup() throws NamingException {
@@ -65,43 +71,15 @@ public class Lookups {
         return (IPregunta) context.lookup(strlookup);
     }
 
-    /*public static ICarroCompra carroCompraEJBRemoteLookup() throws NamingException {
-        // "/EJB_Exemple1_Server-1/CarroCompraEJB!common.ICarroCompra?stateful"
-
-        String strlookup = "ejb:/" + APP_NAME + "/" + CarroCompraEJB.class.getSimpleName() + "!" + ICarroCompra.class.getName() + "?stateful";
-
-        Properties jndiProperties = new Properties();
-
-        jndiProperties.put(Context.INITIAL_CONTEXT_FACTORY, WILDFLY_INITIAL_CONTEXT_FACTORY);
-
-        Context context = new InitialContext(jndiProperties);
-
-        return (ICarroCompra) context.lookup(strlookup);
-    }
-
-    public static ITenda tendaEJBRemoteLookup() throws NamingException {
-        String strlookup = "ejb:/" + APP_NAME + "/" + TendaEJB.class.getSimpleName() + "!" + ITenda.class.getName();
-
-        Properties jndiProperties = new Properties();
-
-        jndiProperties.put(Context.INITIAL_CONTEXT_FACTORY, WILDFLY_INITIAL_CONTEXT_FACTORY);
-
-        Context context = new InitialContext(jndiProperties);
-
-        return (ITenda) context.lookup(strlookup);
-    }
-
     /**
-     * *
-     * Connexió a un EJB amb @remote via local (entre components del mateix
-     * servidor)
+     * recupera el session manager
      *
      * @return
      * @throws NamingException
      */
- /*
-    public static ITenda tendaEJBLocalLookup() throws NamingException {
-        String strlookup = "java:jboss/exported/" + APP_NAME + "/" + TendaEJB.class.getSimpleName() + "!" + ITenda.class.getName();
+    public static ISessionManager sessionManagerEJBRemoteLookup() throws NamingException {
+
+        String strlookup = "ejb:/" + appName + "/" + SessionManagerEJB.class.getSimpleName() + "!" + ISessionManager.class.getName();
 
         Properties jndiProperties = new Properties();
 
@@ -109,6 +87,6 @@ public class Lookups {
 
         Context context = new InitialContext(jndiProperties);
 
-        return (ITenda) context.lookup(strlookup);
-    }*/
+        return (ISessionManager) context.lookup(strlookup);
+    }
 }

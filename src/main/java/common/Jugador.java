@@ -5,50 +5,49 @@
 package common;
 
 import java.io.Serializable;
+import java.util.List;
+import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Pattern;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
+import javax.persistence.Table;
 
 /**
  *
  * @author Kiwi
  */
-@Entity
+@Entity()
+@Table(name = "Jugador")
 public class Jugador implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
+//    @NotNull(message = "Debes introducir una dirección de correo electrónico.")
+//    @Pattern(regexp = "^[A-Za-z0-9+_.-]+@[A-Za-z0-9.-]+$", message = "La dirección de correo electrónica introducida no es válida.")
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long idJugador;
-
-    @NotNull(message = "Debes introducir una dirección de correo electrónico.")
-    @Pattern(regexp = "^[A-Za-z0-9+_.-]+@[A-Za-z0-9.-]+$", message = "La dirección de correo electrónica introducida no es válida.")
+    @Column(name = "email", nullable = false, unique = true)
     private String email;
 
-    @NotNull(message = "Debes introducir un Nickname")
-    @Pattern(regexp = "^[a-zA-Z0-9]+$", message = "Solo puedes introducir letras y números.")
+//    @NotNull(message = "Debes introducir un Nickname")
+//    @Pattern(regexp = "^[a-zA-Z0-9]+$", message = "Solo puedes introducir letras y números.")
+    @Column(name = "nickJugador", nullable = false, unique = true)
     private String nickJugador;
-
+    @Column(name = "maxPuntuacionPartida")
     private Integer maxPuntuacionPartida;
-
+    @Column(name = "puntuacionTotal")
     private Integer puntuacionTotal;
+    @ManyToOne
+    @JoinColumn(name = "idPartida")
+    private Partida partida;
 
-    public Jugador(String email, String nickJugador, Integer maxPuntuacionPartida, Integer puntuacionTotal) {
-        this.email = email;
-        this.nickJugador = nickJugador;
-        this.maxPuntuacionPartida = maxPuntuacionPartida;
-        this.puntuacionTotal = puntuacionTotal;
+    public Partida getPartida() {
+        return partida;
     }
 
-    public Jugador() {
-    }
-
-    public Long getIdJugador() {
-        return idJugador;
+    public void setPartida(Partida partida) {
+        this.partida = partida;
     }
 
     public String getEmail() {
@@ -71,7 +70,7 @@ public class Jugador implements Serializable {
         return maxPuntuacionPartida;
     }
 
-    public void setMaxPuntiacionPartida(Integer maxPuntuacionPartida) {
+    public void setMaxPuntuacionPartida(Integer maxPuntuacionPartida) {
         this.maxPuntuacionPartida = maxPuntuacionPartida;
     }
 
@@ -81,6 +80,23 @@ public class Jugador implements Serializable {
 
     public void setPuntuacionTotal(Integer puntuacionTotal) {
         this.puntuacionTotal = puntuacionTotal;
+    }
+
+    @Override
+    public Jugador clone() {
+        Jugador jug = new Jugador();
+        jug.setEmail(this.getEmail());
+        jug.setNickJugador(this.nickJugador);
+        if(jug.getPuntuacionTotal() != null){
+            jug.setMaxPuntuacionPartida(this.maxPuntuacionPartida);
+        }
+        if(jug.getPartida() != null){
+            jug.setPartida(this.partida);
+        }
+        if(jug.getMaxPuntuacionPartida() != null){
+            jug.setMaxPuntuacionPartida(this.maxPuntuacionPartida);
+        }
+        return jug;
     }
 
 }

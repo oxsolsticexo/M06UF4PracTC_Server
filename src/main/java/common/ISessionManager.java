@@ -5,30 +5,37 @@
 package common;
 
 import javax.ejb.Remote;
+import javax.naming.NamingException;
 
 /**
  *
- * @author Kiwi
+ * @author dolorioUser
  */
 @Remote
-public interface IJugador {
-    /***
+public interface ISessionManager {
+
+    /**
+     * *
      * Valida el cliente
+     *
      * @param login
      * @return id de sesión
-     * @throws common.CompraException si el cliente no existe
+     * @throws common.SesionJugException
      */
-    public String getSesion(String login) throws SesionJugException;
+    public Sesion getSesion(Token token) throws SesionJugException;
 
-    /***
+    /**
+     * *
      * Retorna la puntuacion máxima del cliente
-     * @return 
+     *
+     * @return
      */
     public Float getPuntuacionMax();
+
     /**
      * Cierra la sesión del usuario.
      */
-    public void cerrarSesion();
+    public void cerrarSesion(Token token);
 
     /**
      * Une al jugador a la partida que ha generado.
@@ -36,27 +43,32 @@ public interface IJugador {
      * @param partidaAUnirse
      */
     public void unirsePartida(Partida partidaAUnirse);
-    
+
     /**
-     * Con este método añadimos un jugador a la base de datos
-     * para confirmar si esto ocurre devolvemos un booleano
+     * Con este método añadimos un jugador a la base de datos para confirmar si
+     * esto ocurre devolvemos un booleano
+     *
      * @param nombre
      * @param correo
      * @param contrasena
-     * @return 
+     * @throws javax.naming.NamingException
      */
-    public boolean registrarJugador(String nombre, String correo);
+    public Token registrarJugador(String nombre, String correo) throws NamingException;
+
+    /**
+     * método para que el jugador inicie sesión
+     * @param email 
+     * @return  
+     * @throws javax.naming.NamingException 
+     */
+    public Token loginJugador(String email) throws NamingException;
     
     /**
      * Verificamos si el correo existe para posteriormente iniciar sesión
+     *
      * @param correo
-     * @return 
+     * @return
      */
     public boolean verificarExistenciaCorreo(String correo);
-    /**
-     * Retorna el nombre del jugador
-     * @return 
-     */
-    public String getName();
 
 }
