@@ -37,13 +37,12 @@ public class DAOPartida {
 
         pregunta = Lookups.preguntaEJBRemoteLookup();
         partidas = Lookups.partidaEJBRemoteLookup();
-        preguntaDAO = Lookups.DAOPreguntaLocalLookup();
-        daoejb = Lookups.DAOEJBLocalLookup();
 
     }
 
     public void crearPartida(String nombre, String jugador, String dificultad) throws IOException, NamingException {
-
+        daoejb = Lookups.DAOEJBLocalLookup();
+        preguntaDAO = Lookups.DAOPreguntaLocalLookup();
         try {
 
             Jugador jug = new Jugador();
