@@ -84,12 +84,19 @@ public class Jugador implements Serializable {
 
     @Override
     public Jugador clone() {
-        try {
-            return (Jugador) super.clone();
-        } catch (CloneNotSupportedException e) {
-            // Manejar excepción de clonación no compatible
-            return null;
+        Jugador jug = new Jugador();
+        jug.setEmail(this.getEmail());
+        jug.setNickJugador(this.nickJugador);
+        if(jug.getPuntuacionTotal() != null){
+            jug.setMaxPuntuacionPartida(this.maxPuntuacionPartida);
         }
+        if(jug.getPartida() != null){
+            jug.setPartida(this.partida);
+        }
+        if(jug.getMaxPuntuacionPartida() != null){
+            jug.setMaxPuntuacionPartida(this.maxPuntuacionPartida);
+        }
+        return jug;
     }
 
 }

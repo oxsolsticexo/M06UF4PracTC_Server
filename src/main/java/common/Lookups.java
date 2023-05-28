@@ -77,9 +77,9 @@ public class Lookups {
      * @return
      * @throws NamingException
      */
-    public static ISessionManagerEJB sessionManagerEJBRemoteLookup() throws NamingException {
+    public static ISessionManager sessionManagerEJBRemoteLookup() throws NamingException {
 
-        String strlookup = "ejb:/" + appName + "/" + SessionManagerEJB.class.getSimpleName() + "!" + ISessionManagerEJB.class.getName();
+        String strlookup = "ejb:/" + appName + "/" + SessionManagerEJB.class.getSimpleName() + "!" + ISessionManager.class.getName();
 
         Properties jndiProperties = new Properties();
 
@@ -87,6 +87,6 @@ public class Lookups {
 
         Context context = new InitialContext(jndiProperties);
 
-        return (ISessionManagerEJB) context.lookup(strlookup);
+        return (ISessionManager) context.lookup(strlookup);
     }
 }

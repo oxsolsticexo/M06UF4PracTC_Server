@@ -32,8 +32,9 @@ public class DAOEJB implements DAOInterface {
 
     private static final Logger log = Logger.getLogger(DAOEJB.class.getName());
 
-    @PersistenceContext(unitName = "TrivialPersistenceUnit", type = PersistenceContextType.EXTENDED)
+    @PersistenceContext(unitName = "TrivialPersistenceUnit")
     private EntityManager em;
+
     /**
      * Creamos un jugador que nos pasan por parámetro
      *
@@ -55,6 +56,7 @@ public class DAOEJB implements DAOInterface {
             log.log(Level.SEVERE, msg);
         }
     }
+
     /**
      * Comprueba si un usuario está en la base de datos
      *
@@ -64,30 +66,36 @@ public class DAOEJB implements DAOInterface {
     @Override
     @Lock(LockType.READ)
     public Jugador findUser(String email) {
-        Jugador jug = null;
+        Jugador jugFind = null;
         String msg;
 
         if (email == null) {
             msg = "ERROR: El email es nulo";
             log.log(Level.SEVERE, msg);
+            return jugFind;
         }
-        List<Jugador> listaJug = em.createQuery("SELECT Jugador FROM Jugador WHERE Jugador.email = :emailDAO")
+//        List<Jugador> listaJug = em.createQuery("SELECT Jugador FROM Jugador WHERE Jugador.email = :emailDAO")
+//                .setParameter("emailDAO", email)
+//                .getResultList();
+        List<Jugador> listaJug = em.createQuery("SELECT j FROM Jugador j WHERE j.email = :emailDAO", Jugador.class)
                 .setParameter("emailDAO", email)
                 .getResultList();
-        if (listaJug != null) {
-            if (!listaJug.isEmpty()) { // comprobamos que la lista no esta vacia y clonamos le jugador
-                jug = listaJug.get(0).clone();
-            } else {
-                msg = "ERROR: No se encuentra el email ";
-                log.log(Level.SEVERE, msg);
-            }
+
+//            System.out.println(listaJug.toString());
+        if (listaJug != null && !listaJug.isEmpty()) {// comprobamos que la lista no esta vacia y clonamos el jugador
+            jugFind = listaJug.get(0).clone();
         } else {
-            msg = "La consulta devuelve NULL";
+            msg = "ERROR: No se encuentra al jugador ";
             log.log(Level.SEVERE, msg);
+            return jugFind;
         }
-        
-        return jug;
+//        Jugador jugo = new Jugador();
+//        jugo.setEmail("hola@hola.com");
+//        jugo.setNickJugador("hola");
+//        jugFind = jugo;
+        return jugFind;
     }
+
     /**
      * Método que recibe un objeto lo valida haciendo uso de la clase validadors
      * y en caso de ser valido se persiste en la BD
