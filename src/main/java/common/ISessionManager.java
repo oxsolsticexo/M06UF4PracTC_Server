@@ -12,7 +12,7 @@ import javax.naming.NamingException;
  * @author dolorioUser
  */
 @Remote
-public interface ISessionManagerEJB {
+public interface ISessionManager {
 
     /**
      * *
@@ -20,9 +20,9 @@ public interface ISessionManagerEJB {
      *
      * @param login
      * @return id de sesión
-     * @throws common.CompraException si el cliente no existe
+     * @throws common.SesionJugException
      */
-    public String getSesion(String login) throws SesionJugException;
+    public Sesion getSesion(Token token) throws SesionJugException;
 
     /**
      * *
@@ -35,7 +35,7 @@ public interface ISessionManagerEJB {
     /**
      * Cierra la sesión del usuario.
      */
-    public void cerrarSesion();
+    public void cerrarSesion(Token token);
 
     /**
      * Une al jugador a la partida que ha generado.
@@ -51,9 +51,18 @@ public interface ISessionManagerEJB {
      * @param nombre
      * @param correo
      * @param contrasena
+     * @throws javax.naming.NamingException
      */
-    public void registrarJugador(String nombre, String correo) throws NamingException;
+    public Token registrarJugador(String nombre, String correo) throws NamingException;
 
+    /**
+     * método para que el jugador inicie sesión
+     * @param email 
+     * @return  
+     * @throws javax.naming.NamingException 
+     */
+    public Token loginJugador(String email) throws NamingException;
+    
     /**
      * Verificamos si el correo existe para posteriormente iniciar sesión
      *

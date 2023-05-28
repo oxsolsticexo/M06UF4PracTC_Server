@@ -37,4 +37,5 @@ public interface DAOInterface {
      * @param ob
      */
     public void validPersist(Object ob);
+    
 }

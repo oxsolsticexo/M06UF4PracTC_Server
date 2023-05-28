@@ -11,6 +11,11 @@ import java.io.Serializable;
  * @author dolorioUser
  */
 public class Sesion implements Serializable {
+
+    public Sesion(Token token, String correo) {
+        this.token = token;
+        this.correo = correo;
+    }
     
     private Token token;
     private String correo, nombre;
@@ -29,13 +34,5 @@ public class Sesion implements Serializable {
 
     public void setCorreo(String correo) {
         this.correo = correo;
-    }
-
-    public String getNombre() {
-        return nombre;
-    }
-
-    public void setNombre(String nombre) {
-        this.nombre = nombre;
     }
 }

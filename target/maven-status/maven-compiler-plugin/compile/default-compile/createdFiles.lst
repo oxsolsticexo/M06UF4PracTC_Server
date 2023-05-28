@@ -5,6 +5,7 @@ DAO\DAOEJB.class
 common\SesionJugException.class
 common\IPartida.class
 main\Validadors.class
+common\ISessionManager.class
 Interfaces\DAOInterface.class
 main\SessionManagerEJB.class
 common\Partida.class
@@ -17,5 +18,4 @@ Logica\Logica.class
 common\Sesion.class
 common\Lookups.class
 Logica\PreguntaLogic.class
-common\ISessionManagerEJB.class
 common\Token.class
