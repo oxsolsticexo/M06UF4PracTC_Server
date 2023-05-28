@@ -4,10 +4,7 @@
  */
 package Logica;
 
-import DAO.DAOEJB;
-import Interfaces.LogicaInterface;
-import model.Usuaris;
-import javafx.collections.ObservableList;
+import Logica.Interfaces.LogicaInterface;
 
 
 
@@ -32,14 +29,12 @@ public class Logica implements LogicaInterface {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 
-    @Override
-    public ObservableList<Usuaris> findUsers() {
 
 //        try {
 //            return daoGame.findUsers();
 //        } catch (Exception e) {
 //            
 //        }
-        return null;
+       
     }
-}
+

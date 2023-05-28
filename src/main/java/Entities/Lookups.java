@@ -3,17 +3,20 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package common;
+package Entities;
 
+import Logica.Interfaces.ISessionManager;
+import Logica.Interfaces.IPregunta;
+import Logica.Interfaces.IPartida;
 import DAO.DAOEJB;
-import Interfaces.DAOInterface;
+import Logica.Interfaces.DAOInterface;
 import java.util.Properties;
 import javax.naming.Context;
 import javax.naming.InitialContext;
 import javax.naming.NamingException;
-import main.PartidaEJB;
-import main.PreguntaEJB;
-import main.SessionManagerEJB;
+import Logica.EJB.PartidaEJB;
+import Logica.EJB.PreguntaEJB;
+import Logica.EJB.SessionManagerEJB;
 
 /**
  * Classe encarregada de fer les connexions amb els EJB remots

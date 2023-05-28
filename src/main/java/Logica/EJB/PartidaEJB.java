@@ -2,11 +2,11 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package main;
+package Logica.EJB;
 
-import common.IPartida;
-import common.Partida;
-import common.Pregunta;
+import Logica.Interfaces.IPartida;
+import Entities.Partida;
+import Entities.Pregunta;
 import java.util.List;
 import java.util.logging.Logger;
 import javax.annotation.Resource;

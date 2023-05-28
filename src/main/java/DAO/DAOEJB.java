@@ -4,8 +4,8 @@
  */
 package DAO;
 
-import Interfaces.DAOInterface;
-import common.Jugador;
+import Logica.Interfaces.DAOInterface;
+import Entities.Jugador;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
