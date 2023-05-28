@@ -4,7 +4,6 @@
  */
 package common;
 
-import java.util.List;
 import javax.ejb.Remote;
 
 /**
@@ -13,7 +12,11 @@ import javax.ejb.Remote;
  */
 @Remote
 public interface IPartida {
+    
+    public void setPreguntas(Partida p);
 
-    public List<Pregunta> asignaPreguntas(Partida p);
+    public Pregunta asignaPregunta(Partida p);
+    
+    public int startTimer();
 
 }

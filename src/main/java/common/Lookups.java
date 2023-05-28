@@ -22,17 +22,17 @@ public class Lookups {
 
     private static final String APP_VERSION = "1.1.0";
 
-    private static final String wildFlyInitialContextFactory = "org.wildfly.naming.client.WildFlyInitialContextFactory";
+    private static final String WILDFLY_INITIAL_CONTEXT_FACTORY = "org.wildfly.naming.client.WildFlyInitialContextFactory";
 
-    private static final String appName = "M06UF4PracTC_Server-" + APP_VERSION;
+    private static final String APP_NAME = "M06UF4PracTC_Server-" + APP_VERSION;
 
     public static IPartida partidaEJBRemoteLookup() throws NamingException {
 
-        String strlookup = "ejb:/" + appName + "/" + PartidaEJB.class.getSimpleName() + "!" + IPartida.class.getName() + "?stateful";
+        String strlookup = "ejb:/" + APP_NAME + "/" + PartidaEJB.class.getSimpleName() + "!" + IPartida.class.getName() + "?stateful";
 
         Properties jndiProperties = new Properties();
 
-        jndiProperties.put(Context.INITIAL_CONTEXT_FACTORY, wildFlyInitialContextFactory);
+        jndiProperties.put(Context.INITIAL_CONTEXT_FACTORY, WILDFLY_INITIAL_CONTEXT_FACTORY);
 
         Context context = new InitialContext(jndiProperties);
 
@@ -41,11 +41,11 @@ public class Lookups {
 
     public static IJugador jugadorEJBRemoteLookup() throws NamingException {
 
-        String strlookup = "ejb:/" + appName + "/" + JugadorEJB.class.getSimpleName() + "!" + IJugador.class.getName() + "?stateful";
+        String strlookup = "ejb:/" + APP_NAME + "/" + JugadorEJB.class.getSimpleName() + "!" + IJugador.class.getName() + "?stateful";
 
         Properties jndiProperties = new Properties();
 
-        jndiProperties.put(Context.INITIAL_CONTEXT_FACTORY, wildFlyInitialContextFactory);
+        jndiProperties.put(Context.INITIAL_CONTEXT_FACTORY, WILDFLY_INITIAL_CONTEXT_FACTORY);
 
         Context context = new InitialContext(jndiProperties);
 
@@ -54,11 +54,11 @@ public class Lookups {
 
     public static IPregunta preguntaEJBRemoteLookup() throws NamingException {
 
-        String strlookup = "ejb:/" + appName + "/" + PreguntaEJB.class.getSimpleName() + "!" + IPregunta.class.getName() + "?stateful";
+        String strlookup = "ejb:/" + APP_NAME + "/" + PreguntaEJB.class.getSimpleName() + "!" + IPregunta.class.getName() + "?stateful";
 
         Properties jndiProperties = new Properties();
 
-        jndiProperties.put(Context.INITIAL_CONTEXT_FACTORY, wildFlyInitialContextFactory);
+        jndiProperties.put(Context.INITIAL_CONTEXT_FACTORY, WILDFLY_INITIAL_CONTEXT_FACTORY);
 
         Context context = new InitialContext(jndiProperties);
 
@@ -68,11 +68,11 @@ public class Lookups {
     /*public static ICarroCompra carroCompraEJBRemoteLookup() throws NamingException {
         // "/EJB_Exemple1_Server-1/CarroCompraEJB!common.ICarroCompra?stateful"
 
-        String strlookup = "ejb:/" + appName + "/" + CarroCompraEJB.class.getSimpleName() + "!" + ICarroCompra.class.getName() + "?stateful";
+        String strlookup = "ejb:/" + APP_NAME + "/" + CarroCompraEJB.class.getSimpleName() + "!" + ICarroCompra.class.getName() + "?stateful";
 
         Properties jndiProperties = new Properties();
 
-        jndiProperties.put(Context.INITIAL_CONTEXT_FACTORY, wildFlyInitialContextFactory);
+        jndiProperties.put(Context.INITIAL_CONTEXT_FACTORY, WILDFLY_INITIAL_CONTEXT_FACTORY);
 
         Context context = new InitialContext(jndiProperties);
 
@@ -80,11 +80,11 @@ public class Lookups {
     }
 
     public static ITenda tendaEJBRemoteLookup() throws NamingException {
-        String strlookup = "ejb:/" + appName + "/" + TendaEJB.class.getSimpleName() + "!" + ITenda.class.getName();
+        String strlookup = "ejb:/" + APP_NAME + "/" + TendaEJB.class.getSimpleName() + "!" + ITenda.class.getName();
 
         Properties jndiProperties = new Properties();
 
-        jndiProperties.put(Context.INITIAL_CONTEXT_FACTORY, wildFlyInitialContextFactory);
+        jndiProperties.put(Context.INITIAL_CONTEXT_FACTORY, WILDFLY_INITIAL_CONTEXT_FACTORY);
 
         Context context = new InitialContext(jndiProperties);
 
@@ -101,11 +101,11 @@ public class Lookups {
      */
  /*
     public static ITenda tendaEJBLocalLookup() throws NamingException {
-        String strlookup = "java:jboss/exported/" + appName + "/" + TendaEJB.class.getSimpleName() + "!" + ITenda.class.getName();
+        String strlookup = "java:jboss/exported/" + APP_NAME + "/" + TendaEJB.class.getSimpleName() + "!" + ITenda.class.getName();
 
         Properties jndiProperties = new Properties();
 
-        jndiProperties.put(Context.INITIAL_CONTEXT_FACTORY, wildFlyInitialContextFactory);
+        jndiProperties.put(Context.INITIAL_CONTEXT_FACTORY, WILDFLY_INITIAL_CONTEXT_FACTORY);
 
         Context context = new InitialContext(jndiProperties);
 

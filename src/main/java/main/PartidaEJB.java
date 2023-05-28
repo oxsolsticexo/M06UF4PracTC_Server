@@ -4,10 +4,12 @@
  */
 package main;
 
+import Logica.TimerLogic;
 import common.IPartida;
 import common.Partida;
 import common.Pregunta;
-import java.util.List;
+import java.util.Collections;
+import java.util.LinkedList;
 import java.util.logging.Logger;
 import javax.annotation.Resource;
 import javax.ejb.ConcurrencyManagement;
@@ -31,6 +33,8 @@ public class PartidaEJB implements IPartida {
 
     private static final Logger log = Logger.getLogger(PartidaEJB.class.getName());
 
+    LinkedList<Pregunta> preguntasLList;
+
     @Resource
     private SessionContext sessionContext;
 
@@ -40,9 +44,43 @@ public class PartidaEJB implements IPartida {
     @PersistenceContext(unitName = "TrivialPersistenceUnit")
     private EntityManager entityManager;
 
+    TimerLogic timerLogic;
+
     @Override
-    public List<Pregunta> asignaPreguntas(Partida p) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    public Pregunta asignaPregunta(Partida partida) {
+
+        if (!preguntasLList.isEmpty()) {
+
+            //Mezclamos las preguntas, para que de la "sensación" de que son aleatorias y no siempre se repiten dada una partida
+            Collections.shuffle(preguntasLList);
+            //Retorna y elimina el primer elemento de la LinkedList.
+            Pregunta pregunta = preguntasLList.removeFirst();
+
+            return pregunta;
+        } else {
+            return null;
+        }
+        // Obtener la primera pregunta de la lista
+    }
+
+    @Override
+    public int startTimer() {
+        if (timerLogic.startTimer() <= 0) {
+
+        }
+
+        return timerLogic.startTimer();
+    }
+
+    /**
+     * Obtiene la partida cuando el jugador "Crea la partida". Cargamos las
+     * preguntas en una linkedList.
+     *
+     * @param partida
+     */
+    @Override
+    public void setPreguntas(Partida partida) {
+        this.preguntasLList = new LinkedList<>(partida.getPreguntasList());
     }
 
 }
