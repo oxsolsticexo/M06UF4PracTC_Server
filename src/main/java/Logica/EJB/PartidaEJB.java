@@ -7,6 +7,10 @@ package Logica.EJB;
 
 import Logica.Interfaces.IPartida;
 import Entities.Partida;
+import Entities.Pregunta;
+import Logica.TimerLogic;
+import java.util.Collections;
+import java.util.LinkedList;
 import java.util.logging.Logger;
 import javax.annotation.Resource;
 import javax.ejb.ConcurrencyManagement;
@@ -30,6 +34,8 @@ public class PartidaEJB implements IPartida {
 
     private static final Logger log = Logger.getLogger(PartidaEJB.class.getName());
 
+    LinkedList<Pregunta> preguntasLList;
+
     @Resource
     private SessionContext sessionContext;
 
@@ -39,9 +45,41 @@ public class PartidaEJB implements IPartida {
     @PersistenceContext(unitName = "TrivialPersistenceUnit")
     private EntityManager entityManager;
 
-    
-    public void setPregunta(Partida p) {
-        
+    TimerLogic timerLogic;
+
+    @Override
+    public Pregunta asignaPregunta(Partida partida) throws Exception {
+
+        if (!preguntasLList.isEmpty()) {
+            //Mezclamos las preguntas, para que de la "sensaci�n" de que son aleatorias y no siempre se repiten dada una partida
+            Collections.shuffle(preguntasLList);
+            //Retorna y elimina el primer elemento de la LinkedList.
+            Pregunta pregunta = preguntasLList.removeFirst();
+
+            return pregunta;
+        } else {
+            throw new Exception("Ha surgido un error al cargar la pregunta.");
+        }
+        // Obtener la primera pregunta de la lista
+    }
+
+    @Override
+    public int startTimer() {
+        if (timerLogic.startTimer() <= 0) {
+
+        }
+        return timerLogic.startTimer();
+    }
+
+    /**
+     * Obtiene la partida cuando el jugador "Crea la partida". Cargamos las
+     * preguntas en una linkedList.
+     *
+     * @param partida
+     */
+    @Override
+    public void setPreguntas(Partida partida) {
+        this.preguntasLList = new LinkedList<>(partida.getPreguntasList());
     }
 
 }

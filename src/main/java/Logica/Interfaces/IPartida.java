@@ -6,7 +6,6 @@ package Logica.Interfaces;
 
 import Entities.Partida;
 import Entities.Pregunta;
-import java.util.List;
 import javax.ejb.Remote;
 
 /**
@@ -15,11 +14,11 @@ import javax.ejb.Remote;
  */
 @Remote
 public interface IPartida {
-
-    public void setPregunta(Partida partida);
-
     
+    public void setPreguntas(Partida p);
 
+    public Pregunta asignaPregunta(Partida p) throws Exception;
     
+    public int startTimer();
 
 }

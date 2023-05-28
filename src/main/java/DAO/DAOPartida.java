@@ -58,7 +58,7 @@ public class DAOPartida {
             List<Pregunta> p = pregunta.getPreguntasBBDD(partida);
             System.out.println("");
             
-            partidas.setPregunta(partida);
+            partidas.setPreguntas(partida);
             //partida.setPreguntasList(preguntas.xmlToArrayList());
 
         } catch (Exception e) {
