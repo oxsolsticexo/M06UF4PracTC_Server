@@ -51,17 +51,6 @@ public class PreguntaEJB implements IPregunta {
     private static final Logger log = Logger.getLogger(PreguntaEJB.class.getName());
 
     @Override
-    public List<Pregunta> getPreguntasBBDD(Partida partida) {
-
-        List<Pregunta> preguntasList = entityManager
-                .createQuery("SELECT p FROM Pregunta p WHERE p.dificultad = :dificultad", Pregunta.class)
-                .setParameter("dificultad", partida.getDificultad())
-                .getResultList();
-
-        return preguntasList;
-    }
-
-    @Override
     public void setPreguntasBBDD(List<Pregunta> preguntasList) {
 
         try {

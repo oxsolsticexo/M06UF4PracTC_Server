@@ -15,6 +15,8 @@ import javax.ejb.Remote;
 @Remote
 public interface IPartida {
     
+    public void crearPartida(String nombrePartida, String dificultad);
+    
     public void setPreguntas(Partida p);
 
     public Pregunta asignaPregunta(Partida p) throws Exception;
