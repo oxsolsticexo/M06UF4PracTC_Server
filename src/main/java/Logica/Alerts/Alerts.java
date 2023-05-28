@@ -12,13 +12,13 @@ import javafx.scene.control.Alert;
  */
 public class Alerts {
 
-    Alert alert = new Alert(Alert.AlertType.NONE);
+    private static Alert alert;
 
     public Alerts() {
-
+        alert = new Alert(Alert.AlertType.NONE);
     }
 
-    public void Warning(String message) {
+    public static void Warning(String message) {
         alert.setAlertType(Alert.AlertType.WARNING);
         alert.setContentText(message);
         alert.setHeaderText("Warning");
@@ -26,7 +26,7 @@ public class Alerts {
 
     }
 
-    public void Error(String message) {
+    public static void Error(String message) {
         alert.setAlertType(Alert.AlertType.ERROR);
         alert.setContentText(message);
         alert.setHeaderText("Error");
@@ -34,7 +34,7 @@ public class Alerts {
 
     }
 
-    public void Info(String message) {
+    public static void Info(String message) {
         alert.setAlertType(Alert.AlertType.INFORMATION);
         alert.setContentText(message);
         alert.setHeaderText("Information");
