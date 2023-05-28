@@ -2,14 +2,14 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package main;
+package Logica.EJB;
 
-import Interfaces.DAOInterface;
-import common.Jugador;
-import common.Lookups;
-import common.Partida;
-import common.Sesion;
-import common.SesionJugException;
+import Logica.Interfaces.DAOInterface;
+import Entities.Jugador;
+import Entities.Lookups;
+import Entities.Partida;
+import Entities.Sesion;
+import Logica.Exceptions.SesionJugException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Logger;
@@ -20,8 +20,8 @@ import javax.ejb.Startup;
 import javax.ejb.TransactionManagement;
 import javax.ejb.TransactionManagementType;
 import javax.naming.NamingException;
-import common.ISessionManager;
-import common.Token;
+import Logica.Interfaces.ISessionManager;
+import Entities.Token;
 import java.util.logging.Level;
 
 /**

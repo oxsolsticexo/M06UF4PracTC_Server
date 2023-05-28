@@ -2,12 +2,13 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package main;
+package Logica.EJB;
 
+
+import Logica.Interfaces.IPartida;
+import Entities.Partida;
+import Entities.Pregunta;
 import Logica.TimerLogic;
-import common.IPartida;
-import common.Partida;
-import common.Pregunta;
 import java.util.Collections;
 import java.util.LinkedList;
 import java.util.logging.Logger;
@@ -50,7 +51,7 @@ public class PartidaEJB implements IPartida {
     public Pregunta asignaPregunta(Partida partida) throws Exception {
 
         if (!preguntasLList.isEmpty()) {
-            //Mezclamos las preguntas, para que de la "sensación" de que son aleatorias y no siempre se repiten dada una partida
+            //Mezclamos las preguntas, para que de la "sensaciï¿½n" de que son aleatorias y no siempre se repiten dada una partida
             Collections.shuffle(preguntasLList);
             //Retorna y elimina el primer elemento de la LinkedList.
             Pregunta pregunta = preguntasLList.removeFirst();

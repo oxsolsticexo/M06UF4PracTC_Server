@@ -4,8 +4,8 @@
  */
 package DAO;
 
-import Interfaces.DAOInterface;
-import common.Jugador;
+import Logica.Interfaces.DAOInterface;
+import Entities.Jugador;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -18,7 +18,6 @@ import javax.ejb.TransactionManagement;
 import javax.ejb.TransactionManagementType;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
-import javax.persistence.PersistenceContextType;
 import main.Validadors;
 
 /**

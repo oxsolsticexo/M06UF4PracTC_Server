@@ -1,11 +1,10 @@
+package Logica.Interfaces;
+
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Interface.java to edit this template
  */
-package Interfaces;
 
-import model.Usuaris;
-import javafx.collections.ObservableList;
 
 /**
  *
@@ -20,5 +19,5 @@ public interface LogicaInterface {
 
     //CRUD for multiple users
 
-    ObservableList<Usuaris> findUsers();
+
 }
