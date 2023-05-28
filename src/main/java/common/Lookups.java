@@ -79,7 +79,7 @@ public class Lookups {
      */
     public static ISessionManager sessionManagerEJBRemoteLookup() throws NamingException {
 
-        String strlookup = "ejb:/" + appName + "/" + SessionManagerEJB.class.getSimpleName() + "!" + ISessionManager.class.getName();
+        String strlookup = "ejb:/" + APP_NAME + "/" + SessionManagerEJB.class.getSimpleName() + "!" + ISessionManager.class.getName();
 
         Properties jndiProperties = new Properties();
 
