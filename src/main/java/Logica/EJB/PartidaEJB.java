@@ -10,6 +10,7 @@ import Entities.Jugador;
 import Logica.Interfaces.IPartida;
 import Entities.Partida;
 import Entities.Pregunta;
+import Logica.Exceptions.PartidaExceptions;
 import Logica.TimerLogic;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -69,13 +70,13 @@ public class PartidaEJB implements IPartida {
 
             return pregunta;
         } else {
-            throw new Exception("Ha surgido un error al cargar la pregunta.");
+            throw new PartidaExceptions("Partida finalizada");
         }
-        // Obtener la primera pregunta de la lista
     }
 
     @Override
     public int startTimer() {
+
         if (timerLogic.startTimer() <= 0) {
 
         }
@@ -90,7 +91,11 @@ public class PartidaEJB implements IPartida {
      */
     @Override
     public void setPreguntas(Partida partida) {
-        this.preguntasLList = new LinkedList<>(partida.getPreguntasList());
+        if (partida != null && partida.getPreguntasList() != null) {
+            this.preguntasLList = new LinkedList<>(partida.getPreguntasList());
+        } else {
+            throw new IllegalArgumentException("La partida o la lista de preguntas es nula.");
+        }
     }
 
     @Override

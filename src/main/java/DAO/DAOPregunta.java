@@ -6,7 +6,9 @@ package DAO;
 
 import Entities.Partida;
 import Entities.Pregunta;
+import Logica.Interfaces.IDAOPregunta;
 import java.util.List;
+import javax.ejb.*;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
@@ -14,11 +16,15 @@ import javax.persistence.PersistenceContext;
  *
  * @author Kiwi
  */
-public class DAOPregunta {
+@Stateful
+@ConcurrencyManagement(ConcurrencyManagementType.CONTAINER)
+@TransactionManagement(value = TransactionManagementType.CONTAINER)
+public class DAOPregunta implements IDAOPregunta {
 
     @PersistenceContext(unitName = "TrivialPersistenceUnit")
     private EntityManager entityManager;
 
+    @Override
     public List<Pregunta> getPreguntasBBDD(Partida partida) {
 
         List<Pregunta> preguntasList = entityManager
@@ -28,8 +34,8 @@ public class DAOPregunta {
 
         //TODO Limitar de alguna manera a que sean 10 preguntas.
         partida.setPreguntasList(preguntasList);
-        
+
         return preguntasList;
     }
-    
+
 }
