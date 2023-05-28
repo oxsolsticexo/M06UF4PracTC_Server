@@ -59,7 +59,7 @@ public class PartidaEJB implements IPartida {
     private EntityManager entityManager;
 
     @Override
-    public Pregunta asignaPregunta(Partida partida) throws Exception {
+    public Pregunta asignaPregunta() throws Exception {
 
         if (!preguntasLList.isEmpty()) {
             //Mezclamos las preguntas, para que de la "sensaci�n" de que son aleatorias y no siempre se repiten dada una partida
