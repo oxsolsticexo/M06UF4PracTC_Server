@@ -36,5 +36,5 @@ public interface IPartida {
 
     public Float calculaPuntuacion(int tiempoRestante);
 
-    public void persistirDatosPartida(Token token, Float puntuacionJugador) throws SesionJugException, NamingException;
+    public void persistirDatosPartida(Token token, Float puntuacionJugador) throws SesionException, NamingException;
 }

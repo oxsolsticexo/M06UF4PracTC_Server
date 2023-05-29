@@ -233,10 +233,10 @@ public class PartidaEJB implements IPartida {
      * @param token
      * @param puntuacionJugador
      * @throws NamingException
-     * @throws SesionJugException
+     * @throws SesionException
      */
     @Override
-    public void persistirDatosPartida(Token token, Float puntuacionJugador) throws NamingException, SesionJugException {
+    public void persistirDatosPartida(Token token, Float puntuacionJugador) throws NamingException, SesionException {
 
         DAOejb = Lookups.DAOEJBLocalLookup();
 
