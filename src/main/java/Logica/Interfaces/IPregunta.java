@@ -18,7 +18,7 @@ import nu.xom.Document;
 @Remote
 public interface IPregunta {
 
-    public List<Pregunta> getPreguntasBBDD(Partida p);
+    //public List<Pregunta> getPreguntasBBDD(Partida p);
 
     public String readFile();
     

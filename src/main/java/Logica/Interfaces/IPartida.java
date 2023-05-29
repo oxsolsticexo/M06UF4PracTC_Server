@@ -22,7 +22,8 @@ public interface IPartida {
 
     public void crearPartida(String nombrePartida, Token token, String dificultad) throws NamingException, ParsingException, IOException, SesionJugException;
 
-    //public void setPreguntas(Partida p);
+    public void setPreguntas(Partida partida) throws IllegalArgumentException;
+
     public Pregunta asignaPregunta() throws Exception;
 
     public void iniciarTiempo();

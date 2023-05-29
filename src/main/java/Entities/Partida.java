@@ -11,8 +11,9 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
+import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
@@ -21,6 +22,7 @@ import javax.validation.constraints.Size;
  * @author Kiwi
  */
 @Entity
+@Table(name = "partida")
 public class Partida implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -39,7 +41,7 @@ public class Partida implements Serializable {
     @JoinColumn(name = "jugador_email")
     private Jugador jugador;
 
-    @OneToMany
+    @ManyToMany
     @Size(max = 10)
     private List<Pregunta> preguntasList;
 
