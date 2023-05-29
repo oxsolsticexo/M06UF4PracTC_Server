@@ -85,8 +85,8 @@ public class SessionManagerEJB implements ISessionManager {
     }
 
     /**
-     * Crea un nuevo Jugador con el nombre y correo dados por par�metros tambi�n
-     * crea un token y una sesi�n para este jugador
+     * Crea un nuevo Jugador con el nombre y correo dados por par�metros
+     * tambi�n crea un token y una sesi�n para este jugador
      *
      * @param nombre
      * @param correo
@@ -104,13 +104,15 @@ public class SessionManagerEJB implements ISessionManager {
         if (jug1 == null) { // si el jug1 es nulo significa que no existe ning�n usuario con
             dao.createUser(jug);// el email que hemos pasado por parametro
             jug1 = dao.findUser(correo);
+            if (jug1 != null) {
+                if (jug1.getEmail().equals(correo) && jug1.getNickJugador().equals(nombre)) {//comprobamos de nuevo si hemos a�adido el jugador correctamente
+                    token = new Token(correo);
+                    sessions.add(new Sesion(token, correo));
+                    log.log(Level.FINE, "Nueva sesion creada");
+                    return token;
+                }
+            } 
 
-            if (jug1.getEmail().equals(correo) && jug1.getNickJugador().equals(nombre)) {//comprobamos de nuevo si hemos a�adido el jugador correctamente
-                token = new Token(correo);
-                sessions.add(new Sesion(token, correo));
-                log.log(Level.FINE, "Nueva sesion creada");
-                return token;
-            }
         } else {
             log.log(Level.SEVERE, "El usuario ya existe");
         }
@@ -120,7 +122,8 @@ public class SessionManagerEJB implements ISessionManager {
 
     /**
      * Crea un token y una sesi�n al Jugador con el email dado por par�metro
-     * despu�s de comprobar si exist� en la bd y que no tiene sesi�n o token
+     * despu�s de comprobar si exist� en la bd y que no tiene sesi�n o
+     * token
      *
      * @param email
      * @return
