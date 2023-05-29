@@ -22,7 +22,6 @@ import java.io.IOException;
 import java.util.Collections;
 import java.util.LinkedList;
 import java.util.List;
-import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.ejb.ConcurrencyManagement;
 import javax.ejb.ConcurrencyManagementType;
@@ -118,7 +117,7 @@ public class PartidaEJB implements IPartida {
         try {
 
             if (!nombrePartida.isEmpty() && !dificultad.isEmpty()) {
-                
+
                 DAOPregunta = Lookups.DAOPreguntaLocalLookup();
                 persistirPreguntas();
 
@@ -139,7 +138,7 @@ public class PartidaEJB implements IPartida {
                 throw new PartidaExceptions("Debes introducir un nombre y seleccionar una dificultad");
             }
 
-        }catch (NullPointerException e) {
+        } catch (NullPointerException e) {
             System.out.println("Estoy Nulo");
             throw e;
         } catch (Exception e) {
@@ -197,22 +196,36 @@ public class PartidaEJB implements IPartida {
         preguntaEJB.setPreguntasBBDD(pre);
     }
 
+    /**
+     * Inicia el temporizador
+     */
     @Override
     public void iniciarTiempo() {
         temporizador = new TimerLogic();
         temporizador.iniciarTemporizador();
     }
 
+    /**
+     * Detiene el temporizador
+     */
     @Override
     public void detenerTiempo() {
         temporizador.detenerTemporizador();
     }
 
+    /**
+     * Reinicia el temporizador
+     */
     @Override
     public void reiniciarTiempo() {
         temporizador.reiniciarTemporizador();
     }
 
+    /**
+     * Obtiene el tiempo restante
+     *
+     * @return
+     */
     @Override
     public int getTiempoRestante() {
         return temporizador.getTiempoRestante();
@@ -261,15 +274,11 @@ public class PartidaEJB implements IPartida {
 
         Jugador jugador = buscarJugadorPartida(token);
 
-        System.out.println(jugador.toString());
-
         if (jugador.getPuntuacionTotal() == null) {
             jugador.setPuntuacionTotal(0f);
         }
 
         Float puntuacionTotalJugador = jugador.getPuntuacionTotal();
-
-        System.out.println("Esta es la que tenï¿½a: " + jugador.getPuntuacionTotal());
 
         if (jugador.getMaxPuntuacionPartida() == null || jugador.getMaxPuntuacionPartida() < puntuacionJugador) {
             jugador.setMaxPuntuacionPartida(puntuacionJugador);
@@ -277,10 +286,40 @@ public class PartidaEJB implements IPartida {
 
         puntuacionTotalJugador += puntuacionJugador;
 
-        System.out.println("Esta es la suma de la anterior mï¿½s la nueva: " + puntuacionTotalJugador);
-
         jugador.setPuntuacionTotal(puntuacionTotalJugador);
 
         DAOejb.validPersist(jugador);
+    }
+
+    /**
+     * Retorna la puntuación del jugador a la capa de presentación
+     *
+     * @param token
+     * @return
+     * @throws NamingException
+     * @throws SesionException
+     */
+    @Override
+    public Float getPuntuacionJugador(Token token) throws NamingException, SesionException {
+
+        DAOejb = Lookups.DAOEJBLocalLookup();
+
+        return buscarJugadorPartida(token).getPuntuacionTotal();
+    }
+
+    /**
+     * Retorna el nickname del jugador
+     *
+     * @param token
+     * @return
+     * @throws NamingException
+     * @throws SesionException
+     */
+    @Override
+    public String getNickJugador(Token token) throws NamingException, SesionException {
+
+        DAOejb = Lookups.DAOEJBLocalLookup();
+
+        return buscarJugadorPartida(token).getNickJugador();
     }
 }
