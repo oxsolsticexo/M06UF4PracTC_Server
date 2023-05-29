@@ -4,8 +4,6 @@
  */
 package Logica.EJB;
 
-import DAO.DAOEJB;
-import DAO.DAOPregunta;
 import Entities.Jugador;
 import Entities.Lookups;
 import Logica.Interfaces.IPartida;
@@ -18,7 +16,6 @@ import Logica.Interfaces.DAOInterface;
 import Logica.Interfaces.IDAOPregunta;
 import Logica.Interfaces.IPregunta;
 import Logica.Interfaces.ISessionManager;
-import Logica.Interfaces.LogicaInterface;
 import Logica.PreguntaLogic;
 import Logica.TimerLogic;
 import java.io.IOException;
@@ -27,7 +24,6 @@ import java.util.Arrays;
 import java.util.Collections;
 import java.util.LinkedList;
 import java.util.List;
-import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.ejb.ConcurrencyManagement;
 import javax.ejb.ConcurrencyManagementType;
@@ -35,8 +31,6 @@ import javax.ejb.Stateful;
 import javax.ejb.TransactionManagement;
 import javax.ejb.TransactionManagementType;
 import javax.naming.NamingException;
-import javax.persistence.EntityManager;
-import javax.persistence.PersistenceContext;
 import nu.xom.Document;
 import nu.xom.ParsingException;
 import singleton.DataConvert;
@@ -57,7 +51,6 @@ public class PartidaEJB implements IPartida {
     private IPregunta preguntaEJB;
     private ISessionManager sessionManager;
     private PreguntaLogic logic;
-    private LogicaInterface userLogic;
 
     public PartidaEJB() {
         temporizador = new TimerLogic();
@@ -66,10 +59,18 @@ public class PartidaEJB implements IPartida {
 
     private static final Logger log = Logger.getLogger(PartidaEJB.class.getName());
 
+    /**
+     * Retorna una pregunta a la capa de presentación.
+     *
+     * @return
+     * @throws Exception
+     */
     @Override
     public Pregunta asignaPregunta() throws Exception {
 
         if (!preguntasLList.isEmpty()) {
+
+            System.out.println("No estoy vacía");
             //Mezclamos las preguntas, para que de la "sensaciï¿½n" de que son aleatorias y no siempre se repiten dada una partida
             Collections.shuffle(preguntasLList);
             //Retorna y elimina el primer elemento de la LinkedList.
@@ -117,7 +118,7 @@ public class PartidaEJB implements IPartida {
         Partida partida = new Partida();
         partida.setNombre(nombrePartida);
         partida.setDificultad(dificultad);
-        partida.setJugadoresList(buscarJugadorPartida(token));
+        partida.setJugador(buscarJugadorPartida(token));
         partida.setPreguntasList(DAOPregunta.getPreguntasBBDD(partida));
 
         System.out.println(partida.getNombre());
@@ -128,23 +129,22 @@ public class PartidaEJB implements IPartida {
     }
 
     /**
-     * Recibe el Token y busca al jugador en base al token, retorna un listado
-     * de jugadores una vez localizado el usuario
+     * Recibe el Token y busca al jugador en base al token, retorna un jugador
+     * una vez localizado el usuario
      *
      * @param token
      * @return
      * @throws NamingException
      * @throws SesionJugException
      */
-    private List<Jugador> buscarJugadorPartida(Token token) throws NamingException, SesionJugException {
-        
+    private Jugador buscarJugadorPartida(Token token) throws NamingException, SesionJugException {
+
         sessionManager = Lookups.sessionManagerEJBRemoteLookup();
         DAOejb = Lookups.DAOEJBLocalLookup();
 
         Jugador jug = DAOejb.findUser(sessionManager.getSesion(token).getCorreo());
-        List<Jugador> listado = new ArrayList<>(Arrays.asList(jug));
 
-        return listado;
+        return jug;
     }
 
     /**
