@@ -22,8 +22,8 @@ import main.Validadors;
 
 /**
  * Data Access object utilizado para la creación y busqueda de jugadores,
- * también podemos validar y persistir con 
- * 
+ * también podemos validar y persistir con
+ *
  * @author carlo
  */
 @Stateful
@@ -35,6 +35,24 @@ public class DAOEJB implements DAOInterface {
 
     @PersistenceContext(unitName = "TrivialPersistenceUnit")
     private EntityManager em;
+
+    /**
+     * Comprueba si un usuario está en la base de datos y lo devuelve, para ello
+     * recibe un email por parametro
+     *
+     * @param email
+     * @return
+     */
+    @Override
+    @Lock(LockType.READ)
+    public Jugador obtenerJugador(String email) {
+
+        Jugador jugador = em.createQuery("SELECT j FROM Jugador j WHERE j.email = :emailDAO", Jugador.class)
+                .setParameter("emailDAO", email)
+                .getSingleResult();
+
+        return jugador;
+    }
 
     /**
      * Creamos un jugador que nos pasan por parámetro
@@ -106,8 +124,8 @@ public class DAOEJB implements DAOInterface {
         List<String> errors = Validadors.validaBean(ob);
         //si no hay errores persistimos 
         if (errors == null || errors.isEmpty()) {
-            log.log(Level.FINE, "!!!--- PERSISTIENDO al jugador ---!!!");
-            em.persist(ob);
+            log.log(Level.FINE, "Persistiendo objeto...");
+            em.merge(ob);
         } else {
             String msg = "Errores de la validación : " + errors.toString();
             log.log(Level.SEVERE, msg);
