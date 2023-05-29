@@ -9,7 +9,7 @@ import Entities.Jugador;
 import Entities.Lookups;
 import Entities.Partida;
 import Entities.Sesion;
-import Logica.Exceptions.SesionJugException;
+import Logica.Exceptions.SesionException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Logger;
@@ -43,10 +43,10 @@ public class SessionManagerEJB implements ISessionManager {
      *
      * @param token
      * @return
-     * @throws SesionJugException
+     * @throws SesionException
      */
     @Override
-    public Sesion getSesion(Token token) throws SesionJugException {
+    public Sesion getSesion(Token token) throws SesionException {
         Sesion sesh = null;
 
         List<Sesion> sesionesCopia = new ArrayList(sessions);
@@ -59,11 +59,6 @@ public class SessionManagerEJB implements ISessionManager {
         }
 
         return sesh;
-    }
-
-    @Override
-    public Float getPuntuacionMax() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 
     /**
@@ -79,7 +74,7 @@ public class SessionManagerEJB implements ISessionManager {
                 sessions.remove(sesh);
                 log.log(Level.INFO, "Sesion cerrada");
             }
-        } catch (SesionJugException ex) {
+        } catch (SesionException ex) {
             Logger.getLogger(SessionManagerEJB.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
@@ -106,10 +101,8 @@ public class SessionManagerEJB implements ISessionManager {
         jug.setEmail(correo);
         jug.setNickJugador(nombre);
         Jugador jug1 = dao.findUser(correo);
-        
-        if (!jug1.getEmail().equals(correo) && !jug1.getNickJugador().equals(nombre) || jug1 == null) //comprobamos si el jugador existe antes de crearlo
-        {
-            dao.createUser(jug);
+        if (jug1 == null) { // si el jug1 es nulo significa que no existe ningún usuario con
+            dao.createUser(jug);// el email que hemos pasado por parametro
             jug1 = dao.findUser(correo);
 
             if (jug1.getEmail().equals(correo) && jug1.getNickJugador().equals(nombre)) {//comprobamos de nuevo si hemos añadido el jugador correctamente
@@ -118,14 +111,11 @@ public class SessionManagerEJB implements ISessionManager {
                 log.log(Level.FINE, "Nueva sesion creada");
                 return token;
             }
+        } else {
+            log.log(Level.SEVERE, "El usuario ya existe");
         }
 
         return token;
-    }
-
-    @Override
-    public boolean verificarExistenciaCorreo(String correo) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 
     /**
@@ -144,24 +134,28 @@ public class SessionManagerEJB implements ISessionManager {
         List<Sesion> sessionsLog = new ArrayList(sessions);
         //asignamos el Jugador encontrado en findUser con el email
         jugSes = dao.findUser(email);
-        if (jugSes.getEmail().equals(email)) {
-            // si encontramos la sesión recuperamos el token
-            for (Sesion sesh : sessionsLog) {
-                if (email.equals(sesh.getCorreo())) {
-                    token = sesh.getToken();
-                    log.log(Level.FINE, "Token recuperado");
+        if (jugSes != null) {
+            if (jugSes.getEmail().equals(email)) {
+                // si encontramos la sesión recuperamos el token
+                for (Sesion sesh : sessionsLog) {
+                    if (email.equals(sesh.getCorreo())) {
+                        token = sesh.getToken();
+                        log.log(Level.FINE, "Token recuperado");
+                    }
                 }
-            }
 
-            if (token == null) {// si no existe una sesión la creamos
-                token = new Token(email);
+                if (token == null) {// si no existe una sesión la creamos
+                    token = new Token(email);
 
-                sessions.add(new Sesion(token, email));
-                log.log(Level.FINE, "Nueva sesion creada");
+                    sessions.add(new Sesion(token, email));
+                    log.log(Level.FINE, "Nueva sesion creada");
+                }
+            } else {
+                log.log(Level.SEVERE, "ERROR JUGADOR NO ENCONTRADO");
+
             }
         } else {
-            log.log(Level.SEVERE, "ERROR JUGADOR NO ENCONTRADO");
-
+            log.log(Level.SEVERE, "EL JUGADOR ES NULO");
         }
         return token;
     }

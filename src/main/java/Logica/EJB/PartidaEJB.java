@@ -11,7 +11,7 @@ import Entities.Partida;
 import Entities.Pregunta;
 import Entities.Token;
 import Logica.Exceptions.PartidaExceptions;
-import Logica.Exceptions.SesionJugException;
+import Logica.Exceptions.SesionException;
 import Logica.Interfaces.DAOInterface;
 import Logica.Interfaces.IDAOPregunta;
 import Logica.Interfaces.IPregunta;
@@ -109,10 +109,10 @@ public class PartidaEJB implements IPartida {
      * @throws NamingException
      * @throws ParsingException
      * @throws IOException
-     * @throws SesionJugException
+     * @throws SesionException
      */
     @Override
-    public void crearPartida(String nombrePartida, Token token, String dificultad) throws NamingException, ParsingException, IOException, SesionJugException {
+    public void crearPartida(String nombrePartida, Token token, String dificultad) throws NamingException, ParsingException, IOException, SesionException {
 
         DAOPregunta = Lookups.DAOPreguntaLocalLookup();
 
@@ -136,9 +136,9 @@ public class PartidaEJB implements IPartida {
      * @param token
      * @return
      * @throws NamingException
-     * @throws SesionJugException
+     * @throws SesionException
      */
-    private Jugador buscarJugadorPartida(Token token) throws NamingException, SesionJugException {
+    private Jugador buscarJugadorPartida(Token token) throws NamingException, SesionException {
 
         sessionManager = Lookups.sessionManagerEJBRemoteLookup();
         DAOejb = Lookups.DAOEJBLocalLookup();
