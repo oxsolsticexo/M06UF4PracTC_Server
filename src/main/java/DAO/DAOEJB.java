@@ -65,9 +65,17 @@ public class DAOEJB implements DAOInterface {
         String msg;
         if (em != null) { // comprobamos que el entity manager no es null
             if (em.find(jug.getClass(), jug.getEmail()) == null) { // comprobamos que el jugador no existe en la BD
-                validPersist(jug);
+                if (em.find(jug.getClass(), jug.getNickJugador()) == null) { // comprobamos que el jugador no existe en la BD
+                    jug.setMaxPuntuacionPartida(0f);
+                    jug.setPuntuacionTotal(0f);
+                    validPersist(jug);
+
+                } else {
+                    msg = "El usuario ya existe";
+                    log.log(Level.SEVERE, msg);
+                }
             } else {
-                msg = "El jugador ya existe";
+                msg = "El email ya existe";
                 log.log(Level.SEVERE, msg);
             }
         } else {
