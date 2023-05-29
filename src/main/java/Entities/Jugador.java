@@ -87,15 +87,20 @@ public class Jugador implements Serializable {
         Jugador jug = new Jugador();
         jug.setEmail(this.getEmail());
         jug.setNickJugador(this.nickJugador);
-        if(jug.getPuntuacionTotal() != null){
+        if (jug.getPuntuacionTotal() != null) {
             jug.setMaxPuntuacionPartida(this.maxPuntuacionPartida);
         }
-        if(jug.getPartida() != null){
+        if (jug.getPartida() != null) {
             jug.setPartida(this.partida);
         }
-        if(jug.getMaxPuntuacionPartida() != null){
+        if (jug.getMaxPuntuacionPartida() != null) {
             jug.setMaxPuntuacionPartida(this.maxPuntuacionPartida);
         }
         return jug;
+    }
+
+    @Override
+    public String toString() {
+        return "Jugador [email=" + this.email + ", nickjugador= " + this.nickJugador + ", maxPuntuacionPartida="+ this.maxPuntuacionPartida+", puntuacionTotal="+this.puntuacionTotal+"]";
     }
 }
