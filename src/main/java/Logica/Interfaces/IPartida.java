@@ -18,6 +18,10 @@ import javax.naming.NamingException;
 @Remote
 public interface IPartida {
 
+    public Float getPuntuacionJugador(Token token) throws NamingException, SesionException;
+
+    public String getNickJugador(Token token) throws NamingException, SesionException;
+
     public void crearPartida(String nombrePartida, Token token, String dificultad) throws Exception;
 
     public void setPreguntas(Partida partida) throws IllegalArgumentException;
