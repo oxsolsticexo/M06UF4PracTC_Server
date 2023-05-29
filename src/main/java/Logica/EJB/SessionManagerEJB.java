@@ -111,7 +111,10 @@ public class SessionManagerEJB implements ISessionManager {
                     log.log(Level.FINE, "Nueva sesion creada");
                     return token;
                 }
-            } 
+            } else {
+                log.log(Level.SEVERE, "El usuario ya existe");
+
+            }
 
         } else {
             log.log(Level.SEVERE, "El usuario ya existe");
