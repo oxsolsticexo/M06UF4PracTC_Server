@@ -91,10 +91,8 @@ public class PartidaEJB implements IPartida {
     public void setPreguntas(Partida partida) throws IllegalArgumentException {
 
         if (partida.getPreguntasList() != null && !partida.getPreguntasList().isEmpty()) {
-            System.out.println("setPreguntas -  partida.getPreguntasList(): " + partida.getPreguntasList().size());
 
             this.preguntasLList = new LinkedList<>(partida.getPreguntasList());
-            System.out.println("setPreguntas -  this.preguntasLList: " + this.preguntasLList);
 
         } else {
             throw new IllegalArgumentException("La partida o la lista de preguntas es nula.");
@@ -126,12 +124,9 @@ public class PartidaEJB implements IPartida {
         partida.setJugador(buscarJugadorPartida(token));
         partida.setPreguntasList(DAOPregunta.getPreguntasBBDD(partida));
 
-        System.out.println(" crearPartida - partida.getNombre(): " + partida.getNombre());
-
         setPreguntas(partida);
-        System.out.println("crearPartida + después del setPreguntas");
+
         persistirPartida(partida);
-        System.out.println("crearPartida + después del persistirPartida");
     }
 
     /**
@@ -160,11 +155,9 @@ public class PartidaEJB implements IPartida {
      * @throws NamingException
      */
     private void persistirPartida(Partida partida) throws NamingException {
-        System.out.println("persistirPartida 1");
+
         DAOejb = Lookups.DAOEJBLocalLookup();
-        System.out.println("persistirPartida 2");
         DAOejb.validPersist(partida);
-        System.out.println("persistirPartida 3");
     }
 
     /**

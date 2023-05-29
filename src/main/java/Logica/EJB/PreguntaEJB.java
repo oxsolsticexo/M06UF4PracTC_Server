@@ -24,7 +24,6 @@ import javax.transaction.NotSupportedException;
 import javax.transaction.RollbackException;
 import javax.transaction.SystemException;
 import javax.transaction.UserTransaction;
-
 import nu.xom.Document;
 import nu.xom.Element;
 import nu.xom.Elements;
