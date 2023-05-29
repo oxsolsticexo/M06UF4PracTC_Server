@@ -54,14 +54,13 @@ public class PartidaEJB implements IPartida {
     private IDAOPregunta DAOPregunta;
     private LinkedList<Pregunta> preguntasLList;
     private TimerLogic temporizador;
-    private IPregunta pregunta;
+    private IPregunta preguntaEJB;
     private ISessionManager sessionManager;
     private PreguntaLogic logic;
     private LogicaInterface userLogic;
-    
+
     public PartidaEJB() {
-        DAOPregunta = new DAOPregunta();
-        timerLogic = new TimerLogic();
+        temporizador = new TimerLogic();
         logic = new PreguntaLogic();
     }
 
@@ -70,12 +69,7 @@ public class PartidaEJB implements IPartida {
     @Override
     public Pregunta asignaPregunta() throws Exception {
 
-        if (preguntasLList.isEmpty()) {
-            System.out.println("Estoy vac�a");
-        }
-
         if (!preguntasLList.isEmpty()) {
-            System.out.println("He entrado en preguntasList");
             //Mezclamos las preguntas, para que de la "sensaci�n" de que son aleatorias y no siempre se repiten dada una partida
             Collections.shuffle(preguntasLList);
             //Retorna y elimina el primer elemento de la LinkedList.
@@ -93,8 +87,7 @@ public class PartidaEJB implements IPartida {
      *
      * @param partida
      */
-    @Override
-    public void setPreguntas(Partida partida) {
+    private void setPreguntas(Partida partida) throws IllegalArgumentException {
         if (partida != null && partida.getPreguntasList() != null) {
             this.preguntasLList = new LinkedList<>(partida.getPreguntasList());
         } else {
@@ -102,41 +95,86 @@ public class PartidaEJB implements IPartida {
         }
     }
 
+    /**
+     * Recibe el nombre de la partida, la dificultad y el Token del usuario que
+     * genera la partida.
+     *
+     * @param nombrePartida
+     * @param token
+     * @param dificultad
+     * @throws NamingException
+     * @throws ParsingException
+     * @throws IOException
+     * @throws SesionJugException
+     */
     @Override
-    public void crearPartida(String nombrePartida, Token token, String dificultad) {
+    public void crearPartida(String nombrePartida, Token token, String dificultad) throws NamingException, ParsingException, IOException, SesionJugException {
 
-        try {
-            DAOejb = Lookups.DAOEJBLocalLookup();
-            DAOPregunta = Lookups.DAOPreguntaLocalLookup();
-            pregunta = Lookups.preguntaEJBRemoteLookup();
-            sessionManager = Lookups.sessionManagerEJBRemoteLookup();
-            //userInterface = Lookups.
-            Jugador jug = DAOejb.findUser(sessionManager.getSesion(token).getCorreo());
-            ArrayList<Jugador> listado = new ArrayList<>(Arrays.asList(jug));
+        DAOPregunta = Lookups.DAOPreguntaLocalLookup();
 
-            Partida partida = new Partida();
-            partida.setNombre(nombrePartida);
-            partida.setDificultad(dificultad);
-            partida.setJugadoresList(listado);
-            Document b = DataConvert.StringToDocument(pregunta.readFile());
-            List<Pregunta> pre = logic.xmlToArrayList(b);
-            System.out.println(pre);
-            pregunta.setPreguntasBBDD(pre);
-            System.out.println(partida.getNombre());
-            partida.setPreguntasList(DAOPregunta.getPreguntasBBDD(partida));
+        persistirPreguntas();
+
+        Partida partida = new Partida();
+        partida.setNombre(nombrePartida);
+        partida.setDificultad(dificultad);
+        partida.setJugadoresList(buscarJugadorPartida(token));
+        partida.setPreguntasList(DAOPregunta.getPreguntasBBDD(partida));
+
+        System.out.println(partida.getNombre());
+
+        setPreguntas(partida);
+
+        persistirPartida(partida);
+    }
+
+    /**
+     * Recibe el Token y busca al jugador en base al token, retorna un listado
+     * de jugadores una vez localizado el usuario
+     *
+     * @param token
+     * @return
+     * @throws NamingException
+     * @throws SesionJugException
+     */
+    private List<Jugador> buscarJugadorPartida(Token token) throws NamingException, SesionJugException {
         
-            //entityManager.persist(partida);
-            DAOejb.validPersist(partida);
-        } catch (NamingException ex) {
-            Logger.getLogger(PartidaEJB.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (ParsingException ex) {
-            Logger.getLogger(PartidaEJB.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (IOException ex) {
-            Logger.getLogger(PartidaEJB.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (SesionJugException ex) {
-            Logger.getLogger(PartidaEJB.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        sessionManager = Lookups.sessionManagerEJBRemoteLookup();
+        DAOejb = Lookups.DAOEJBLocalLookup();
 
+        Jugador jug = DAOejb.findUser(sessionManager.getSesion(token).getCorreo());
+        List<Jugador> listado = new ArrayList<>(Arrays.asList(jug));
+
+        return listado;
+    }
+
+    /**
+     * Recibe la partida y la persiste.
+     *
+     * @param partida
+     * @throws NamingException
+     */
+    private void persistirPartida(Partida partida) throws NamingException {
+
+        DAOejb = Lookups.DAOEJBLocalLookup();
+
+        DAOejb.validPersist(partida);
+    }
+
+    /**
+     * Procesa el XML de preguntas y las persiste en la BBDD.
+     *
+     * @throws NamingException
+     * @throws ParsingException
+     * @throws IOException
+     */
+    private void persistirPreguntas() throws NamingException, ParsingException, IOException {
+
+        preguntaEJB = Lookups.preguntaEJBRemoteLookup();
+
+        Document b = DataConvert.StringToDocument(preguntaEJB.readFile());
+        List<Pregunta> pre = logic.xmlToArrayList(b);
+
+        preguntaEJB.setPreguntasBBDD(pre);
     }
 
     @Override
