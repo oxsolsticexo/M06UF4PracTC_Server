@@ -22,7 +22,6 @@ import javax.ejb.TransactionManagement;
 import javax.ejb.TransactionManagementType;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
-import singleton.SerializableObject;
 
 /**
  *
@@ -45,7 +44,7 @@ public class HallOfFameEJB implements IHallOfFame {
     private EntityManager entityManager;
 
     @Override
-    public SerializableObject<Jugador> getUsers() {
+    public String getUsers() {
         
         try {
             hallOfFame = Lookups.IFameLookup();

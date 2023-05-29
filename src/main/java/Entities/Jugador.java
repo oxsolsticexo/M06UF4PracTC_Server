@@ -96,4 +96,9 @@ public class Jugador implements Serializable {
         }
         return jug;
     }
+
+    @Override
+    public String toString() {
+        return "Jugador [email=" + this.email + ", nickjugador= " + this.nickJugador + ", maxPuntuacionPartida="+ this.maxPuntuacionPartida+", puntuacionTotal="+this.puntuacionTotal+"]";
+    }
 }
