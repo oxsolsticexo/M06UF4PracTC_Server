@@ -33,6 +33,7 @@ public class DAOHallOfFame implements IFameInterface {
     @PersistenceContext(unitName = "TrivialPersistenceUnit")
     private EntityManager em;
 
+    @Override
     public String getUsers() {
         ObservableList<Jugador> lista = FXCollections.observableArrayList();
         List<Jugador> listaJug = em.createQuery("SELECT j FROM Jugador j ORDER BY j.puntuacionTotal DESC")
