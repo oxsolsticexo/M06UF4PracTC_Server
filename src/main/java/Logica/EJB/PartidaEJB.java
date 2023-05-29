@@ -22,7 +22,6 @@ import java.io.IOException;
 import java.util.Collections;
 import java.util.LinkedList;
 import java.util.List;
-import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.ejb.ConcurrencyManagement;
 import javax.ejb.ConcurrencyManagementType;
@@ -197,22 +196,36 @@ public class PartidaEJB implements IPartida {
         preguntaEJB.setPreguntasBBDD(pre);
     }
 
+    /**
+     * Inicia el temporizador
+     */
     @Override
     public void iniciarTiempo() {
         temporizador = new TimerLogic();
         temporizador.iniciarTemporizador();
     }
 
+    /**
+     * Detiene el temporizador
+     */
     @Override
     public void detenerTiempo() {
         temporizador.detenerTemporizador();
     }
 
+    /**
+     * Reinicia el temporizador
+     */
     @Override
     public void reiniciarTiempo() {
         temporizador.reiniciarTemporizador();
     }
 
+    /**
+     * Obtiene el tiempo restante
+     *
+     * @return
+     */
     @Override
     public int getTiempoRestante() {
         return temporizador.getTiempoRestante();
@@ -278,6 +291,14 @@ public class PartidaEJB implements IPartida {
         DAOejb.validPersist(jugador);
     }
 
+    /**
+     * Retorna la puntuación del jugador a la capa de presentación
+     *
+     * @param token
+     * @return
+     * @throws NamingException
+     * @throws SesionException
+     */
     @Override
     public Float getPuntuacionJugador(Token token) throws NamingException, SesionException {
 
@@ -286,6 +307,14 @@ public class PartidaEJB implements IPartida {
         return buscarJugadorPartida(token).getPuntuacionTotal();
     }
 
+    /**
+     * Retorna el nickname del jugador
+     *
+     * @param token
+     * @return
+     * @throws NamingException
+     * @throws SesionException
+     */
     @Override
     public String getNickJugador(Token token) throws NamingException, SesionException {
 
