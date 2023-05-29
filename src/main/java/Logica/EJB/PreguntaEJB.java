@@ -5,7 +5,6 @@
 package Logica.EJB;
 
 import Logica.Interfaces.IPregunta;
-import Entities.Partida;
 import Entities.Pregunta;
 import java.util.ArrayList;
 import java.util.List;
@@ -42,8 +41,6 @@ public class PreguntaEJB implements IPregunta {
     @PersistenceContext(unitName = "TrivialPersistenceUnit")
     private EntityManager entityManager;
 
-    private Document doc;
-
     @Inject
     private UserTransaction userTransaction;
 
@@ -51,20 +48,6 @@ public class PreguntaEJB implements IPregunta {
     private AppSingletonEJB singletonEJB;
 
     private static final Logger log = Logger.getLogger(PreguntaEJB.class.getName());
-
-    @Override
-    public List<Pregunta> getPreguntasBBDD(Partida partida) {
-
-        List<Pregunta> preguntasList = entityManager
-                .createQuery("SELECT p FROM Pregunta p WHERE p.dificultad = :dificultad", Pregunta.class)
-                .setParameter("dificultad", partida.getDificultad())
-                .getResultList();
-
-        //TODO Limitar de alguna manera a que sean 10 preguntas.
-        partida.setPreguntasList(preguntasList);
-
-        return preguntasList;
-    }
 
     @Override
     public void setPreguntasBBDD(List<Pregunta> preguntasList) {
@@ -86,10 +69,10 @@ public class PreguntaEJB implements IPregunta {
     public String readFile() {
         return singletonEJB.getDocument();
     }
-    
+
     @Override
     public ArrayList<Pregunta> xmlToArrayList(Document document) {
-        
+
         //Generamos un ArrayList de "Report"
         ArrayList<Pregunta> preguntas = new ArrayList<>();
 
@@ -127,5 +110,5 @@ public class PreguntaEJB implements IPregunta {
         }
         return preguntas;
     }
-    
+
 }
