@@ -7,21 +7,39 @@ package Logica.EJB;
 import DAO.DAOEJB;
 import DAO.DAOPregunta;
 import Entities.Jugador;
+import Entities.Lookups;
 import Logica.Interfaces.IPartida;
 import Entities.Partida;
 import Entities.Pregunta;
+import Entities.Token;
 import Logica.Exceptions.PartidaExceptions;
+import Logica.Exceptions.SesionJugException;
+import Logica.Interfaces.DAOInterface;
+import Logica.Interfaces.IDAOPregunta;
+import Logica.Interfaces.IPregunta;
+import Logica.Interfaces.ISessionManager;
+import Logica.Interfaces.LogicaInterface;
+import Logica.PreguntaLogic;
 import Logica.TimerLogic;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.LinkedList;
+import java.util.List;
+import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.ejb.ConcurrencyManagement;
 import javax.ejb.ConcurrencyManagementType;
 import javax.ejb.Stateful;
 import javax.ejb.TransactionManagement;
 import javax.ejb.TransactionManagementType;
+import javax.naming.NamingException;
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
+import nu.xom.Document;
+import nu.xom.ParsingException;
+import singleton.DataConvert;
 
 /**
  *
@@ -32,14 +50,19 @@ import javax.ejb.TransactionManagementType;
 @TransactionManagement(value = TransactionManagementType.CONTAINER)
 public class PartidaEJB implements IPartida {
 
-    private DAOEJB DAOejb;
-    private DAOPregunta DAOPregunta;
+    private DAOInterface DAOejb;
+    private IDAOPregunta DAOPregunta;
     private LinkedList<Pregunta> preguntasLList;
     private TimerLogic temporizador;
-
+    private IPregunta pregunta;
+    private ISessionManager sessionManager;
+    private PreguntaLogic logic;
+    private LogicaInterface userLogic;
+    
     public PartidaEJB() {
         DAOPregunta = new DAOPregunta();
-        DAOejb = new DAOEJB();
+        timerLogic = new TimerLogic();
+        logic = new PreguntaLogic();
     }
 
     private static final Logger log = Logger.getLogger(PartidaEJB.class.getName());
@@ -48,7 +71,7 @@ public class PartidaEJB implements IPartida {
     public Pregunta asignaPregunta() throws Exception {
 
         if (preguntasLList.isEmpty()) {
-            System.out.println("Estoy vacía");
+            System.out.println("Estoy vacï¿½a");
         }
 
         if (!preguntasLList.isEmpty()) {
@@ -80,19 +103,40 @@ public class PartidaEJB implements IPartida {
     }
 
     @Override
-    public void crearPartida(String nombrePartida, String dificultad) {
+    public void crearPartida(String nombrePartida, Token token, String dificultad) {
 
-        Jugador jug = new Jugador();
+        try {
+            DAOejb = Lookups.DAOEJBLocalLookup();
+            DAOPregunta = Lookups.DAOPreguntaLocalLookup();
+            pregunta = Lookups.preguntaEJBRemoteLookup();
+            sessionManager = Lookups.sessionManagerEJBRemoteLookup();
+            //userInterface = Lookups.
+            Jugador jug = DAOejb.findUser(sessionManager.getSesion(token).getCorreo());
+            ArrayList<Jugador> listado = new ArrayList<>(Arrays.asList(jug));
 
-        ArrayList<Jugador> listado = new ArrayList<>(Arrays.asList(jug));
+            Partida partida = new Partida();
+            partida.setNombre(nombrePartida);
+            partida.setDificultad(dificultad);
+            partida.setJugadoresList(listado);
+            Document b = DataConvert.StringToDocument(pregunta.readFile());
+            List<Pregunta> pre = logic.xmlToArrayList(b);
+            System.out.println(pre);
+            pregunta.setPreguntasBBDD(pre);
+            System.out.println(partida.getNombre());
+            partida.setPreguntasList(DAOPregunta.getPreguntasBBDD(partida));
+        
+            //entityManager.persist(partida);
+            DAOejb.validPersist(partida);
+        } catch (NamingException ex) {
+            Logger.getLogger(PartidaEJB.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (ParsingException ex) {
+            Logger.getLogger(PartidaEJB.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (IOException ex) {
+            Logger.getLogger(PartidaEJB.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (SesionJugException ex) {
+            Logger.getLogger(PartidaEJB.class.getName()).log(Level.SEVERE, null, ex);
+        }
 
-        Partida partida = new Partida();
-        partida.setNombre(nombrePartida);
-        partida.setDificultad(dificultad);
-        partida.setJugadoresList(listado);
-        partida.setPreguntasList(DAOPregunta.getPreguntasBBDD(partida));
-
-        DAOejb.validPersist(partida);
     }
 
     @Override

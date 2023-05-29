@@ -6,8 +6,10 @@ package Logica.Interfaces;
 
 import Entities.Partida;
 import Entities.Pregunta;
+import java.util.ArrayList;
 import java.util.List;
 import javax.ejb.Remote;
+import nu.xom.Document;
 
 /**
  *
@@ -21,5 +23,7 @@ public interface IPregunta {
     public String readFile();
     
     public void setPreguntasBBDD(List<Pregunta> preguntas);
+    
+    public ArrayList<Pregunta> xmlToArrayList(Document document);
 
 }
