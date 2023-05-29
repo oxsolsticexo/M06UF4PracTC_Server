@@ -14,6 +14,6 @@ import javax.ejb.Remote;
 public interface IHallOfFame {
     
     
-    public String getUsers();
+    public String getUsers() throws Exception;
     
 }
