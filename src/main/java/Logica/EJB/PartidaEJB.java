@@ -60,7 +60,7 @@ public class PartidaEJB implements IPartida {
     private static final Logger log = Logger.getLogger(PartidaEJB.class.getName());
 
     /**
-     * Retorna una pregunta a la capa de presentación.
+     * Retorna una pregunta a la capa de presentaciï¿½n.
      *
      * @return
      * @throws Exception
@@ -70,7 +70,7 @@ public class PartidaEJB implements IPartida {
 
         if (preguntasLList != null && !preguntasLList.isEmpty()) {
 
-            System.out.println("No estoy vacía");
+            System.out.println("No estoy vacï¿½a");
             //Mezclamos las preguntas, para que de la "sensaciï¿½n" de que son aleatorias y no siempre se repiten dada una partida
             Collections.shuffle(preguntasLList);
             //Retorna y elimina el primer elemento de la LinkedList.
@@ -78,7 +78,7 @@ public class PartidaEJB implements IPartida {
 
             return pregunta;
         } else {
-            throw new PartidaExceptions("Partida finalizada debido a un error, la lista está vacía o es nula.");
+            throw new PartidaExceptions("Partida finalizada debido a un error, la lista estï¿½ vacï¿½a o es nula.");
         }
     }
 
@@ -113,21 +113,40 @@ public class PartidaEJB implements IPartida {
      * @throws SesionException
      */
     @Override
-    public void crearPartida(String nombrePartida, Token token, String dificultad) throws NamingException, ParsingException, IOException, SesionException {
+    public void crearPartida(String nombrePartida, Token token, String dificultad) throws Exception {
 
-        DAOPregunta = Lookups.DAOPreguntaLocalLookup();
+        try {
 
-        persistirPreguntas();
+            if (!nombrePartida.isEmpty() && !dificultad.isEmpty()) {
+                
+                DAOPregunta = Lookups.DAOPreguntaLocalLookup();
+                persistirPreguntas();
 
-        Partida partida = new Partida();
-        partida.setNombre(nombrePartida);
-        partida.setDificultad(dificultad);
-        partida.setJugador(buscarJugadorPartida(token));
-        partida.setPreguntasList(DAOPregunta.getPreguntasBBDD(partida));
+                Partida partida = new Partida();
+                partida.setNombre(nombrePartida);
+                partida.setDificultad(dificultad);
+                partida.setJugador(buscarJugadorPartida(token));
+                partida.setPreguntasList(DAOPregunta.getPreguntasBBDD(partida));
 
-        setPreguntas(partida);
+                setPreguntas(partida);
 
-        persistirPartida(partida);
+                persistirPartida(partida);
+            } else if (nombrePartida.isEmpty() && !dificultad.isEmpty()) {
+                throw new PartidaExceptions("Debes introducir un nombre");
+            } else if (!nombrePartida.isEmpty() && dificultad.isEmpty()) {
+                throw new PartidaExceptions("Debes seleccionar una dificultad");
+            } else {
+                throw new PartidaExceptions("Debes introducir un nombre y seleccionar una dificultad");
+            }
+
+        }catch (NullPointerException e) {
+            System.out.println("Estoy Nulo");
+            throw e;
+        } catch (Exception e) {
+            System.out.println("Estoy aqui");
+            throw e;
+        }
+
     }
 
     /**
@@ -200,7 +219,7 @@ public class PartidaEJB implements IPartida {
     }
 
     /**
-     * Calculamos la puntuación obtenida en base al tiempo restante
+     * Calculamos la puntuaciï¿½n obtenida en base al tiempo restante
      *
      * @param tiempoRestante
      * @return
@@ -227,7 +246,7 @@ public class PartidaEJB implements IPartida {
     }
 
     /**
-     * Obtenemos el token y la puntuación del jugador una vez finalizada la
+     * Obtenemos el token y la puntuaciï¿½n del jugador una vez finalizada la
      * partida
      *
      * @param token
@@ -250,7 +269,7 @@ public class PartidaEJB implements IPartida {
 
         Float puntuacionTotalJugador = jugador.getPuntuacionTotal();
 
-        System.out.println("Esta es la que tenía: " + jugador.getPuntuacionTotal());
+        System.out.println("Esta es la que tenï¿½a: " + jugador.getPuntuacionTotal());
 
         if (jugador.getMaxPuntuacionPartida() == null || jugador.getMaxPuntuacionPartida() < puntuacionJugador) {
             jugador.setMaxPuntuacionPartida(puntuacionJugador);
@@ -258,7 +277,7 @@ public class PartidaEJB implements IPartida {
 
         puntuacionTotalJugador += puntuacionJugador;
 
-        System.out.println("Esta es la suma de la anterior más la nueva: " + puntuacionTotalJugador);
+        System.out.println("Esta es la suma de la anterior mï¿½s la nueva: " + puntuacionTotalJugador);
 
         jugador.setPuntuacionTotal(puntuacionTotalJugador);
 
