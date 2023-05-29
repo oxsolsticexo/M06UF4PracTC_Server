@@ -50,9 +50,9 @@ public class HallOfFameEJB implements IHallOfFame {
             hallOfFame = Lookups.IFameLookup();
             return hallOfFame.getUsers();
         } catch (Exception e) {
-            System.out.println(e.getMessage());
+            throw e;
         }
-        return null;
+      
     }
 
 

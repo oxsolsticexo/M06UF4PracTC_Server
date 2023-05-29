@@ -22,6 +22,7 @@ import java.io.IOException;
 import java.util.Collections;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.ejb.ConcurrencyManagement;
 import javax.ejb.ConcurrencyManagementType;
@@ -112,21 +113,40 @@ public class PartidaEJB implements IPartida {
      * @throws SesionJugException
      */
     @Override
-    public void crearPartida(String nombrePartida, Token token, String dificultad) throws NamingException, ParsingException, IOException, SesionJugException {
+    public void crearPartida(String nombrePartida, Token token, String dificultad) throws Exception {
 
-        DAOPregunta = Lookups.DAOPreguntaLocalLookup();
+        try {
 
-        persistirPreguntas();
+            if (!nombrePartida.isEmpty() && !dificultad.isEmpty()) {
+                
+                DAOPregunta = Lookups.DAOPreguntaLocalLookup();
+                persistirPreguntas();
 
-        Partida partida = new Partida();
-        partida.setNombre(nombrePartida);
-        partida.setDificultad(dificultad);
-        partida.setJugador(buscarJugadorPartida(token));
-        partida.setPreguntasList(DAOPregunta.getPreguntasBBDD(partida));
+                Partida partida = new Partida();
+                partida.setNombre(nombrePartida);
+                partida.setDificultad(dificultad);
+                partida.setJugador(buscarJugadorPartida(token));
+                partida.setPreguntasList(DAOPregunta.getPreguntasBBDD(partida));
 
-        setPreguntas(partida);
+                setPreguntas(partida);
 
-        persistirPartida(partida);
+                persistirPartida(partida);
+            } else if (nombrePartida.isEmpty() && !dificultad.isEmpty()) {
+                throw new PartidaExceptions("Debes introducir un nombre");
+            } else if (!nombrePartida.isEmpty() && dificultad.isEmpty()) {
+                throw new PartidaExceptions("Debes seleccionar una dificultad");
+            } else {
+                throw new PartidaExceptions("Debes introducir un nombre y seleccionar una dificultad");
+            }
+
+        }catch (NullPointerException e) {
+            System.out.println("Estoy Nulo");
+            throw e;
+        } catch (Exception e) {
+            System.out.println("Estoy aqui");
+            throw e;
+        }
+
     }
 
     /**

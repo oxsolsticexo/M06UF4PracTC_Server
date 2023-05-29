@@ -7,11 +7,7 @@ package Logica.Interfaces;
 import Entities.Partida;
 import Entities.Pregunta;
 import Entities.Token;
-import Logica.Exceptions.SesionJugException;
-import java.io.IOException;
 import javax.ejb.Remote;
-import javax.naming.NamingException;
-import nu.xom.ParsingException;
 
 /**
  *
@@ -20,7 +16,7 @@ import nu.xom.ParsingException;
 @Remote
 public interface IPartida {
 
-    public void crearPartida(String nombrePartida, Token token, String dificultad) throws NamingException, ParsingException, IOException, SesionJugException;
+    public void crearPartida(String nombrePartida, Token token, String dificultad) throws Exception;
 
     public void setPreguntas(Partida partida) throws IllegalArgumentException;
 
