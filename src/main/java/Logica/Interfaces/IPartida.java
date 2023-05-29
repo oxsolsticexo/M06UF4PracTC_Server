@@ -33,4 +33,6 @@ public interface IPartida {
     public void reiniciarTiempo();
 
     public int getTiempoRestante();
+
+    public Float calculaPuntuacion(int tiempoRestante);
 }
