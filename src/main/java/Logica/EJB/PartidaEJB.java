@@ -19,8 +19,6 @@ import Logica.Interfaces.ISessionManager;
 import Logica.PreguntaLogic;
 import Logica.TimerLogic;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Collections;
 import java.util.LinkedList;
 import java.util.List;
@@ -55,6 +53,7 @@ public class PartidaEJB implements IPartida {
     public PartidaEJB() {
         temporizador = new TimerLogic();
         logic = new PreguntaLogic();
+        preguntasLList = new LinkedList<>();
     }
 
     private static final Logger log = Logger.getLogger(PartidaEJB.class.getName());
@@ -68,7 +67,7 @@ public class PartidaEJB implements IPartida {
     @Override
     public Pregunta asignaPregunta() throws Exception {
 
-        if (!preguntasLList.isEmpty()) {
+        if (preguntasLList != null && !preguntasLList.isEmpty()) {
 
             System.out.println("No estoy vacía");
             //Mezclamos las preguntas, para que de la "sensaciï¿½n" de que son aleatorias y no siempre se repiten dada una partida
@@ -78,19 +77,23 @@ public class PartidaEJB implements IPartida {
 
             return pregunta;
         } else {
-            throw new PartidaExceptions("Partida finalizada");
+            throw new PartidaExceptions("Partida finalizada debido a un error, la lista está vacía o es nula.");
         }
     }
 
     /**
-     * Obtiene la partida cuando el jugador "Crea la partida". Cargamos las
+     * Obtiene la partida cuando el jugador "Crea la partida".Cargamos las
      * preguntas en una linkedList.
      *
      * @param partida
      */
-    private void setPreguntas(Partida partida) throws IllegalArgumentException {
-        if (partida != null && partida.getPreguntasList() != null) {
+    @Override
+    public void setPreguntas(Partida partida) throws IllegalArgumentException {
+
+        if (partida.getPreguntasList() != null && !partida.getPreguntasList().isEmpty()) {
+
             this.preguntasLList = new LinkedList<>(partida.getPreguntasList());
+
         } else {
             throw new IllegalArgumentException("La partida o la lista de preguntas es nula.");
         }
@@ -120,8 +123,6 @@ public class PartidaEJB implements IPartida {
         partida.setDificultad(dificultad);
         partida.setJugador(buscarJugadorPartida(token));
         partida.setPreguntasList(DAOPregunta.getPreguntasBBDD(partida));
-
-        System.out.println(partida.getNombre());
 
         setPreguntas(partida);
 
@@ -156,7 +157,6 @@ public class PartidaEJB implements IPartida {
     private void persistirPartida(Partida partida) throws NamingException {
 
         DAOejb = Lookups.DAOEJBLocalLookup();
-
         DAOejb.validPersist(partida);
     }
 

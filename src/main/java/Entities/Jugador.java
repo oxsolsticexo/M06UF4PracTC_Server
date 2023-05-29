@@ -19,7 +19,7 @@ import javax.validation.constraints.Pattern;
  * @author Kiwi
  */
 @Entity()
-@Table(name = "Jugador")
+@Table(name = "jugador")
 public class Jugador implements Serializable {
 
     private static final long serialVersionUID = 1L;
