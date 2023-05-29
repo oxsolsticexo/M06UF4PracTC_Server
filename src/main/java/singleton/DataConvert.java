@@ -25,14 +25,14 @@ public class DataConvert {
     }
 
     public static ObservableList<Jugador> getJugadores(String[] listado) {
-        
+
         ObservableList<Jugador> newList = FXCollections.observableArrayList();
         for (String line : listado) {
             String[] parts = line.split(", ");
             String email = parts[0].substring(parts[0].indexOf("=") + 1);
             String nick = parts[1].substring(parts[1].indexOf("=") + 1);
-            int maximapuntuacion = Integer.parseInt(parts[2].substring(parts[2].indexOf("=") + 1));
-            int puntuaciontotal = Integer.parseInt(parts[3].substring(parts[3].indexOf("=") + 1, parts[3].length() - 1));
+            Float maximapuntuacion = Float.parseFloat(parts[2].substring(parts[2].indexOf("=") + 1));
+            Float puntuaciontotal = Float.parseFloat(parts[3].substring(parts[3].indexOf("=") + 1, parts[3].length() - 1));
             Jugador jugador = new Jugador();
             jugador.setEmail(email);
             jugador.setNickJugador(nick);
