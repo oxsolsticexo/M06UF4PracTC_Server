@@ -7,7 +7,9 @@ package Logica.Interfaces;
 import Entities.Partida;
 import Entities.Pregunta;
 import Entities.Token;
+import Logica.Exceptions.SesionException;
 import javax.ejb.Remote;
+import javax.naming.NamingException;
 
 /**
  *
@@ -31,4 +33,6 @@ public interface IPartida {
     public int getTiempoRestante();
 
     public Float calculaPuntuacion(int tiempoRestante);
+
+    public void persistirDatosPartida(Token token, Float puntuacionJugador) throws SesionException, NamingException;
 }

@@ -5,13 +5,9 @@
 package Logica.EJB;
 
 
-import Entities.Jugador;
 import Entities.Lookups;
 import Logica.Interfaces.IFameInterface;
 import Logica.Interfaces.IHallOfFame;
-import java.io.Serializable;
-import javafx.collections.ObservableList;
-import javafx.scene.control.TableView;
 import javax.annotation.Resource;
 import javax.ejb.ConcurrencyManagement;
 import javax.ejb.ConcurrencyManagementType;
@@ -44,7 +40,7 @@ public class HallOfFameEJB implements IHallOfFame {
     private EntityManager entityManager;
 
     @Override
-    public String getUsers() {
+    public String getUsers() throws Exception {
         
         try {
             hallOfFame = Lookups.IFameLookup();
@@ -52,7 +48,6 @@ public class HallOfFameEJB implements IHallOfFame {
         } catch (Exception e) {
             throw e;
         }
-      
     }
 
 

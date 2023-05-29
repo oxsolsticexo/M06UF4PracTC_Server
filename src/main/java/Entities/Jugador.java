@@ -11,8 +11,6 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
-import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Pattern;
 
 /**
  *
@@ -86,7 +84,7 @@ public class Jugador implements Serializable {
         jug.setEmail(this.getEmail());
         jug.setNickJugador(this.nickJugador);
         if (jug.getPuntuacionTotal() != null) {
-            jug.setMaxPuntuacionPartida(this.maxPuntuacionPartida);
+            jug.setPuntuacionTotal(this.maxPuntuacionPartida);
         }
         if (jug.getPartidaList() != null) {
             jug.setPartidaList(this.partidaList);
@@ -99,6 +97,6 @@ public class Jugador implements Serializable {
 
     @Override
     public String toString() {
-        return "Jugador [email=" + this.email + ", nickjugador= " + this.nickJugador + ", maxPuntuacionPartida="+ this.maxPuntuacionPartida+", puntuacionTotal="+this.puntuacionTotal+"]";
+        return "Jugador [email=" + this.email + ", nickjugador= " + this.nickJugador + ", maxPuntuacionPartida=" + this.maxPuntuacionPartida + ", puntuacionTotal=" + this.puntuacionTotal + "]";
     }
 }

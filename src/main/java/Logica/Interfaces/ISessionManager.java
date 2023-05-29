@@ -6,7 +6,7 @@ package Logica.Interfaces;
 
 import Entities.Partida;
 import Entities.Sesion;
-import Logica.Exceptions.SesionJugException;
+import Logica.Exceptions.SesionException;
 import Entities.Token;
 import javax.ejb.Remote;
 import javax.naming.NamingException;
@@ -22,22 +22,15 @@ public interface ISessionManager {
      * *
      * Valida el cliente
      *
-     * @param login
+     * @param token
      * @return id de sesión
-     * @throws Logica.Exceptions.SesionJugException
+     * @throws Logica.Exceptions.SesionException
      */
-    public Sesion getSesion(Token token) throws SesionJugException;
-
-    /**
-     * *
-     * Retorna la puntuacion máxima del cliente
-     *
-     * @return
-     */
-    public Float getPuntuacionMax();
+    public Sesion getSesion(Token token) throws SesionException;
 
     /**
      * Cierra la sesión del usuario.
+     * @param token
      */
     public void cerrarSesion(Token token);
 
@@ -54,7 +47,7 @@ public interface ISessionManager {
      *
      * @param nombre
      * @param correo
-     * @param contrasena
+     * @return 
      * @throws javax.naming.NamingException
      */
     public Token registrarJugador(String nombre, String correo) throws NamingException;
@@ -66,13 +59,5 @@ public interface ISessionManager {
      * @throws javax.naming.NamingException 
      */
     public Token loginJugador(String email) throws NamingException;
-    
-    /**
-     * Verificamos si el correo existe para posteriormente iniciar sesión
-     *
-     * @param correo
-     * @return
-     */
-    public boolean verificarExistenciaCorreo(String correo);
 
 }
