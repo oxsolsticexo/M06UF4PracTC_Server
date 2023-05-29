@@ -8,9 +8,9 @@ package Logica.Exceptions;
  *
  * @author dolorioUser
  */
-public class SesionJugException extends Exception {
+public class SesionException extends Exception {
 
-    public SesionJugException(String s) {
+    public SesionException(String s) {
         super(s);
     }
 

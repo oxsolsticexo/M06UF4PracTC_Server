@@ -9,7 +9,7 @@ import Entities.Jugador;
 import Entities.Lookups;
 import Entities.Partida;
 import Entities.Sesion;
-import Logica.Exceptions.SesionJugException;
+import Logica.Exceptions.SesionException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Logger;
@@ -39,14 +39,14 @@ public class SessionManagerEJB implements ISessionManager {
     private static final Logger log = Logger.getLogger(SessionManagerEJB.class.getName());
 
     /**
-     * Recupera una sesión con el token dado por parametro
+     * Recupera una sesiï¿½n con el token dado por parametro
      *
      * @param token
      * @return
-     * @throws SesionJugException
+     * @throws SesionException
      */
     @Override
-    public Sesion getSesion(Token token) throws SesionJugException {
+    public Sesion getSesion(Token token) throws SesionException {
         Sesion sesh = null;
 
         List<Sesion> sesionesCopia = new ArrayList(sessions);
@@ -61,13 +61,8 @@ public class SessionManagerEJB implements ISessionManager {
         return sesh;
     }
 
-    @Override
-    public Float getPuntuacionMax() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
-
     /**
-     * Elimina una sesión de sessions correspondiente al token dado
+     * Elimina una sesiï¿½n de sessions correspondiente al token dado
      *
      * @param token
      */
@@ -79,7 +74,7 @@ public class SessionManagerEJB implements ISessionManager {
                 sessions.remove(sesh);
                 log.log(Level.INFO, "Sesion cerrada");
             }
-        } catch (SesionJugException ex) {
+        } catch (SesionException ex) {
             Logger.getLogger(SessionManagerEJB.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
@@ -90,8 +85,8 @@ public class SessionManagerEJB implements ISessionManager {
     }
 
     /**
-     * Crea un nuevo Jugador con el nombre y correo dados por parámetros también
-     * crea un token y una sesión para este jugador
+     * Crea un nuevo Jugador con el nombre y correo dados por parï¿½metros tambiï¿½n
+     * crea un token y una sesiï¿½n para este jugador
      *
      * @param nombre
      * @param correo
@@ -105,27 +100,27 @@ public class SessionManagerEJB implements ISessionManager {
         Jugador jug = new Jugador();
         jug.setEmail(correo);
         jug.setNickJugador(nombre);
-
-        dao.createUser(jug);
-
         Jugador jug1 = dao.findUser(correo);
-        if (jug1.getEmail().equals(correo)) {
-            token = new Token(correo);
-            sessions.add(new Sesion(token, correo));
-            log.log(Level.FINE, "Nueva sesion creada");
-            return token;
+        if (jug1 == null) { // si el jug1 es nulo significa que no existe ningï¿½n usuario con
+            dao.createUser(jug);// el email que hemos pasado por parametro
+            jug1 = dao.findUser(correo);
+
+            if (jug1.getEmail().equals(correo) && jug1.getNickJugador().equals(nombre)) {//comprobamos de nuevo si hemos aï¿½adido el jugador correctamente
+                token = new Token(correo);
+                sessions.add(new Sesion(token, correo));
+                log.log(Level.FINE, "Nueva sesion creada");
+                return token;
+            }
+        } else {
+            log.log(Level.SEVERE, "El usuario ya existe");
         }
+
         return token;
     }
 
-    @Override
-    public boolean verificarExistenciaCorreo(String correo) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
-
     /**
-     * Crea un token y una sesión al Jugador con el email dado por parámetro
-     * después de comprobar si existé en la bd y que no tiene sesión o token
+     * Crea un token y una sesiï¿½n al Jugador con el email dado por parï¿½metro
+     * despuï¿½s de comprobar si existï¿½ en la bd y que no tiene sesiï¿½n o token
      *
      * @param email
      * @return
@@ -139,24 +134,28 @@ public class SessionManagerEJB implements ISessionManager {
         List<Sesion> sessionsLog = new ArrayList(sessions);
         //asignamos el Jugador encontrado en findUser con el email
         jugSes = dao.findUser(email);
-        if (jugSes.getEmail().equals(email)) {
-            // si encontramos la sesión recuperamos el token
-            for (Sesion sesh : sessionsLog) {
-                if (email.equals(sesh.getCorreo())) {
-                    token = sesh.getToken();
-                    log.log(Level.FINE, "Token recuperado");
+        if (jugSes != null) {
+            if (jugSes.getEmail().equals(email)) {
+                // si encontramos la sesiï¿½n recuperamos el token
+                for (Sesion sesh : sessionsLog) {
+                    if (email.equals(sesh.getCorreo())) {
+                        token = sesh.getToken();
+                        log.log(Level.FINE, "Token recuperado");
+                    }
                 }
-            }
 
-            if (token == null) {// si no existe una sesión la creamos
-                token = new Token(email);
+                if (token == null) {// si no existe una sesiï¿½n la creamos
+                    token = new Token(email);
 
-                sessions.add(new Sesion(token, email));
-                log.log(Level.FINE, "Nueva sesion creada");
+                    sessions.add(new Sesion(token, email));
+                    log.log(Level.FINE, "Nueva sesion creada");
+                }
+            } else {
+                log.log(Level.SEVERE, "ERROR JUGADOR NO ENCONTRADO");
+
             }
         } else {
-            log.log(Level.SEVERE, "ERROR JUGADOR NO ENCONTRADO");
-
+            log.log(Level.SEVERE, "EL JUGADOR ES NULO");
         }
         return token;
     }

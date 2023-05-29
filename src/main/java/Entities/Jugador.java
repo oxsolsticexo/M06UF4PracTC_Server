@@ -84,7 +84,7 @@ public class Jugador implements Serializable {
         jug.setEmail(this.getEmail());
         jug.setNickJugador(this.nickJugador);
         if (jug.getPuntuacionTotal() != null) {
-            jug.setMaxPuntuacionPartida(this.maxPuntuacionPartida);
+            jug.setPuntuacionTotal(this.maxPuntuacionPartida);
         }
         if (jug.getPartidaList() != null) {
             jug.setPartidaList(this.partidaList);
