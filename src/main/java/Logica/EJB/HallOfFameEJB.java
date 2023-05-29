@@ -2,13 +2,16 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package main;
+package Logica.EJB;
 
-import common.IPartida;
-import common.Partida;
-import common.Pregunta;
-import java.util.List;
-import java.util.logging.Logger;
+
+import Entities.Jugador;
+import Entities.Lookups;
+import Logica.Interfaces.IFameInterface;
+import Logica.Interfaces.IHallOfFame;
+import java.io.Serializable;
+import javafx.collections.ObservableList;
+import javafx.scene.control.TableView;
 import javax.annotation.Resource;
 import javax.ejb.ConcurrencyManagement;
 import javax.ejb.ConcurrencyManagementType;
@@ -19,17 +22,18 @@ import javax.ejb.TransactionManagement;
 import javax.ejb.TransactionManagementType;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import singleton.SerializableObject;
 
 /**
  *
- * @author Kiwi
+ * @author carlo
  */
 @Stateful
 @ConcurrencyManagement(ConcurrencyManagementType.CONTAINER)
 @TransactionManagement(value = TransactionManagementType.CONTAINER)
-public class PartidaEJB implements IPartida {
+public class HallOfFameEJB implements IHallOfFame {
 
-    private static final Logger log = Logger.getLogger(PartidaEJB.class.getName());
+    private IFameInterface hallOfFame;
 
     @Resource
     private SessionContext sessionContext;
@@ -41,8 +45,16 @@ public class PartidaEJB implements IPartida {
     private EntityManager entityManager;
 
     @Override
-    public List<Pregunta> asignaPreguntas(Partida p) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    public SerializableObject<Jugador> getUsers() {
+        
+        try {
+            hallOfFame = Lookups.IFameLookup();
+            return hallOfFame.getUsers();
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
+        return null;
     }
+
 
 }

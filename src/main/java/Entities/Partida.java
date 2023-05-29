@@ -2,7 +2,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package common;
+package Entities;
 
 import java.io.Serializable;
 import java.util.List;
@@ -10,6 +10,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
@@ -33,18 +35,18 @@ public class Partida implements Serializable {
     @NotNull(message = "Debes seleccionar una dificultad.")
     private String dificultad;
 
-    @OneToMany
-    @Size(max = 4)
-    private List<Jugador> jugadoresList;
+    @ManyToOne
+    @JoinColumn(name = "jugador_email")
+    private Jugador jugador;
 
     @OneToMany
     @Size(max = 10)
     private List<Pregunta> preguntasList;
 
-    public Partida(String nombre, String dificultad, List<Jugador> jugadoresList, List<Pregunta> preguntasList) {
+    public Partida(String nombre, String dificultad, Jugador jugador, List<Pregunta> preguntasList) {
         this.nombre = nombre;
         this.dificultad = dificultad;
-        this.jugadoresList = jugadoresList;
+        this.jugador = jugador;
         this.preguntasList = preguntasList;
     }
 
@@ -71,12 +73,12 @@ public class Partida implements Serializable {
         this.dificultad = dificultad;
     }
 
-    public List<Jugador> getJugadoresList() {
-        return jugadoresList;
+    public Jugador getJugador() {
+        return jugador;
     }
 
-    public void setJugadoresList(List<Jugador> jugadoresList) {
-        this.jugadoresList = jugadoresList;
+    public void setJugador(Jugador jugador) {
+        this.jugador = jugador;
     }
 
     public List<Pregunta> getPreguntasList() {

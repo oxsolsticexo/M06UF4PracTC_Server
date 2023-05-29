@@ -2,8 +2,12 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package common;
+package Logica.Interfaces;
 
+import Entities.Partida;
+import Entities.Sesion;
+import Logica.Exceptions.SesionJugException;
+import Entities.Token;
 import javax.ejb.Remote;
 import javax.naming.NamingException;
 
@@ -20,7 +24,7 @@ public interface ISessionManager {
      *
      * @param login
      * @return id de sesión
-     * @throws common.SesionJugException
+     * @throws Logica.Exceptions.SesionJugException
      */
     public Sesion getSesion(Token token) throws SesionJugException;
 

@@ -4,9 +4,11 @@
  */
 package Logica;
 
-import common.Pregunta;
+import Entities.Pregunta;
 import java.io.File;
 import java.io.IOException;
+import java.io.InputStream;
+import java.nio.file.Files;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -19,36 +21,14 @@ import nu.xom.*;
 public class PreguntaLogic {
 
     /**
-     * Buildea un archivo y retorna un Document
-     *
-     * @return
-     */
-    public Document getDocument() {
-
-        try {
-            File file = new File("src/main/resources/files/preguntas.xml");
-
-            Builder builder = new Builder();
-
-            return builder.build(file);
-
-        } catch (ParsingException | IOException ex) {
-            Logger.getLogger(PreguntaLogic.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        return null;
-    }
-
-    /**
-     * *
      * Recibe un documento XML y lo itera convirtiendo las diferentes etiquetas
      * a objetos.
      *
+     * @param document
      * @return retorna un ArrayList de "Pregunta"
      */
-    public ArrayList<Pregunta> xmlToArrayList() {
-
-        Document document = getDocument();
-
+    public ArrayList<Pregunta> xmlToArrayList(Document document) {
+        
         //Generamos un ArrayList de "Report"
         ArrayList<Pregunta> preguntas = new ArrayList<>();
 
@@ -86,4 +66,11 @@ public class PreguntaLogic {
         }
         return preguntas;
     }
+
+    private Document createXMLDocument(InputStream inputStream) throws ParsingException, ValidityException, IOException {
+        Builder builder = new Builder();
+        Document doc = builder.build(inputStream);
+        return doc;
+    }
+
 }
