@@ -4,9 +4,7 @@
  */
 package Logica.Interfaces;
 
-import Entities.Jugador;
 import javax.ejb.Remote;
-import singleton.SerializableObject;
 
 /**
  *
@@ -16,6 +14,6 @@ import singleton.SerializableObject;
 public interface IHallOfFame {
     
     
-    public SerializableObject<Jugador> getUsers();
+    public String getUsers();
     
 }

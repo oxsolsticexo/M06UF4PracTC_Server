@@ -18,7 +18,6 @@ import javax.ejb.TransactionManagementType;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
-import singleton.SerializableObject;
 
 /**
  *
@@ -34,14 +33,19 @@ public class DAOHallOfFame implements IFameInterface {
     @PersistenceContext(unitName = "TrivialPersistenceUnit")
     private EntityManager em;
 
-    public SerializableObject<Jugador> getUsers() {
+    public String getUsers() {
         ObservableList<Jugador> lista = FXCollections.observableArrayList();
         List<Jugador> listaJug = em.createQuery("SELECT j FROM Jugador j ORDER BY j.puntuacionTotal DESC")
                 .setMaxResults(5)
                 .getResultList();
+        lista.addAll(listaJug);
+        StringBuilder sb = new StringBuilder();
+        for(Jugador jugador : lista){
+            sb.append(jugador.toString()).append("\n");
+        }
         
-        SerializableObject<Jugador> listado = new SerializableObject<>(lista);
-        return listado;
+        
+        return sb.toString();
         
        
     }
