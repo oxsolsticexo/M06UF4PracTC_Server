@@ -39,7 +39,6 @@ public class TimerLogic {
     }
 
     public void reiniciarTemporizador() {
-        timer.cancel();
         iniciarTemporizador();
     }
 

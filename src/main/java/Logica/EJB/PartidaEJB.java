@@ -197,4 +197,25 @@ public class PartidaEJB implements IPartida {
     public int getTiempoRestante() {
         return temporizador.getTiempoRestante();
     }
+
+    @Override
+    public Float calculaPuntuacion(int tiempoRestante) {
+
+        if (tiempoRestante > 25) {
+            return 10f;
+        }
+        if (tiempoRestante < 25 && tiempoRestante > 15) {
+            return 7.5f;
+        }
+        if (tiempoRestante < 15 && tiempoRestante > 10) {
+            return 5f;
+        }
+        if (tiempoRestante < 10 && tiempoRestante > 5) {
+            return 2.5f;
+        }
+        if (tiempoRestante < 5 && tiempoRestante > 0) {
+            return 1f;
+        }
+        return 0f;
+    }
 }

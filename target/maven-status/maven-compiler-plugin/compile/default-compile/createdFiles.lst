@@ -17,7 +17,6 @@ Logica\Interfaces\IHallOfFame.class
 Entities\Token.class
 Logica\Interfaces\LogicaInterface.class
 DAO\DAOPregunta.class
-singleton\SerializableObject.class
 Logica\EJB\PartidaEJB.class
 Logica\Interfaces\IPartida.class
 Logica\Logica.class

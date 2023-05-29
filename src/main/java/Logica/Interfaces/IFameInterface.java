@@ -4,10 +4,7 @@
  */
 package Logica.Interfaces;
 
-import Entities.Jugador;
-import javafx.scene.control.TableView;
 import javax.ejb.Remote;
-import singleton.SerializableObject;
 
 /**
  *
@@ -15,5 +12,5 @@ import singleton.SerializableObject;
  */
 @Remote
 public interface IFameInterface {
-    SerializableObject<Jugador> getUsers();
+    String getUsers();
 }

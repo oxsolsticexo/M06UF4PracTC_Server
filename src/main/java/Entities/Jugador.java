@@ -32,10 +32,10 @@ public class Jugador implements Serializable {
     private String nickJugador;
 
     @Column(name = "maxPuntuacionPartida")
-    private Integer maxPuntuacionPartida;
+    private Float maxPuntuacionPartida;
 
     @Column(name = "puntuacionTotal")
-    private Integer puntuacionTotal;
+    private Float puntuacionTotal;
 
     @OneToMany(mappedBy = "jugador")
     private List<Partida> partidaList;
@@ -64,19 +64,19 @@ public class Jugador implements Serializable {
         this.nickJugador = nickJugador;
     }
 
-    public Integer getMaxPuntuacionPartida() {
+    public Float getMaxPuntuacionPartida() {
         return maxPuntuacionPartida;
     }
 
-    public void setMaxPuntuacionPartida(Integer maxPuntuacionPartida) {
+    public void setMaxPuntuacionPartida(Float maxPuntuacionPartida) {
         this.maxPuntuacionPartida = maxPuntuacionPartida;
     }
 
-    public Integer getPuntuacionTotal() {
+    public Float getPuntuacionTotal() {
         return puntuacionTotal;
     }
 
-    public void setPuntuacionTotal(Integer puntuacionTotal) {
+    public void setPuntuacionTotal(Float puntuacionTotal) {
         this.puntuacionTotal = puntuacionTotal;
     }
 
@@ -95,5 +95,10 @@ public class Jugador implements Serializable {
             jug.setMaxPuntuacionPartida(this.maxPuntuacionPartida);
         }
         return jug;
+    }
+
+    @Override
+    public String toString() {
+        return "Jugador [email=" + this.email + ", nickjugador= " + this.nickJugador + ", maxPuntuacionPartida="+ this.maxPuntuacionPartida+", puntuacionTotal="+this.puntuacionTotal+"]";
     }
 }
