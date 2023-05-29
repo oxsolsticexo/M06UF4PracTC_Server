@@ -9,7 +9,9 @@ import Logica.Interfaces.ISessionManager;
 import Logica.Interfaces.IPregunta;
 import Logica.Interfaces.IPartida;
 import DAO.DAOEJB;
+import DAO.DAOHallOfFame;
 import DAO.DAOPregunta;
+import Logica.EJB.HallOfFameEJB;
 import Logica.Interfaces.DAOInterface;
 import java.util.Properties;
 import javax.naming.Context;
@@ -19,6 +21,8 @@ import Logica.EJB.PartidaEJB;
 import Logica.EJB.PreguntaEJB;
 import Logica.EJB.SessionManagerEJB;
 import Logica.Interfaces.IDAOPregunta;
+import Logica.Interfaces.IFameInterface;
+import Logica.Interfaces.IHallOfFame;
 
 /**
  * Classe encarregada de fer les connexions amb els EJB remots
@@ -74,6 +78,30 @@ public class Lookups {
         Context context = new InitialContext(jndiProperties);
 
         return (IDAOPregunta) context.lookup(strlookup);
+    }
+
+    public static IHallOfFame DAOHallOfFameLookup() throws NamingException {
+        String strlookup = "ejb:/" + APP_NAME + "/" + HallOfFameEJB.class.getSimpleName() + "!" + IHallOfFame.class.getName() + "?stateful";
+
+        Properties jndiProperties = new Properties();
+
+        jndiProperties.put(Context.INITIAL_CONTEXT_FACTORY, WILDFLY_INITIAL_CONTEXT_FACTORY);
+
+        Context context = new InitialContext(jndiProperties);
+
+        return (IHallOfFame) context.lookup(strlookup);
+    }
+
+    public static IFameInterface IFameLookup() throws NamingException {
+        String strlookup = "ejb:/" + APP_NAME + "/" + DAOHallOfFame.class.getSimpleName() + "!" + IFameInterface.class.getName() + "?stateful";
+
+        Properties jndiProperties = new Properties();
+
+        jndiProperties.put(Context.INITIAL_CONTEXT_FACTORY, WILDFLY_INITIAL_CONTEXT_FACTORY);
+
+        Context context = new InitialContext(jndiProperties);
+
+        return (IFameInterface) context.lookup(strlookup);
     }
 
     public static IPregunta preguntaEJBRemoteLookup() throws NamingException {

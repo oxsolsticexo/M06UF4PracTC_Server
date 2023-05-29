@@ -30,6 +30,7 @@ public class DAOPregunta implements IDAOPregunta {
         List<Pregunta> preguntasList = entityManager
                 .createQuery("SELECT p FROM Pregunta p WHERE p.dificultad = :dificultad", Pregunta.class)
                 .setParameter("dificultad", partida.getDificultad())
+                .setMaxResults(10)
                 .getResultList();
 
         //TODO Limitar de alguna manera a que sean 10 preguntas.

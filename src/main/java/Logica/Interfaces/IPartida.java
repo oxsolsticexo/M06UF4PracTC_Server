@@ -6,7 +6,12 @@ package Logica.Interfaces;
 
 import Entities.Partida;
 import Entities.Pregunta;
+import Entities.Token;
+import Logica.Exceptions.SesionJugException;
+import java.io.IOException;
 import javax.ejb.Remote;
+import javax.naming.NamingException;
+import nu.xom.ParsingException;
 
 /**
  *
@@ -14,13 +19,17 @@ import javax.ejb.Remote;
  */
 @Remote
 public interface IPartida {
-    
-    public void crearPartida(String nombrePartida, String dificultad);
-    
-    public void setPreguntas(Partida p);
 
+    public void crearPartida(String nombrePartida, Token token, String dificultad) throws NamingException, ParsingException, IOException, SesionJugException;
+
+    //public void setPreguntas(Partida p);
     public Pregunta asignaPregunta() throws Exception;
-    
-    public int startTimer();
 
+    public void iniciarTiempo();
+
+    public void detenerTiempo();
+
+    public void reiniciarTiempo();
+
+    public int getTiempoRestante();
 }

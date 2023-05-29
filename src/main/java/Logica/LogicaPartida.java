@@ -20,14 +20,14 @@ public class LogicaPartida {
 
     }
 
-    public void crearPartida(String nombre, String jugador, String dificultad) {
-        try {
-            if (!nombre.isEmpty() && !dificultad.isEmpty()) {
-                daoPartida.crearPartida(nombre, jugador, dificultad);
-            }
-
-        } catch (Exception e) {
-            System.out.println(e.getMessage());
-        }
-    }
+//    public void crearPartida(String nombre, String jugador, String dificultad) {
+//        try {
+//            if (!nombre.isEmpty() && !dificultad.isEmpty()) {
+//                daoPartida.crearPartida(nombre, jugador, dificultad);
+//            }
+//
+//        } catch (Exception e) {
+//            System.out.println(e.getMessage());
+//        }
+//    }
 }

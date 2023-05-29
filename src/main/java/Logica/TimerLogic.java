@@ -21,23 +21,29 @@ public class TimerLogic {
         timer = new Timer();
     }
 
-    public int startTimer() {
+    public void iniciarTemporizador() {
         tiempoRestante = TIEMPO_TOTAL;
         timer.scheduleAtFixedRate(new TimerTask() {
             @Override
             public void run() {
                 tiempoRestante--;
+                if (tiempoRestante <= 0) {
+                    // Lógica adicional cuando el temporizador llega a cero
+                }
             }
         }, 0, 1000); // El temporizador se actualiza cada segundo (1000 ms)
-
-        return tiempoRestante;
     }
 
-    public void cancelTimer() {
+    public void detenerTemporizador() {
         timer.cancel();
     }
 
-    public void resetTimer() {
-        tiempoRestante = TIEMPO_TOTAL;
+    public void reiniciarTemporizador() {
+        timer.cancel();
+        iniciarTemporizador();
+    }
+
+    public int getTiempoRestante() {
+        return tiempoRestante;
     }
 }
