@@ -21,7 +21,9 @@ import javax.persistence.PersistenceContext;
 import main.Validadors;
 
 /**
- *
+ * Data Access object utilizado para la creación y busqueda de jugadores,
+ * también podemos validar y persistir con 
+ * 
  * @author carlo
  */
 @Stateful
@@ -57,7 +59,8 @@ public class DAOEJB implements DAOInterface {
     }
 
     /**
-     * Comprueba si un usuario está en la base de datos
+     * Comprueba si un usuario está en la base de datos y lo devuelve, para ello
+     * recibe un email por parametro
      *
      * @param email
      * @return
@@ -67,27 +70,27 @@ public class DAOEJB implements DAOInterface {
     public Jugador findUser(String email) {
         Jugador jugFind = null;
         String msg;
-
+        //en caso de que el email que llega por parametro sea nulo 
+        //devolveremos la variable jugFind como null dando así un caso fallido
         if (email == null) {
             msg = "ERROR: El email es nulo";
             log.log(Level.SEVERE, msg);
             return jugFind;
         }
+        //creamos una lista de Jugadores y le asignamos la busqueda de los jugadores
+        //que tengan el mismo email que el email que nos llega por parametro 
         List<Jugador> listaJug = em.createQuery("SELECT j FROM Jugador j WHERE j.email = :emailDAO", Jugador.class)
                 .setParameter("emailDAO", email)
                 .getResultList();
-
-        if (listaJug != null && !listaJug.isEmpty()) {// comprobamos que la lista no esta vacia y clonamos el jugador
+        //en caso de que la lista no sea nula y no esté vacía clonamos el jugador en la posición 0
+        if (listaJug != null && !listaJug.isEmpty()) {
             jugFind = listaJug.get(0).clone();
         } else {
             msg = "ERROR: No se encuentra al jugador ";
             log.log(Level.SEVERE, msg);
             return jugFind;
         }
-//        Jugador jugo = new Jugador();
-//        jugo.setEmail("hola@hola.com");
-//        jugo.setNickJugador("hola");
-//        jugFind = jugo;
+
         return jugFind;
     }
 
@@ -98,10 +101,11 @@ public class DAOEJB implements DAOInterface {
      * @param ob
      */
     @Lock(LockType.WRITE)
+    @Override
     public void validPersist(Object ob) {
         List<String> errors = Validadors.validaBean(ob);
-
-        if (errors == null || errors.isEmpty()) { //si no hay errores persistimos 
+        //si no hay errores persistimos 
+        if (errors == null || errors.isEmpty()) {
             log.log(Level.FINE, "!!!--- PERSISTIENDO al jugador ---!!!");
             em.persist(ob);
         } else {

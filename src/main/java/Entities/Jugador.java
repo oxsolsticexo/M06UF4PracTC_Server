@@ -9,45 +9,43 @@ import java.util.List;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Pattern;
 
 /**
  *
  * @author Kiwi
  */
 @Entity()
-@Table(name = "Jugador")
+@Table(name = "jugador")
 public class Jugador implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
-//    @NotNull(message = "Debes introducir una dirección de correo electrónico.")
-//    @Pattern(regexp = "^[A-Za-z0-9+_.-]+@[A-Za-z0-9.-]+$", message = "La dirección de correo electrónica introducida no es válida.")
     @Id
     @Column(name = "email", nullable = false, unique = true)
     private String email;
 
-//    @NotNull(message = "Debes introducir un Nickname")
-//    @Pattern(regexp = "^[a-zA-Z0-9]+$", message = "Solo puedes introducir letras y números.")
     @Column(name = "nickJugador", nullable = false, unique = true)
     private String nickJugador;
-    @Column(name = "maxPuntuacionPartida")
-    private Integer maxPuntuacionPartida;
-    @Column(name = "puntuacionTotal")
-    private Integer puntuacionTotal;
-    @ManyToOne
-    @JoinColumn(name = "idPartida")
-    private Partida partida;
 
-    public Partida getPartida() {
-        return partida;
+    @Column(name = "maxPuntuacionPartida")
+    private Float maxPuntuacionPartida;
+
+    @Column(name = "puntuacionTotal")
+    private Float puntuacionTotal;
+
+    @OneToMany(mappedBy = "jugador")
+    private List<Partida> partidaList;
+
+    public List<Partida> getPartidaList() {
+        return partidaList;
     }
 
-    public void setPartida(Partida partida) {
-        this.partida = partida;
+    public void setPartidaList(List<Partida> partidaList) {
+        this.partidaList = partidaList;
     }
 
     public String getEmail() {
@@ -66,19 +64,19 @@ public class Jugador implements Serializable {
         this.nickJugador = nickJugador;
     }
 
-    public Integer getMaxPuntuacionPartida() {
+    public Float getMaxPuntuacionPartida() {
         return maxPuntuacionPartida;
     }
 
-    public void setMaxPuntuacionPartida(Integer maxPuntuacionPartida) {
+    public void setMaxPuntuacionPartida(Float maxPuntuacionPartida) {
         this.maxPuntuacionPartida = maxPuntuacionPartida;
     }
 
-    public Integer getPuntuacionTotal() {
+    public Float getPuntuacionTotal() {
         return puntuacionTotal;
     }
 
-    public void setPuntuacionTotal(Integer puntuacionTotal) {
+    public void setPuntuacionTotal(Float puntuacionTotal) {
         this.puntuacionTotal = puntuacionTotal;
     }
 
@@ -90,8 +88,8 @@ public class Jugador implements Serializable {
         if (jug.getPuntuacionTotal() != null) {
             jug.setMaxPuntuacionPartida(this.maxPuntuacionPartida);
         }
-        if (jug.getPartida() != null) {
-            jug.setPartida(this.partida);
+        if (jug.getPartidaList() != null) {
+            jug.setPartidaList(this.partidaList);
         }
         if (jug.getMaxPuntuacionPartida() != null) {
             jug.setMaxPuntuacionPartida(this.maxPuntuacionPartida);
