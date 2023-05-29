@@ -22,6 +22,7 @@ import java.io.IOException;
 import java.util.Collections;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.ejb.ConcurrencyManagement;
 import javax.ejb.ConcurrencyManagementType;
@@ -143,7 +144,7 @@ public class PartidaEJB implements IPartida {
         sessionManager = Lookups.sessionManagerEJBRemoteLookup();
         DAOejb = Lookups.DAOEJBLocalLookup();
 
-        Jugador jug = DAOejb.findUser(sessionManager.getSesion(token).getCorreo());
+        Jugador jug = DAOejb.obtenerJugador(sessionManager.getSesion(token).getCorreo());
 
         return jug;
     }
@@ -198,24 +199,69 @@ public class PartidaEJB implements IPartida {
         return temporizador.getTiempoRestante();
     }
 
+    /**
+     * Calculamos la puntuación obtenida en base al tiempo restante
+     *
+     * @param tiempoRestante
+     * @return
+     */
     @Override
     public Float calculaPuntuacion(int tiempoRestante) {
 
-        if (tiempoRestante > 25) {
+        if (tiempoRestante >= 25) {
             return 10f;
         }
-        if (tiempoRestante < 25 && tiempoRestante > 15) {
+        if (tiempoRestante < 25 && tiempoRestante >= 15) {
             return 7.5f;
         }
-        if (tiempoRestante < 15 && tiempoRestante > 10) {
+        if (tiempoRestante < 15 && tiempoRestante >= 10) {
             return 5f;
         }
-        if (tiempoRestante < 10 && tiempoRestante > 5) {
+        if (tiempoRestante < 10 && tiempoRestante >= 5) {
             return 2.5f;
         }
         if (tiempoRestante < 5 && tiempoRestante > 0) {
             return 1f;
         }
         return 0f;
+    }
+
+    /**
+     * Obtenemos el token y la puntuación del jugador una vez finalizada la
+     * partida
+     *
+     * @param token
+     * @param puntuacionJugador
+     * @throws NamingException
+     * @throws SesionJugException
+     */
+    @Override
+    public void persistirDatosPartida(Token token, Float puntuacionJugador) throws NamingException, SesionJugException {
+
+        DAOejb = Lookups.DAOEJBLocalLookup();
+
+        Jugador jugador = buscarJugadorPartida(token);
+
+        System.out.println(jugador.toString());
+
+        if (jugador.getPuntuacionTotal() == null) {
+            jugador.setPuntuacionTotal(0f);
+        }
+
+        Float puntuacionTotalJugador = jugador.getPuntuacionTotal();
+
+        System.out.println("Esta es la que tenía: " + jugador.getPuntuacionTotal());
+
+        if (jugador.getMaxPuntuacionPartida() == null || jugador.getMaxPuntuacionPartida() < puntuacionJugador) {
+            jugador.setMaxPuntuacionPartida(puntuacionJugador);
+        }
+
+        puntuacionTotalJugador += puntuacionJugador;
+
+        System.out.println("Esta es la suma de la anterior más la nueva: " + puntuacionTotalJugador);
+
+        jugador.setPuntuacionTotal(puntuacionTotalJugador);
+
+        DAOejb.validPersist(jugador);
     }
 }

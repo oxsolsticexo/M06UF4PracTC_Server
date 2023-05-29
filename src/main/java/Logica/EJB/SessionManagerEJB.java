@@ -37,13 +37,13 @@ public class SessionManagerEJB implements ISessionManager {
     private final List<Sesion> sessions = new ArrayList();
 
     private static final Logger log = Logger.getLogger(SessionManagerEJB.class.getName());
-    
+
     /**
      * Recupera una sesión con el token dado por parametro
-     * 
+     *
      * @param token
      * @return
-     * @throws SesionJugException 
+     * @throws SesionJugException
      */
     @Override
     public Sesion getSesion(Token token) throws SesionJugException {
@@ -65,10 +65,11 @@ public class SessionManagerEJB implements ISessionManager {
     public Float getPuntuacionMax() {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
-    
+
     /**
      * Elimina una sesión de sessions correspondiente al token dado
-     * @param token 
+     *
+     * @param token
      */
     @Override
     public void cerrarSesion(Token token) {
@@ -87,14 +88,15 @@ public class SessionManagerEJB implements ISessionManager {
     public void unirsePartida(Partida partidaAUnirse) {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
+
     /**
-     * Crea un nuevo Jugador con el nombre y correo dados por parámetros
-     * también crea un token y una sesión para este jugador
-     * 
+     * Crea un nuevo Jugador con el nombre y correo dados por parámetros también
+     * crea un token y una sesión para este jugador
+     *
      * @param nombre
      * @param correo
      * @return
-     * @throws NamingException 
+     * @throws NamingException
      */
     @Override
     public Token registrarJugador(String nombre, String correo) throws NamingException {
@@ -105,7 +107,7 @@ public class SessionManagerEJB implements ISessionManager {
         jug.setNickJugador(nombre);
 
         dao.createUser(jug);
-        
+
         Jugador jug1 = dao.findUser(correo);
         if (jug1.getEmail().equals(correo)) {
             token = new Token(correo);
@@ -120,12 +122,14 @@ public class SessionManagerEJB implements ISessionManager {
     public boolean verificarExistenciaCorreo(String correo) {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
+
     /**
-     * Crea un token y una sesión al Jugador con el email dado por parámetro después de comprobar
-     * si existé en la bd y que no tiene sesión o token
+     * Crea un token y una sesión al Jugador con el email dado por parámetro
+     * después de comprobar si existé en la bd y que no tiene sesión o token
+     *
      * @param email
      * @return
-     * @throws NamingException 
+     * @throws NamingException
      */
     @Override
     public Token loginJugador(String email) throws NamingException {

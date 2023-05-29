@@ -11,7 +11,6 @@ import javax.ejb.Remote;
  *
  * @author carlo
  */
-
 @Remote
 public interface DAOInterface {
 
@@ -32,10 +31,12 @@ public interface DAOInterface {
 
     /**
      * Método que recibe un objeto lo valida haciendo uso de la clase validadors
-     * y lo persiste 
+     * y lo persiste
      *
      * @param ob
      */
     public void validPersist(Object ob);
-    
+
+    public Jugador obtenerJugador(String email);
+
 }
