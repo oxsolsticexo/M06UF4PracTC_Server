@@ -17,16 +17,11 @@ import java.util.Arrays;
 import java.util.Collections;
 import java.util.LinkedList;
 import java.util.logging.Logger;
-import javax.annotation.Resource;
 import javax.ejb.ConcurrencyManagement;
 import javax.ejb.ConcurrencyManagementType;
-import javax.ejb.EJBContext;
-import javax.ejb.SessionContext;
 import javax.ejb.Stateful;
 import javax.ejb.TransactionManagement;
 import javax.ejb.TransactionManagementType;
-import javax.persistence.EntityManager;
-import javax.persistence.PersistenceContext;
 
 /**
  *
@@ -40,29 +35,24 @@ public class PartidaEJB implements IPartida {
     private DAOEJB DAOejb;
     private DAOPregunta DAOPregunta;
     private LinkedList<Pregunta> preguntasLList;
-    private TimerLogic timerLogic;
+    private TimerLogic temporizador;
 
     public PartidaEJB() {
         DAOPregunta = new DAOPregunta();
         DAOejb = new DAOEJB();
-        timerLogic = new TimerLogic();
     }
 
     private static final Logger log = Logger.getLogger(PartidaEJB.class.getName());
 
-    @Resource
-    private SessionContext sessionContext;
-
-    @Resource
-    private EJBContext ejbContext;
-
-    @PersistenceContext(unitName = "TrivialPersistenceUnit")
-    private EntityManager entityManager;
-
     @Override
     public Pregunta asignaPregunta() throws Exception {
 
+        if (preguntasLList.isEmpty()) {
+            System.out.println("Estoy vacía");
+        }
+
         if (!preguntasLList.isEmpty()) {
+            System.out.println("He entrado en preguntasList");
             //Mezclamos las preguntas, para que de la "sensaciï¿½n" de que son aleatorias y no siempre se repiten dada una partida
             Collections.shuffle(preguntasLList);
             //Retorna y elimina el primer elemento de la LinkedList.
@@ -72,15 +62,6 @@ public class PartidaEJB implements IPartida {
         } else {
             throw new PartidaExceptions("Partida finalizada");
         }
-    }
-
-    @Override
-    public int startTimer() {
-
-        if (timerLogic.startTimer() <= 0) {
-
-        }
-        return timerLogic.startTimer();
     }
 
     /**
@@ -112,5 +93,26 @@ public class PartidaEJB implements IPartida {
         partida.setPreguntasList(DAOPregunta.getPreguntasBBDD(partida));
 
         DAOejb.validPersist(partida);
+    }
+
+    @Override
+    public void iniciarTiempo() {
+        temporizador = new TimerLogic();
+        temporizador.iniciarTemporizador();
+    }
+
+    @Override
+    public void detenerTiempo() {
+        temporizador.detenerTemporizador();
+    }
+
+    @Override
+    public void reiniciarTiempo() {
+        temporizador.reiniciarTemporizador();
+    }
+
+    @Override
+    public int getTiempoRestante() {
+        return temporizador.getTiempoRestante();
     }
 }

@@ -14,13 +14,18 @@ import javax.ejb.Remote;
  */
 @Remote
 public interface IPartida {
-    
+
     public void crearPartida(String nombrePartida, String dificultad);
-    
+
     public void setPreguntas(Partida p);
 
     public Pregunta asignaPregunta() throws Exception;
-    
-    public int startTimer();
 
+    public void iniciarTiempo();
+
+    public void detenerTiempo();
+
+    public void reiniciarTiempo();
+
+    public int getTiempoRestante();
 }
